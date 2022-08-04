@@ -16,7 +16,6 @@ model User {
   email    String   @unique()
   password String
   dob      DateTime
-  role     String   @default("student")
   Courses  Course[]
 }
 
