@@ -1,10 +1,14 @@
+import { Routes, Route } from "react-router";
+import NotFound from "./pages/NotFound";
 import ViewNote from "./pages/ViewNote";
 
 const App = () => {
   return (
     <>
-      <h1>App</h1>
-      <ViewNote />
+      <Routes>
+        <Route path="/view-note" element={<ViewNote />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
   );
 };
