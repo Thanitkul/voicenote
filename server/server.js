@@ -15,6 +15,8 @@ const bodyParser = require("body-parser")
 import { PrismaClient } from '@prisma/client'
 
 import authControllers from "./controllers/auth.js"
+import studentControllers from "./controllers/student.js"
+import teacherControllers from "./controllers/teacher.js"
 
 const prisma = new PrismaClient();
 
@@ -32,32 +34,9 @@ app.get("/", (req, res) => {
   res.send("Hello! Node.js");
 });
 
-app.get('/courses/:userId', async (req, res, next) => {
-  try {
-    let courses;
-    if (!req.params.userId) {
-      courses = await prisma.Course.findMany({
-        where: {
-          userId: req.params.userId
-        }
-      });
-    } else {
-      throw new Error()
-    }
-
-    res.send(courses);
-  } catch (error) {
-    next(error);
-  }
-
-})
-
 app.use("/auth", authControllers)
-
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  console.log(socket.id);
-});
+app.use("/student", studentControllers)
+app.use("/teacher", teacherControllers)
 
 
 
