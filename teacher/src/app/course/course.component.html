@@ -1,1 +1,25 @@
-<p>course works!</p>
+<p>{{user_data['first_name']}} {{user_data['last_name']}}</p>
+<button type="button" (click)="openFormModal()" class="btn btn-dark">
+    create
+</button>
+<input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search ">
+<div style="padding-bottom: 10px;" *ngFor="let course of course_data | filter:searchText">
+    <div class="course_box">
+        <div class="card-title" style="display:inline-block; margin-right: 15px;">{{course["course_name"]}}</div>
+        <div class="card-text">Code: {{course["code"]}}</div>
+    </div>
+</div>
+
+<!--form modal-->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <input placeholder="Name" id="name" class="form-control" type="text">
+            <button type="button" class="btn btn-primary" (click)="create()">
+                Create
+            </button>
+        </div>
+    </div>
+</div>

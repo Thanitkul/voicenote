@@ -7,7 +7,8 @@ import { AccountCreationComponent } from './account-creation/account-creation.co
 import { LoginComponent } from './login/login.component';
 import { CourseComponent } from './course/course.component';
 import { TranscriptionComponent } from './transcription/transcription.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,9 @@ import { TranscriptionComponent } from './transcription/transcription.component'
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Ng2SearchPipeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
