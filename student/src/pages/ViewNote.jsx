@@ -1,8 +1,8 @@
 const ViewNote = () => {
   return (
-    <>
-      <h1 className="view-note__header">Hello</h1>
-    </>
+    <div className="view-note">
+      <h1>View Note</h1>
+    </div>
   );
 };
 
