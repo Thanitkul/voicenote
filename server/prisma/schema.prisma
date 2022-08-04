@@ -11,20 +11,22 @@ datasource db {
 }
 
 model User {
-  id       String   @id() @default(uuid())
-  name     String
-  email    String   @unique()
-  password String
-  dob      DateTime
-  Courses  Course[]
+  id         String   @id() @default(uuid())
+  name       String
+  email      String   @unique()
+  password   String
+  dob        DateTime
+  Courses    Course[] @relation(name: "owner")
+  EnrolledIn Course[] @relation(name: "students")
 }
 
 model Course {
   id         String      @id() @default(uuid())
   courseName String
-  User       User?       @relation(fields: [userId], references: [id])
+  User       User?       @relation(name: "owner", fields: [userId], references: [id])
   userId     String?
   Recording  Recording[]
+  Students   User[]      @relation(name: "students")
 }
 
 model Recording {
