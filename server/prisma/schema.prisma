@@ -23,6 +23,7 @@ model User {
 model Course {
   id         String      @id() @default(uuid())
   courseName String
+  code       String
   User       User?       @relation(name: "owner", fields: [userId], references: [id])
   userId     String?
   Recording  Recording[]
