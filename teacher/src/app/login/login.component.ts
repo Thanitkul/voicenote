@@ -9,9 +9,9 @@ import { FormControl } from '@angular/forms';
 export class LoginComponent {
 
   getinfo(){
-    let username = (<HTMLInputElement>document.getElementById("username")).value;
+    let email = (<HTMLInputElement>document.getElementById("email")).value;
     let password = (<HTMLInputElement>document.getElementById("password")).value;
-    console.log(username);
+    console.log(email);
     console.log(password);
   }
     
