@@ -1,40 +1,42 @@
-import { PrismaClient } from "@prisma/client";
 import { Router } from "express";
 import { compare, hash } from "bcrypt";
 import jwt from 'jsonwebtoken';
+import { con } from "../server.js";
 const { sign } = jwt;
-
-const prisma = new PrismaClient()
 
 const router = Router()
 
 const findUserWithId = async (userId) => {
-    const user = await prisma.User.findFirst({
-        where: {
-            id: userId
+    await con.query(
+        'SELECT * FROM `users` WHERE `id` = ?',
+        [userId],
+        function(err, results) {
+            return results[0] || null;
         }
-    })
-    return user || null;
+    )
 }
 
 router.post("/signin", async function signin(req, res, next) {
-    console.log("Hello")
     try {
         console.log(req.body.email)
 
-        const user = await prisma.User.findFirst({
-            where: {
-                email: req.body.email
+        const user = await con.query(
+            'SELECT * FROM `users` WHERE `email` = ?',
+            [req.body.email],
+            function(err, results) {
+                return results || null;
             }
-        })
-        const isCorrectPassword = await compare(req.body.password, user.password);
+        )
+
+        console.log(user[0][0]['id'])
+        const isCorrectPassword = compare(req.body.password, user[0][0]['password']);
 
         if (!isCorrectPassword) return res.status(401).json({
             message: "Incorrect password"
         })
 
         const token = sign({
-            userId: user.id
+            userId: user[0][0]['id']
         }, process.env.TOKEN_SECRET)
 
         res.status(200).json({ token: token })
@@ -48,23 +50,23 @@ router.post("/signup", async function signup(req, res, next) {
     console.log("sign up");
 
     try {
-        const existingUser = await prisma.user.findFirst({
-            where: {
-                email: req.body.email
+        const existingUser = await con.query(
+            'SELECT * FROM `users` WHERE `email` = ?',
+            [req.body.email],
+            function(err, results) {
+                return results || null;
             }
-        })
+        )
 
-        // console.log(existingUser)
-        if (existingUser) throw new Error("User alr existed")
+        if (existingUser[0].length != 0) throw new Error("User already existed")
     
-        const user = await prisma.User.create({
-            data: {
-                name: req.body.username,
-                email: req.body.email,
-                password: await hash(req.body.password, 12),
-                dob: new Date(req.body.dob)
+        const user = await con.query(
+            'INSERT INTO `users` (`username`, `email`, `password`, `dob`)VALUE (?, ?, ?, ?)',
+            [req.body.username, req.body.email, await hash(req.body.password, 12), new Date(req.body.dob)],
+            function(err, results) {
+                return results || null;
             }
-        })
+        )
     
     
         res.status(200).json({ message: "Success"})

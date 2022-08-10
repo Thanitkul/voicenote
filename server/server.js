@@ -2,7 +2,6 @@ import { createRequire } from 'module'
 const require = createRequire(import.meta.url);
 const express = require("express");
 const cors = require('cors');
-const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const app = express();
 const http = require('http');
@@ -12,16 +11,25 @@ const io = new Server(server);
 const port = process.env.PORT || 3000;
 const bodyParser = require("body-parser")
 
-import { PrismaClient } from '@prisma/client'
+dotenv.config();
+
+const mysql = require('mysql2/promise');
+
+
+export const con = await mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  port: process.env.DB_PORT,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE
+});
+
+
 
 import authControllers from "./controllers/auth.js"
 import studentControllers from "./controllers/student.js"
 import teacherControllers from "./controllers/teacher.js"
 
-const prisma = new PrismaClient();
-
-// get config vars
-dotenv.config();
 
 // access config var
 process.env.TOKEN_SECRET;

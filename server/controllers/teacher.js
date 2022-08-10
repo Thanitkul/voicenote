@@ -1,10 +1,9 @@
-import { PrismaClient } from "@prisma/client";
 import { Router } from "express";
 import jwt from 'jsonwebtoken';
 import cryptoRandomString from 'crypto-random-string';
+import { con } from "../server.js";
 
 const router = Router()
-const prisma = new PrismaClient()
 
 function codeExists(code, existingCodes) {
     return existingCodes.some(function(el) {
@@ -19,17 +18,18 @@ router.get('/courses', async (req, res, next) => {
         console.log(user)
         let courses;
         if (user.userId) {
-            courses = await prisma.Course.findMany({
-                where: {
-                    userId: user.userId
-                }
-            });
-            console.log(courses)
-        } else {
+            courses = await con.query(
+              'SELECT * FROM `courses` WHERE `ownerId` = ?',
+              [user.id],
+              function(err, results) {
+                return results
+              }
+            )
+          } else {
             throw new Error()
-        }
-    
-        res.send(courses);
+          }
+      
+          res.send(courses[0]);
     } catch (error) {
       next(error);
     }
@@ -43,11 +43,13 @@ router.post('/create-course', async (req, res, next) => {
 
         var code = cryptoRandomString({length: 6, type: 'alphanumeric'});
 
-        const existingCodes = await prisma.Course.findMany({
-            select: {
-                code: true
-              }
-        })
+        const existingCodes = await con.query(
+            "SELECT `id` FROM `courses` WHERE `code` = ?",
+            [code],
+            function(err, results) {
+                return results
+            }
+        )
 
         console.log(existingCodes);
 
@@ -56,25 +58,19 @@ router.post('/create-course', async (req, res, next) => {
         }
 
         if (user.userId) {
-            const course = await prisma.Course.create({
-                data: {
-                    courseName: req.body.courseName,
-                    code: code,
-                    User: {
-                        connect: {
-                                id: user.userId
-                        }
-                    }
-                },
-                include: {
-                    User: true
+            const course = await con.query(
+                "INSERT INTO `courses` (`courseName`, `code`, `ownerId`) VALUE (?, ?, ?)",
+                [req.body.courseName, code, user.id],
+                function(err, results)
+                {
+                    console.log([req.body.courseName, code, user.id])
                 }
-            })
-        }
+            )
         res.status(200).json({ message: "Success"})
+    }
     } catch (error) {
         next(error);
     }
-})
+});
 
   export default router;
