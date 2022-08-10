@@ -9,13 +9,15 @@ import { CourseComponent } from './course/course.component';
 import { TranscriptionComponent } from './transcription/transcription.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
+import { SpeakComponent } from './speak/speak.component';
 @NgModule({
   declarations: [
     AppComponent,
     AccountCreationComponent,
     LoginComponent,
     CourseComponent,
-    TranscriptionComponent
+    TranscriptionComponent,
+    SpeakComponent
   ],
   imports: [
     BrowserModule,

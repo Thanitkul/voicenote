@@ -130,7 +130,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/speak.js"
+            ]
           }
         }
       }
