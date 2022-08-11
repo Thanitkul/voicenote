@@ -5,11 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './account-creation.component.html',
   styleUrls: ['./account-creation.component.scss']
 })
-export class AccountCreationComponent implements OnInit {
+export class AccountCreationComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  getinfo(){
+    let name = (<HTMLInputElement>document.getElementById("name")).value;
+    let email = (<HTMLInputElement>document.getElementById("email")).value;
+    let password = (<HTMLInputElement>document.getElementById("password")).value;
+    console.log(name);
+    console.log(email);
+    console.log(password);
   }
 
 }
