@@ -9,7 +9,7 @@ const App = () => {
       <Routes>
         <Route path="/view-note" element={<ViewNote />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/Register" element={<Register />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </>
   );
