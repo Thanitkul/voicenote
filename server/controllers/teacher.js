@@ -60,10 +60,10 @@ router.post('/create-course', async (req, res, next) => {
         if (user.userId) {
             const course = await con.query(
                 "INSERT INTO `courses` (`courseName`, `code`, `ownerId`) VALUE (?, ?, ?)",
-                [req.body.courseName, code, user.id],
+                [req.body.courseName, code, user.userId],
                 function(err, results)
                 {
-                    console.log([req.body.courseName, code, user.id])
+                    console.log([req.body.courseName, code, user.userId])
                 }
             )
         res.status(200).json({ message: "Success"})
