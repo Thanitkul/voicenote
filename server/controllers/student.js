@@ -8,7 +8,6 @@ router.get('/courses', async (req, res, next) => {
     try {
     const token = req.headers.authorization.split(' ')[1];
     const user = jwt.verify(token, process.env.TOKEN_SECRET);
-    console.log(user)
     let courses;
       if (user.userId) {
         courses = await con.query(
