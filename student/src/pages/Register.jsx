@@ -111,23 +111,42 @@ return (
 
     <form>
       {/* Labels and inputs for form data */}
-      <label className="label">Name</label>
+      <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      }}><label className="label">Name</label>
       <input onChange={handleName} className="input"
-        value={name} type="text" />
+        value={name} type="text" /></div>
 
-      <label className="label">Email</label>
+      <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      }}><label className="label">Email</label>
       <input onChange={handleEmail} className="input"
-        value={email} type="email" />
-
-      <label className="label">Password</label>
+        value={email} type="email" /></div>
+      <div 
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      }}><label className="label">Password</label>
       <input onChange={handlePassword} className="input"
-        value={password} type="password" />
+        value={password} type="password" /></div>
 {/* 
       <label className="label"><label htmlFor="d1">Birthdate:</label><input tad-va="date"onChange={handleDay} className="day" value={day} placeholder="dd" type="text" autoComplete="off" onFocus="window.ifc&amp;&amp;ifc(this,'d')" pattern="[0-9]*" maxLength="2" size="3" id="d1" name="d1" title="Please enter the day of the month as a one or two-digit number. The valid range is from 1 to 31."/><span class="fld-aid">&nbsp;/&nbsp;</span></label>
       <label className="left"><label htmlFor="m1"></label><input tad-va="date" onChange={handleMonth} className="month" value={month} placeholder="mm" type="text" autoComplete="off" onFocus="window.ifc&amp;&amp;ifc(this,'m')" maxlength="12" size="3" id="m1" name="m1" title="Please enter the month of the year as a one or two-digit number, or as a name. The valid numeric range is from 1 to 12, and valid names, for example, are 'Oct' or 'October'."/><span class="fld-aid">&nbsp;/&nbsp;</span></label>
       <label className="left"><label htmlFor="y1"></label><input placeholder="yyyy" onChange={handleYear} className="year" value={year} type="text" autoComplete="off" tad-va="date" onFocus="window.ifc&amp;&amp;ifc(this,'y')" pattern="[0-9]*" maxlength="4" size="5" id="y1" name="y1" title="Enter year as a 4-digit number."/></label> */}
  
-      <label className="field col-12 md:col-4">
+      <label className="field col-12 md:col-4"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      }}>
                         <span className="p-float-label">
                             <label className="label">Birthdate</label>
                             <InputMask id="inputmask" value={value7} onChange={(e) => setValue7(e.value)} mask="99/99/9999" slotChar="mm/dd/yyyy" />
@@ -135,7 +154,12 @@ return (
                         </span>
                     </label>
 
-      <button onClick={handleSubmit} className="btn" type="submit">
+      <button onClick={handleSubmit} className="btn" type="submit"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      }}>
         Submit
       </button>
     </form>
