@@ -29,7 +29,9 @@ router.post("/signin", async function signin(req, res, next) {
         )
 
         console.log(user[0][0]['id'])
-        const isCorrectPassword = compare(req.body.password, user[0][0]['password']);
+        const isCorrectPassword = await compare(req.body.password, user[0][0]['password']);
+
+        console.log(isCorrectPassword)
 
         if (!isCorrectPassword) return res.status(401).json({
             message: "Incorrect password"
