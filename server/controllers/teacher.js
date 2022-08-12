@@ -51,9 +51,9 @@ router.post('/create-course', async (req, res, next) => {
             }
         )
 
-        console.log(existingCodes);
+        console.log(existingCodes[0]);
 
-        while (codeExists(code, existingCodes)) {
+        while (codeExists(code, existingCodes[0])) {
             var code = cryptoRandomString({length: 6, type: 'alphanumeric'});
         }
 
