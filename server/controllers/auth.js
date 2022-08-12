@@ -27,21 +27,23 @@ router.post("/signin", async function signin(req, res, next) {
                 return results || null;
             }
         )
+        if (user[0].length != 0) {
+            const isCorrectPassword = await compare(req.body.password, user[0][0]['password']);
 
-        console.log(user[0][0]['id'])
-        const isCorrectPassword = await compare(req.body.password, user[0][0]['password']);
+            console.log(isCorrectPassword)
 
-        console.log(isCorrectPassword)
+            if (!isCorrectPassword) return res.status(401).json({
+                message: "Incorrect password"
+            })
 
-        if (!isCorrectPassword) return res.status(401).json({
-            message: "Incorrect password"
-        })
+            const token = sign({
+                userId: user[0][0]['id']
+            }, process.env.TOKEN_SECRET)
 
-        const token = sign({
-            userId: user[0][0]['id']
-        }, process.env.TOKEN_SECRET)
-
-        res.status(200).json({ token: token })
+            res.status(200).json({ token: token })
+        } else {
+            res.json({message: "user not found"})
+        }
     } catch (error) {
         console.log(error)
     }
@@ -77,6 +79,28 @@ router.post("/signup", async function signup(req, res, next) {
         res.status(500).json({message: error, type: "something went wrong"})
     }
     
+})
+
+router.get("/get-username", async function getUsername(req, res, next) {
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+        const user = jwt.verify(token, process.env.TOKEN_SECRET);
+
+        const username = await con.query(
+            'SELECT `username` FROM `users` WHERE id = ?',
+            [user.userId],
+            function(err, results) {
+                return results;
+            }
+        )
+        if (username[0].length == 1) {
+            res.status(200).json(username[0][0])
+        } else {
+            res.json({message: "username not found"})
+        }
+    } catch (error) {
+        console.log(error);
+    }
 })
 
 export default router;
