@@ -75,9 +75,15 @@ function stt() {
                 lastDebounceTranscript = transcript+confidence;
                 console.log(lastDebounceTranscript);
                 */
-                final_transcript += transcript;
+                if (final_transcript == '') {
+                    final_transcript += transcript;
+                }
+                else {
+                final_transcript += ' ' + transcript;
+                }
+
             } else {
-                interim_transcript += transcript;
+                interim_transcript += '' + transcript;
             }
         }
         console.log(interim_transcript)
