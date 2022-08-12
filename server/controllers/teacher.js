@@ -28,8 +28,7 @@ router.get('/courses', async (req, res, next) => {
           } else {
             throw new Error()
           }
-      
-          res.send(courses[0]);
+          res.send(courses[0])
     } catch (error) {
       next(error);
     }
@@ -56,7 +55,7 @@ router.post('/create-course', async (req, res, next) => {
         while (codeExists(code, existingCodes[0])) {
             var code = cryptoRandomString({length: 6, type: 'alphanumeric'});
         }
-
+        console.log(user.userId)
         if (user.userId) {
             const course = await con.query(
                 "INSERT INTO `courses` (`courseName`, `code`, `ownerId`) VALUE (?, ?, ?)",
