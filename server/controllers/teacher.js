@@ -20,7 +20,7 @@ router.get('/courses', async (req, res, next) => {
         if (user.userId) {
             courses = await con.query(
               'SELECT * FROM `courses` WHERE `ownerId` = ?',
-              [user.id],
+              [user.userId],
               function(err, results) {
                 return results
               }
