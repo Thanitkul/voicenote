@@ -20,7 +20,7 @@ router.get('/courses', async (req, res, next) => {
         if (user.userId) {
             courses = await con.query(
               'SELECT * FROM `courses` WHERE `ownerId` = ?',
-              [user.id],
+              [user.userId],
               function(err, results) {
                 return results
               }
@@ -28,8 +28,7 @@ router.get('/courses', async (req, res, next) => {
           } else {
             throw new Error()
           }
-      
-          res.send(courses[0]);
+          res.send(courses[0])
     } catch (error) {
       next(error);
     }
@@ -56,14 +55,14 @@ router.post('/create-course', async (req, res, next) => {
         while (codeExists(code, existingCodes)) {
             var code = cryptoRandomString({length: 6, type: 'alphanumeric'});
         }
-
+        console.log(user.userId)
         if (user.userId) {
             const course = await con.query(
                 "INSERT INTO `courses` (`courseName`, `code`, `ownerId`) VALUE (?, ?, ?)",
-                [req.body.courseName, code, user.id],
+                [req.body.courseName, code, user.userId],
                 function(err, results)
                 {
-                    console.log([req.body.courseName, code, user.id])
+                    console.log([req.body.courseName, code, user.userId])
                 }
             )
         res.status(200).json({ message: "Success"})

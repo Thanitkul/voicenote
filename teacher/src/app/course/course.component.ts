@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 declare var window: any;
+import axios from 'axios';
 
 @Component({
     selector: 'app-course',
@@ -10,64 +11,73 @@ export class CourseComponent implements OnInit {
     formModal: any;
     searchText: any;
 
-    constructor() { }
+    
+    constructor() {}
 
     ngOnInit(): void {
         this.formModal = new window.bootstrap.Modal(
             document.getElementById('myModal')
         );
+        this.get_course()
+        
     }
 
+    async get_course(){
+        try {
+            const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY2MDIwODExNH0.iQgb38ECM8sc6wBXVdlNpZhAf5BqRnnnLKhzzWV0CXQ'
+            const config = {
+                headers: { Authorization: `Bearer ${token}` }
+            };
+        
+            const {data} = await axios.get(
+                'http://localhost:3000/teacher/courses',
+                config
+            )
+            localStorage.setItem('courses', JSON.stringify(data));
+            return data
+        } catch (error) {
+            return console.error();
+            
+        }
+    }  
     openFormModal() {
         this.formModal.show();
     }
-    makecode() {
-        var result = '';
-        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        var charactersLength = characters.length;
-        for (var i = 0; i < 6; i++) {
-            result += characters.charAt(Math.floor(Math.random() *
-                charactersLength));
-        }
-        return result;
-    }
     create() {
         var name = (<HTMLInputElement>document.getElementById("name")).value;
-        var code = this.makecode()
-        
-        this.course_data.push(
-            {
-                "id": 11,
-                "course_name": name,
-                "code": code
-            }
-        )
-        this.formModal.hide();
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY2MDIwODExNH0.iQgb38ECM8sc6wBXVdlNpZhAf5BqRnnnLKhzzWV0CXQ'
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+
+        const bodyParameters = {
+            courseName: name
+        };
+
+        axios.post(
+            'http://localhost:3000/teacher/create-course',
+            bodyParameters,
+            config
+        ).then(console.log).catch(console.log);
+
+        window.location.reload();
     }
+    
 
     public user_data = {
         "id": 1,
         "first_name": "Jack",
         "last_name": "Wang"
     }
-    public course_data =
-        [
-            {
-                "id": 11,
-                "course_name": "Mathematics",
-                "code": "math20"
-            },
-            {
-                "id": 12,
-                "course_name": "Science",
-                "code": "sci34"
-            }, {
-                "id": 13,
-                "course_name": "English",
-                "code": "eng89"
-            },
-        ]
+
+    loadTasks(): Task[] {
+    const course_data = localStorage.getItem('courses')
+    if (course_data == null) return []
+    return JSON.parse(course_data)
+}
+    public courses_data = this.get_course()
 
 
 
+    
 }
