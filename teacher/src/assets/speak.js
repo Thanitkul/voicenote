@@ -10,21 +10,13 @@ var one_line = /\n/g;
 var first_char = /\S/;
 
 
-function stt() {
-    console.log("1");
+function stt() { 
     var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
     recognition = new SpeechRecognition();
     recognition.continuous = true;
     recognition.interimResults = true;
 
-    recognition.onstart = function() {
-        console.log("2");
-        recognizing = true;
-        showInfo('info_speak_now');
-    };
-
-    recognition.onerror = function(event) {
-        console.log("3");
+    recognition.onerror = function(event) { 
         if (event.error == 'no-speech') {
             showInfo('info_no_speech');
             ignore_onend = true;
@@ -44,13 +36,12 @@ function stt() {
     };
 
     recognition.onend = function() {
-        console.log("4");
         recognizing = false;
+        //currently false
         if (ignore_onend) {
             return;
         }
         if (!final_transcript) {
-            console.log("5");
             showInfo('info_start');
             return;
         }
@@ -67,7 +58,6 @@ function stt() {
 
     recognition.onresult = function(event) {
         var interim_transcript = '';
-        console.log("onresults");
         if (typeof(event.results) == 'undefined') {
             recognition.onend = null;
             recognition.stop();
@@ -75,16 +65,10 @@ function stt() {
             return;
         }
         for (var i = event.resultIndex; i < event.results.length; ++i) {
-            console.log("onresults 2");
             var transcript = event.results[i][0].transcript;
             var confidence = event.results[i][0].confidence; 
             var isFinal = event.results[i].isFinal && (confidence > 0);
-            console.log(transcript);
-            console.log(confidence);
-            console.log(isFinal);
-        
             if (isFinal) {
-                console.log("finalized");
                 /*
                 // check duplicate result on android
                 if(transcript+confidence == lastDebounceTranscript) { return; }
@@ -92,10 +76,8 @@ function stt() {
                 console.log(lastDebounceTranscript);
                 */
                 final_transcript += transcript;
-                console.log(final_transcript);
             } else {
                 interim_transcript += transcript;
-                console.log(interim_transcript);
             }
         }
         console.log(interim_transcript)
@@ -105,16 +87,15 @@ function stt() {
             url: "/speak",
             data: {
             'text': final_transcript
-            }
+            }   
         });
-        final_transcript = capitalize(final_transcript);
         interim_span.innerHTML = linebreak(interim_transcript);
         final_span.innerHTML = linebreak(final_transcript);
         if (final_transcript || interim_transcript) {
             // do something
         }
-    }
-};
+    } 
+}
 
 function linebreak(s) {
     return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
@@ -134,27 +115,38 @@ function upgrade(){
 
 
 function startButton() {
-    console.log(final_transcript);
     recognition.lang = 'th-TH';
     if (recognizing) {
         recognition.stop(); 
         return;
     }
-    final_transcript = '';
+    $('#btn-reset').click(function() {
+        recognizing = false;
+        final_transcript = '';
+        interim_transcript = '';
+        final_span.innerHTML = '';
+        interim_span.innerHTML = '';  
+        recognition.stop(); 
+    });
     recognition.lang = 'th-TH';
     recognition.start();
     ignore_onend = false;
-    final_span.innerHTML = '';
-    interim_span.innerHTML = '';
     showInfo('info_allow');
     start_timestamp = event.timeStamp;
-};
+}
 
-function changeButton() {
-    let thiz = $('#btn-transcribe').target;
-    let ready_text = 'Transcribe';
-    let working_text = 'Working...';
+function changeButton() { 
+    let ready_text = 'Start';
+    let working_text = 'Pause';
     let working = $('#btn-transcribe').html() == working_text;
+    
+    $('#btn-reset').click(function() {
+        $('#btn-transcribe').html("Start");
+        $('#btn-transcribe').removeClass('btn-danger');
+        $('#btn-transcribe').addClass('btn-primary');
+
+        showInfo('info_reset');
+    });
 
     if(!working){ // press to start
       // ui
@@ -167,12 +159,17 @@ function changeButton() {
     }
     else { // press to stop
       // ui
-      $('#btn-transcribe').html(ready_text);
-      $('#btn-transcribe').removeClass('btn-danger');
-      $('#btn-transcribe').addClass('btn-primary');
-
+        $('#btn-reset').click(function() {
+            $('#btn-transcribe').html(ready_text);
+            $('#btn-transcribe').removeClass('btn-danger');
+            $('#btn-transcribe').addClass('btn-primary');
+        });
+        $('#btn-transcribe').html(ready_text);
+        $('#btn-transcribe').removeClass('btn-danger');
+        $('#btn-transcribe').addClass('btn-primary');
+      
       // stop
       recognizing = false;
       recognition.stop();
     }
-  }
+} 
