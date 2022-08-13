@@ -66,9 +66,10 @@ function stt() {
         }
         for (var i = event.resultIndex; i < event.results.length; ++i) {
             var transcript = event.results[i][0].transcript;
-            var confidence = event.results[i][0].confidence; 
-            var isFinal = event.results[i].isFinal && (confidence > 0);
-            if (isFinal) {
+            //confidence not used to finalized
+            // var confidence = event.results[i][0].confidence; 
+            // var isFinal = event.results[i].isFinal && (confidence > 0);
+            if (event.results[i].isFinal) {
                 /*
                 // check duplicate result on android
                 if(transcript+confidence == lastDebounceTranscript) { return; }
@@ -76,25 +77,19 @@ function stt() {
                 console.log(lastDebounceTranscript);
                 */
                 if (final_transcript == '') {
+
                     final_transcript += transcript;
                 }
                 else {
-                final_transcript += ' ' + transcript;
+                    final_transcript += ' ' + transcript;
                 }
 
             } else {
-                interim_transcript += '' + transcript;
+            interim_transcript += '' + transcript;
             }
         }
         console.log(interim_transcript)
         console.log(final_transcript);
-        $.ajax({
-            type: "POST",
-            url: "/speak",
-            data: {
-            'text': final_transcript
-            }   
-        });
         interim_span.innerHTML = linebreak(interim_transcript);
         final_span.innerHTML = linebreak(final_transcript);
         if (final_transcript || interim_transcript) {
