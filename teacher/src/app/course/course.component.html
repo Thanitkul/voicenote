@@ -1,14 +1,19 @@
-
-<p>{{user_data['first_name']}} {{user_data['last_name']}}</p>
-<button type="button" (click)="openFormModal()" class="btn btn-dark">
+<div style=" margin-right: 8%; margin-top: 6%; text-align: right;">
+    <h2>T. {{ user_data | async}}</h2>
+    <a style="text-decoration: none;" (click)="logout()" routerLink="/" routerLinkActive="active">Logout</a>
+</div>
+<br>
+<div type="button" (click)="openFormModal()" class="create_box">
     create
-</button>
-<input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search ">
-<div style="padding-bottom: 10px;" *ngFor="let course of courses_data | filter:searchText | async">
-    <div class="course_box">
-        <div class="card-title" style="display:inline-block; margin-right: 15px;">{{course["courseName"]}}</div>
-        <div class="card-text">Code: {{course["code"]}}</div>
-    </div>
+</div>
+<!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search "> -->
+<div style="padding-bottom: 10px; text-align: center;" *ngFor="let course of courses_data | filter:searchText | async">
+    <a routerLink="/speak" routerLinkActive="active" style="text-decoration: none;">
+        <div class="course_box">
+            <div class="card-title" style="margin-right: 15px;">{{course["courseName"]}}</div>
+            <div class="card-text">Code: {{course["code"]}}</div>
+        </div>
+    </a>
 </div>
 
 <!--form modal-->
@@ -17,10 +22,8 @@
         <div class="modal-content">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            <input placeholder="Name" id="name" class="form-control" type="text">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="create()">
-                Create
-            </button>
+            <input placeholder="Name" id="name" style="width: 90%; margin: 5% ;"  class="form-control" type="text">
+            <button type="button" class="btn btn-primary" style="width: 90%; margin: 5%;" data-bs-dismiss="modal" (click)="create()">Create</button>
         </div>
     </div>
 </div>
