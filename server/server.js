@@ -15,7 +15,7 @@ dotenv.config();
 
 const mysql = require('mysql2/promise');
 
-
+console.log(process.env.DB_HOST, process.env.DB_PASSWORD)
 export const con = await mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
