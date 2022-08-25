@@ -56,18 +56,21 @@
 }
 
 .text {
-    font-size: 300%;
+    font-size: 400%;
+    font-weight: bolder;
+    margin-top: 100%;
+}
+
+.text1 {
+    font-size: 200%;
+    font-weight: bolder;
+    margin-top: -10%;
 }
 
 .forget {
     text-align: center;
     margin-top: 8%;
     font-size: 12px;
-}
-
-
-span {
-    display: block;
 }
 
 .signup {
@@ -77,4 +80,16 @@ span {
     font-weight: lighter;
     font-family: 'Times New Roman', Times, serif;
     color:#000000;
+}
+
+.box {
+    width: 60%;
+    border: 0px;
+    border-radius: 15px;
+    background-color: orange;
+    margin: 20px;
+    padding: 3px;
+    text-align: center;
+    color: white;
+    font-weight: bolder;
 }
