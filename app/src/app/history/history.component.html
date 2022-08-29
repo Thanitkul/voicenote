@@ -1,1 +1,10 @@
-<p>history works!</p>
+<div class = "nav">
+    <div class = "course_name">{{ samples[0].course_name }}</div>
+</div>
+
+<tr *ngFor = "let sample of samples">
+    <div class = history_box>
+        <div class = "history_date">{{ sample.date }}</div>
+        <div class = "history_time">{{ sample.time }}</div>
+    </div>
+</tr>
