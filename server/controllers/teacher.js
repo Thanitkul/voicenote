@@ -17,18 +17,16 @@ router.get('/courses', async (req, res, next) => {
         const user = jwt.verify(token, process.env.TOKEN_SECRET);
         console.log(user)
         let courses;
+        let headers;
         if (user.userId) {
-            courses = await con.query(
+            [courses, headers] = await con.query(
               'SELECT * FROM `courses` WHERE `ownerId` = ?',
-              [user.userId],
-              function(err, results) {
-                return results
-              }
+              [user.userId]
             )
           } else {
             throw new Error()
           }
-          res.send(courses[0])
+          res.send(courses)
     } catch (error) {
       next(error);
     }
@@ -42,17 +40,14 @@ router.post('/create-course', async (req, res, next) => {
 
         var code = cryptoRandomString({length: 6, type: 'alphanumeric'});
 
-        const existingCodes = await con.query(
+        const [existingCodes, headers] = await con.query(
             "SELECT `id` FROM `courses` WHERE `code` = ?",
-            [code],
-            function(err, results) {
-                return results
-            }
+            [code]
         )
 
-        console.log(existingCodes[0]);
+        console.log(existingCodes);
 
-        while (codeExists(code, existingCodes[0])) {
+        while (codeExists(code, existingCodes)) {
             var code = cryptoRandomString({length: 6, type: 'alphanumeric'});
         }
         console.log(user.userId)

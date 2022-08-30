@@ -7,28 +7,26 @@ const { sign } = jwt;
 const router = Router()
 
 const findUserWithId = async (userId) => {
-    await con.query(
+    const [data, headers] =  await con.query(
         'SELECT * FROM `users` WHERE `id` = ?',
-        [userId],
-        function(err, results) {
-            return results[0] || null;
-        }
+        [userId]
     )
+
+    return data || null;
 }
 
 router.post("/signin", async function signin(req, res, next) {
     try {
         console.log(req.body.email)
 
-        const user = await con.query(
+        const [user, headers] = await con.query(
             'SELECT * FROM `users` WHERE `email` = ?',
-            [req.body.email],
-            function(err, results) {
-                return results || null;
-            }
+            [req.body.email]
         )
+
+        console.log(user[0]);
         if (user[0].length != 0) {
-            const isCorrectPassword = await compare(req.body.password, user[0][0]['password']);
+            const isCorrectPassword = await compare(req.body.password, user[0]['password']);
 
             console.log(isCorrectPassword)
 
@@ -37,7 +35,7 @@ router.post("/signin", async function signin(req, res, next) {
             })
 
             const token = sign({
-                userId: user[0][0]['id']
+                userId: user[0]['id']
             }, process.env.TOKEN_SECRET)
 
             res.status(200).json({ token: token })
@@ -54,22 +52,16 @@ router.post("/signup", async function signup(req, res, next) {
     console.log("sign up");
 
     try {
-        const existingUser = await con.query(
+        const [existingUser, headers] = await con.query(
             'SELECT * FROM `users` WHERE `email` = ?',
-            [req.body.email],
-            function(err, results) {
-                return results || null;
-            }
+            [req.body.email]
         )
 
-        if (existingUser[0].length != 0) throw new Error("User already existed")
+        if (existingUser.length != 0) throw new Error("User already existed")
     
         const user = await con.query(
             'INSERT INTO `users` (`username`, `email`, `password`, `dob`)VALUE (?, ?, ?, ?)',
-            [req.body.username, req.body.email, await hash(req.body.password, 12), new Date(req.body.dob)],
-            function(err, results) {
-                return results || null;
-            }
+            [req.body.username, req.body.email, await hash(req.body.password, 12), new Date(req.body.dob)]
         )
     
     
@@ -86,15 +78,12 @@ router.get("/get-username", async function getUsername(req, res, next) {
         const token = req.headers.authorization.split(' ')[1];
         const user = jwt.verify(token, process.env.TOKEN_SECRET);
 
-        const username = await con.query(
+        const [username, headers] = await con.query(
             'SELECT `username` FROM `users` WHERE id = ?',
-            [user.userId],
-            function(err, results) {
-                return results;
-            }
+            [user.userId]
         )
-        if (username[0].length == 1) {
-            res.status(200).json(username[0][0])
+        if (username.length == 1) {
+            res.status(200).json(username[0])
         } else {
             res.json({message: "username not found"})
         }
