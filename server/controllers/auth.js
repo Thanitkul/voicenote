@@ -3,6 +3,7 @@ import { compare, hash } from "bcrypt";
 import jwt from 'jsonwebtoken';
 import { con } from "../server.js";
 const { sign } = jwt;
+const RouteProtection = require('../helpers/RouteProtection')
 
 const router = Router()
 
@@ -73,11 +74,8 @@ router.post("/signup", async function signup(req, res, next) {
     
 })
 
-router.get("/get-username", async function getUsername(req, res, next) {
+router.get("/get-username", RouteProtection.verify, async function getUsername(req, res, next) {
     try {
-        const token = req.headers.authorization.split(' ')[1];
-        const user = jwt.verify(token, process.env.TOKEN_SECRET);
-
         const [username, headers] = await con.query(
             'SELECT `username` FROM `users` WHERE id = ?',
             [user.userId]

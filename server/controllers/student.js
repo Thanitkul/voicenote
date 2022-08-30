@@ -1,13 +1,12 @@
 import { Router } from "express";
 import jwt from 'jsonwebtoken';
 import { con } from "../server.js";
+const RouteProtection = require('../helpers/RouteProtection')
 
 const router = Router()
 
-router.get('/courses', async (req, res, next) => {
+router.get('/courses', RouteProtection.verify, async (req, res, next) => {
     try {
-    const token = req.headers.authorization.split(' ')[1];
-    const user = jwt.verify(token, process.env.TOKEN_SECRET);
     let courses;
     let headers
       if (user.userId) {
@@ -26,10 +25,8 @@ router.get('/courses', async (req, res, next) => {
   
   })
 
-  router.post('/join-course', async (req, res, next) => {
+  router.post('/join-course', RouteProtection.verify, async (req, res, next) => {
     try {
-      const token = req.headers.authorization.split(' ')[1];
-      const user = jwt.verify(token, process.env.TOKEN_SECRET);
       const [courseId, headers_id] = await con.query(
         "SELECT `id` FROM `courses` WHERE `code` = ?",
         [req.body.code]
