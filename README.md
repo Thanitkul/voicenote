@@ -5,12 +5,16 @@ A system of web and mobile applications used to enhance the studying experience 
 ## Getting started
 
 If you work on front-end:
-    cd app
+
+`cd app`
 
 If you work on back-end:
-    cd server
+
+`cd server`
 
 Run:
-    npm install
+
+`npm install`
+
 to install node modules
 
