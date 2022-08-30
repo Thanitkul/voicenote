@@ -7,28 +7,26 @@ const { sign } = jwt;
 const router = Router()
 
 const findUserWithId = async (userId) => {
-    await con.query(
+    const [data, headers] =  await con.query(
         'SELECT * FROM `users` WHERE `id` = ?',
-        [userId],
-        function(err, results) {
-            return results[0] || null;
-        }
+        [userId]
     )
+
+    return data || null;
 }
 
 router.post("/signin", async function signin(req, res, next) {
     try {
         console.log(req.body.email)
 
-        const user = await con.query(
+        const [user, headers] = await con.query(
             'SELECT * FROM `users` WHERE `email` = ?',
-            [req.body.email],
-            function(err, results) {
-                return results || null;
-            }
+            [req.body.email]
         )
+
+        console.log(user[0]);
         if (user[0].length != 0) {
-            const isCorrectPassword = await compare(req.body.password, user[0][0]['password']);
+            const isCorrectPassword = await compare(req.body.password, user[0]['password']);
 
             console.log(isCorrectPassword)
 
@@ -37,7 +35,7 @@ router.post("/signin", async function signin(req, res, next) {
             })
 
             const token = sign({
-                userId: user[0][0]['id']
+                userId: user[0]['id']
             }, process.env.TOKEN_SECRET)
 
             res.status(200).json({ token: token })
