@@ -2,6 +2,7 @@ import { Router } from "express";
 import jwt from 'jsonwebtoken';
 import cryptoRandomString from 'crypto-random-string';
 import { con } from "../server.js";
+const RouteProtection = require('../helpers/RouteProtection')
 
 const router = Router()
 
@@ -11,10 +12,8 @@ function codeExists(code, existingCodes) {
     }); 
   }
 
-router.get('/courses', async (req, res, next) => {
+router.get('/courses', RouteProtection.verify, async (req, res, next) => {
     try {
-        const token = req.headers.authorization.split(' ')[1];
-        const user = jwt.verify(token, process.env.TOKEN_SECRET);
         console.log(user)
         let courses;
         let headers;
@@ -33,10 +32,8 @@ router.get('/courses', async (req, res, next) => {
   
   });
 
-router.post('/create-course', async (req, res, next) => {
+router.post('/create-course', RouteProtection.verify, async (req, res, next) => {
     try {
-        const token = req.headers.authorization.split(' ')[1];
-        const user = jwt.verify(token, process.env.TOKEN_SECRET);
 
         var code = cryptoRandomString({length: 6, type: 'alphanumeric'});
 
