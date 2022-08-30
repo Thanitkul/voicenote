@@ -18,3 +18,13 @@ Run:
 
 to install node modules
 
+In `app` run:
+
+`ng serve`
+
+In `server` run:
+
+`npm run start`
+
+
+
