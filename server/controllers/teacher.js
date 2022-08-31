@@ -2,6 +2,7 @@ import { Router } from "express";
 import jwt from 'jsonwebtoken';
 import cryptoRandomString from 'crypto-random-string';
 import { con } from "../server.js";
+const require = createRequire(import.meta.url);
 const RouteProtection = require('../helpers/RouteProtection')
 
 const router = Router()
