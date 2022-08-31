@@ -1,8 +1,7 @@
 import { Router } from "express";
 import jwt from 'jsonwebtoken';
 import { con } from "../server.js";
-const require = createRequire(import.meta.url);
-const RouteProtection = require('../helpers/RouteProtection')
+import { RouteProtection } from "../helpers/RouteProtection.js";
 
 const router = Router()
 

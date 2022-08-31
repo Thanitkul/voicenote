@@ -1,6 +1,7 @@
-const jwt = require('jsonwebtoken')
+import jwt from 'jsonwebtoken';
+const { sign } = jwt;
 
-class RouteProtection {
+export class RouteProtection {
     static verify(req, res, next) {
         try {
             const authHeader = req.headers['authorization']
@@ -15,5 +16,3 @@ class RouteProtection {
         }
     }
 }
-
-module.exports = RouteProtection
