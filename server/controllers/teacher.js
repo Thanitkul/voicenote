@@ -2,7 +2,7 @@ import { Router } from "express";
 import jwt from 'jsonwebtoken';
 import cryptoRandomString from 'crypto-random-string';
 import { con } from "../server.js";
-const RouteProtection = require('../helpers/RouteProtection')
+import { RouteProtection } from "../helpers/RouteProtection.js";
 
 const router = Router()
 

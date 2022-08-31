@@ -3,7 +3,7 @@ import { compare, hash } from "bcrypt";
 import jwt from 'jsonwebtoken';
 import { con } from "../server.js";
 const { sign } = jwt;
-const RouteProtection = require('../helpers/RouteProtection')
+import { RouteProtection } from "../helpers/RouteProtection.js";
 
 const router = Router()
 
