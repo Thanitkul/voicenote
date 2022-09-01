@@ -67,9 +67,10 @@ function stt() {
         for (var i = event.resultIndex; i < event.results.length; ++i) {
             var transcript = event.results[i][0].transcript;
             //confidence not used to finalized
-            // var confidence = event.results[i][0].confidence; 
-            // var isFinal = event.results[i].isFinal && (confidence > 0);
-            if (event.results[i].isFinal) {
+            var confidence = event.results[i][0].confidence; 
+            var isFinal = event.results[i].isFinal && (confidence > 0);
+            // if (event.results[i].isFinal) {
+            if (isFinal) {
                 /*
                 // check duplicate result on android
                 if(transcript+confidence == lastDebounceTranscript) { return; }
@@ -121,12 +122,8 @@ function startButton() {
         recognition.stop(); 
         return;
     }
-    $('#btn-reset').click(function() {
-        recognizing = false;
-        final_transcript = '';
-        interim_transcript = '';
-        final_span.innerHTML = '';
-        interim_span.innerHTML = '';  
+    $('#btn-stop').click(function() {
+        recognizing = false; 
         recognition.stop(); 
     });
     recognition.lang = 'th-TH';
@@ -141,12 +138,12 @@ function changeButton() {
     let working_text = 'Pause';
     let working = $('#btn-transcribe').html() == working_text;
     
-    $('#btn-reset').click(function() {
+    $('#btn-stop').click(function() {
         $('#btn-transcribe').html("Start");
         $('#btn-transcribe').removeClass('btn-danger');
         $('#btn-transcribe').addClass('btn-primary');
 
-        showInfo('info_reset');
+        showInfo('info_final');
     });
 
     if(!working){ // press to start
@@ -160,10 +157,12 @@ function changeButton() {
     }
     else { // press to stop
       // ui
-        $('#btn-reset').click(function() {
+        $('#btn-stop').click(function() {
             $('#btn-transcribe').html(ready_text);
             $('#btn-transcribe').removeClass('btn-danger');
             $('#btn-transcribe').addClass('btn-primary');
+
+            showInfo('info_final');
         });
         $('#btn-transcribe').html(ready_text);
         $('#btn-transcribe').removeClass('btn-danger');
@@ -173,4 +172,6 @@ function changeButton() {
       recognizing = false;
       recognition.stop();
     }
+
+
 } 
