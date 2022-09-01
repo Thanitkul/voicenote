@@ -13,8 +13,8 @@ body {
 img {
     display: inline-block;
     position: absolute;
-    width: 475px;
-    left: -30vh;
+    width: 300px;
+    left: -25vh;
     top: 10vh;
 }
 
@@ -36,4 +36,28 @@ img {
     color: #0B1B66;
     top: 38vh;
     left: 23vh;
+}
+
+.teacher {
+    position: absolute;
+    top: 60vh;
+    width: 80%;
+    margin-left: 10%;
+    color: white;
+    background-color: orange;
+    border-radius: 12px;
+    padding: 10px;
+    border: 0px;
+}
+
+.student {
+    position: absolute;
+    top: 70vh;
+    width: 80%;
+    margin-left: 10%;
+    color: white;
+    background-color: brown;
+    border-radius: 12px;
+    padding: 10px;
+    border: 0px;
 }
