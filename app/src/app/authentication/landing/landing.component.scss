@@ -3,35 +3,37 @@ body {
 }
 
 .corner {
-    display: inline-block;
-    width: 1000px;
-    height: 1050px;
-    border-radius: 600px;
-    margin-left: -500px;
-    margin-top: -50px;
+    width: 100%;
+    height: 100vh;
+    border-bottom-right-radius: 150px;
+    border-top-right-radius: 150px;
     background-color: #FFFFFF;
 }
 
 img {
     display: inline-block;
+    position: absolute;
     width: 475px;
-    margin-left: 255px;
-    margin-top: 150px;
+    left: -30vh;
+    top: 10vh;
 }
 
 .voice {
     display: inline-block;
-    font-size: 80px;
+    position: absolute;
+    font-size: 75px;
     font-weight: bolder;
     color: #0B1B66;
-    margin-left: -60px
+    top: 25vh;
+    left: 20vh;
 }
 
 .note {
     display: inline-block;
-    font-size: 80px;
+    position: absolute;
+    font-size: 75px;
     font-weight: bolder;
-    color: #000000;
-    margin-left: -100px;
-    margin-bottom: 1000px;
+    color: #0B1B66;
+    top: 38vh;
+    left: 23vh;
 }
