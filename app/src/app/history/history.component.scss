@@ -17,26 +17,41 @@
 }
 
 .history_box {
-    width: 90%;
-    height: 115px;
-    margin-left: 5%;
-    margin-top: 40px;
+    width: 200%;
+    border-radius: 10px;
+    height: 25vh;
+    margin-left: 12%;
+    margin-top: 10%;
+    background-color: #EEEEEE;
+    padding-top: 5%;
 }
 
 .history_date {
     font-size: 25px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bolder;
+    color: #000000;
     margin-top: 10px;
-    margin-left: 50px;
+    margin-left: 15px;
+}
+
+.history_time_box {
+    width: 20%;
+    border-radius: 10px;
+    height: 8vh;
+    margin-left: 5%;
+    margin-top: 0%;
+    background-color: #FFFFFF;
 }
 
 .history_time {
-    font-size: 20px;
+    font-size: 17px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bolder;
-    margin-top: 16px;
-    margin-left: 55px;
+    color: #000000;
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-top: 8%;
 }
 
 .img {

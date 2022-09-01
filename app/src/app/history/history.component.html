@@ -5,6 +5,8 @@
 <tr *ngFor = "let sample of samples">
     <div class = history_box>
         <div class = "history_date">{{ sample.date }}</div>
-        <div class = "history_time">{{ sample.time }}</div>
+        <div class = history_time_box>
+            <div class = "history_time">{{ sample.time }}</div>
+        </div>
     </div>
 </tr>
