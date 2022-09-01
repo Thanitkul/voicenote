@@ -14,7 +14,7 @@ function codeExists(code, existingCodes) {
 
 router.get('/courses', RouteProtection.verify, async (req, res, next) => {
     try {
-        console.log(user)
+        const user = jwt.verify(req.headers.authorization.split(' ').pop(), process.env.TOKEN_SECRET)
         let courses;
         let headers;
         if (user.userId) {
@@ -34,7 +34,7 @@ router.get('/courses', RouteProtection.verify, async (req, res, next) => {
 
 router.post('/create-course', RouteProtection.verify, async (req, res, next) => {
     try {
-
+        const user = jwt.verify(req.headers.authorization.split(' ').pop(), process.env.TOKEN_SECRET)
         var code = cryptoRandomString({length: 6, type: 'alphanumeric'});
 
         const [existingCodes, headers] = await con.query(

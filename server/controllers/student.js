@@ -9,6 +9,7 @@ router.get('/courses', RouteProtection.verify, async (req, res, next) => {
     try {
     let courses;
     let headers
+    const user = jwt.verify(req.headers.authorization.split(' ').pop(), process.env.TOKEN_SECRET)
       if (user.userId) {
         [courses, headers] = await con.query(
           'SELECT courses.id, `courseName`, `code` FROM `courses` LEFT JOIN `student_course` ON (courses.id = student_course.courseId) WHERE `studentId` = ?',
@@ -27,6 +28,7 @@ router.get('/courses', RouteProtection.verify, async (req, res, next) => {
 
   router.post('/join-course', RouteProtection.verify, async (req, res, next) => {
     try {
+      const user = jwt.verify(req.headers.authorization.split(' ').pop(), process.env.TOKEN_SECRET)
       const [courseId, headers_id] = await con.query(
         "SELECT `id` FROM `courses` WHERE `code` = ?",
         [req.body.code]

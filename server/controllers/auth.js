@@ -76,6 +76,7 @@ router.post("/signup", async function signup(req, res, next) {
 
 router.get("/get-username", RouteProtection.verify, async function getUsername(req, res, next) {
     try {
+        const user = jwt.verify(req.headers.authorization.split(' ').pop(), process.env.TOKEN_SECRET)
         const [username, headers] = await con.query(
             'SELECT `username` FROM `users` WHERE id = ?',
             [user.userId]
