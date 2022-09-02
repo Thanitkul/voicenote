@@ -20,7 +20,7 @@ router.get('/courses', RouteProtection.verify, async (req, res, next) => {
     }  
   })
 
-  router.get('/get-history/:id', RouteProtection.verify, async (req, res, next) => {
+  router.get('/get-recording/:id', RouteProtection.verify, async (req, res, next) => {
     try {
       const [ recordings ] = await con.query(
         "SELECT * FROM `recordings` WHERE `id` = ?",
