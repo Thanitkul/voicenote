@@ -7,22 +7,29 @@ const router = Router()
 
 router.get('/courses', RouteProtection.verify, async (req, res, next) => {
     try {
-    let courses;
-    let headers
-      if (user.userId) {
-        [courses, headers] = await con.query(
-          'SELECT courses.id, `courseName`, `code` FROM `courses` LEFT JOIN `student_course` ON (courses.id = student_course.courseId) WHERE `studentId` = ?',
-          [user.userId]
-        )
-      } else {
-        throw new Error()
-      }
+      if (!req.user.id) throw new Error()
+      
+      const [courses, headers] = await con.query(
+        'SELECT courses.id, `courseName`, `code` FROM `courses` LEFT JOIN `student_course` ON (courses.id = student_course.courseId) WHERE `studentId` = ?',
+        [req.user.id]
+      )
   
       res.send(courses);
     } catch (error) {
       next(error);
+    }  
+  })
+
+  router.get('/get-history/:id', RouteProtection.verify, async (req, res, next) => {
+    try {
+      const [ recordings ] = await con.query(
+        "SELECT * FROM `recordings` WHERE `id` = ?",
+        [req.params.id]
+      );
+      res.status(200).json(recordings)
+    } catch (err) {
+      next(err)
     }
-  
   })
 
   router.post('/join-course', RouteProtection.verify, async (req, res, next) => {
@@ -51,4 +58,4 @@ router.get('/courses', RouteProtection.verify, async (req, res, next) => {
     }
   })
 
-  export default router
+export default router

@@ -55,10 +55,6 @@ app.use("/auth", authControllers)
 app.use("/student", studentControllers)
 app.use("/teacher", teacherControllers)
 
-
-
-
-
 server.listen(port, () => {
   console.log("Starting node.js at port " + port);
 });
