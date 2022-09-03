@@ -22,8 +22,19 @@ router.get('/courses', RouteProtection.verify, async (req, res, next) => {
       res.send(courses);
     } catch (error) {
       next(error);
+    }  
+  })
+
+  router.get('/get-recording/:id', RouteProtection.verify, async (req, res, next) => {
+    try {
+      const [ recordings ] = await con.query(
+        "SELECT * FROM `recordings` WHERE `courseId` = ?",
+        [req.params.id]
+      );
+      res.status(200).json(recordings)
+    } catch (err) {
+      next(err)
     }
-  
   })
 
   router.post('/join-course', RouteProtection.verify, async (req, res, next) => {
@@ -53,4 +64,4 @@ router.get('/courses', RouteProtection.verify, async (req, res, next) => {
     }
   })
 
-  export default router
+export default router
