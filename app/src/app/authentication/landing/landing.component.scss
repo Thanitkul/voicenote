@@ -14,7 +14,7 @@ img {
     display: inline-block;
     position: absolute;
     width: 300px;
-    left: -25vh;
+    left: -16vh;
     top: 10vh;
 }
 
@@ -24,8 +24,8 @@ img {
     font-size: 75px;
     font-weight: bolder;
     color: #0B1B66;
-    top: 25vh;
-    left: 20vh;
+    top: 15vh;
+    left: 10vh;
 }
 
 .note {
@@ -34,8 +34,26 @@ img {
     font-size: 75px;
     font-weight: bolder;
     color: #0B1B66;
-    top: 38vh;
-    left: 23vh;
+    top: 23vh;
+    left: 12vh;
+}
+
+.note-taking {
+    display: inline-block;
+    position: absolute;
+    font-size: 20px;
+    color: #0B1B66;
+    top: 34vh;
+    left: 19vh;
+}
+
+.made-easy {
+    display: inline-block;
+    position: absolute;
+    font-size: 20px;
+    color: #0B1B66;
+    top: 37vh;
+    left: 20vh;
 }
 
 .teacher {
@@ -43,21 +61,53 @@ img {
     top: 60vh;
     width: 80%;
     margin-left: 10%;
+    font-weight: bolder;
     color: white;
-    background-color: orange;
-    border-radius: 12px;
+    background-color: #E8963F;
+    border-radius: 15px;
     padding: 10px;
     border: 0px;
 }
 
 .student {
     position: absolute;
-    top: 70vh;
+    top: 67vh;
     width: 80%;
     margin-left: 10%;
+    font-weight: bolder;
     color: white;
-    background-color: brown;
-    border-radius: 12px;
+    background-color: #594835;
+    border-radius: 15px;
     padding: 10px;
     border: 0px;
+}
+
+.new-here {
+    display: inline-block;
+    position: absolute;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #0B1B66;
+    top: 80vh;
+    left: 7vh;
+}
+
+// .create {
+//     display: inline-block;
+//     position: absolute;
+//     font-size: 15px;
+//     font-weight: bolder;
+//     color: #0B1B66;
+//     top: 80vh;
+//     left: 20vh;
+// }
+
+.createtest {
+    display: inline-block;
+    position: absolute;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #0B1B66;
+    top: 80vh;
+    left: 15vh;
 }
