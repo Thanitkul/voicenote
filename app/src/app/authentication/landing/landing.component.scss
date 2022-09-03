@@ -11,103 +11,84 @@ body {
 }
 
 img {
-    display: inline-block;
     position: absolute;
-    width: 300px;
-    left: -16vh;
+    width: 100%;
+    left: -23vh;
     top: 10vh;
 }
 
 .voice {
-    display: inline-block;
     position: absolute;
-    font-size: 75px;
+    font-size: 600%;
     font-weight: bolder;
     color: #0B1B66;
-    top: 15vh;
-    left: 10vh;
+    top: 18vh;
+    right: 5vh;
 }
 
 .note {
-    display: inline-block;
     position: absolute;
-    font-size: 75px;
+    font-size: 600%;
     font-weight: bolder;
     color: #0B1B66;
-    top: 23vh;
-    left: 12vh;
+    top: 28vh;
+    right: 5vh;
 }
 
 .note-taking {
-    display: inline-block;
     position: absolute;
-    font-size: 20px;
+    font-size: 150%;
     color: #0B1B66;
-    top: 34vh;
-    left: 19vh;
+    top: 41vh;
+    right: 5vh;
 }
 
 .made-easy {
-    display: inline-block;
     position: absolute;
-    font-size: 20px;
+    font-size: 150%;
     color: #0B1B66;
-    top: 37vh;
-    left: 20vh;
+    top: 44vh;
+    right: 5vh;
 }
 
 .teacher {
     position: absolute;
-    top: 60vh;
+    top: 65vh;
     width: 80%;
     margin-left: 10%;
     font-weight: bolder;
-    color: white;
+    color: #FFFFFF;
     background-color: #E8963F;
     border-radius: 15px;
-    padding: 10px;
     border: 0px;
+    padding: 15px;
+    font-size: 125%;
 }
 
 .student {
     position: absolute;
-    top: 67vh;
+    top: 75vh;
     width: 80%;
     margin-left: 10%;
     font-weight: bolder;
     color: white;
     background-color: #594835;
     border-radius: 15px;
-    padding: 10px;
     border: 0px;
+    padding: 15px;
+    font-size: 125%;
 }
 
-.new-here {
+.new {
     display: inline-block;
     position: absolute;
-    font-size: 15px;
-    font-weight: bolder;
-    color: #0B1B66;
-    top: 80vh;
-    left: 7vh;
+    top: 85vh;
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 
-// .create {
-//     display: inline-block;
-//     position: absolute;
-//     font-size: 15px;
-//     font-weight: bolder;
-//     color: #0B1B66;
-//     top: 80vh;
-//     left: 20vh;
-// }
-
-.createtest {
+.account {
     display: inline-block;
-    position: absolute;
-    font-size: 15px;
-    font-weight: bolder;
-    color: #0B1B66;
-    top: 80vh;
-    left: 15vh;
+    text-decoration: underline;
 }

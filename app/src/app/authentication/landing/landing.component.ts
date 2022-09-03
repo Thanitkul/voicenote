@@ -21,4 +21,8 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['/student']);
   }
 
+  redirect_signup() {
+    this.router.navigate(['authentication/signup'])
+  }
+
 }
