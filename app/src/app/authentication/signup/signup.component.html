@@ -1,6 +1,14 @@
 <div class = "top">Create an <br>Account</div>
-<svg class = "example" width="172" height="246" viewBox="0 0 172 246" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M141 152C166.921 152 188 130.921 188 105V34.5C188 8.45026 167.026 -12.7467 141.247 -12.7467C140.42 -12.7418 139.596 -12.6432 138.791 -12.453C126.727 -11.8681 115.349 -6.66782 107.012 2.07179C98.6745 10.8114 94.016 22.4215 94 34.5V105C94 130.921 115.08 152 141 152Z" fill="white" fill-opacity="0.95"/>
-    <path d="M129.25 198.189V222.5H152.75V198.189C199.033 192.373 235 152.858 235 105H211.5C211.5 143.881 179.881 175.5 141 175.5C102.119 175.5 70.5 143.881 70.5 105H47C47 152.846 82.9668 192.373 129.25 198.189Z" fill="white" fill-opacity="0.95"/>
+<svg width="282" height="282" viewBox="0 0 282 282" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M141 188C166.921 188 188 166.921 188 141V70.5C188 44.4503 167.026 23.2533 141.247 23.2533C140.42 23.2582 139.596 23.3568 138.791 23.547C126.727 24.1319 115.349 29.3322 107.012 38.0718C98.6745 46.8114 94.016 58.4215 94 70.5V141C94 166.921 115.08 188 141 188Z" fill="white" fill-opacity="1"/>
+    <path d="M129.25 234.189V258.5H152.75V234.189C199.033 228.373 235 188.858 235 141H211.5C211.5 179.881 179.881 211.5 141 211.5C102.119 211.5 70.5 179.881 70.5 141H47C47 188.846 82.9668 228.373 129.25 234.189Z" fill="white" fill-opacity="1"/>
     </svg>
     
+<form>
+    <input type = "name" class = "name" placeholder = "Name" required>
+    <input type = "email" class = "email" placeholder = "Email" required>
+    <input type = "password" class = "password" placeholder = "Password" required>
+    <input type = "date" class = "date" placeholder = "DD/MM/YY" required>
+</form>    
+<button (click) = "redirect()">Sign up</button>
+<div class = "text">Already have an account? <p class = "signin" (click) = "redirect_signin()">Sign in</p></div>
