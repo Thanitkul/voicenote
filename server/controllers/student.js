@@ -22,11 +22,10 @@ router.get('/courses', RouteProtection.verify, async (req, res, next) => {
 
   router.get('/get-recording/:id', RouteProtection.verify, async (req, res, next) => {
     try {
-      const [ recordings ] = await con.query(
-        "SELECT * FROM `recordings` WHERE `courseId` = ?",
-        [req.params.id]
-      );
-      res.status(200).json(recordings)
+      if (!(await con.query("SELECT * FROM `student_course` WHERE `studentId` = " + [req.user.id] + " AND `courseId` = " + [req.params.id]))[0][0]) return res.status(401).json({ message: "Unauthorised, Not enrolled in this course" })
+
+      res.status(200).json((await con.query("SELECT * FROM `recordings` WHERE `courseId` = ?", [req.params.id]))[0][0])
+      
     } catch (err) {
       next(err)
     }

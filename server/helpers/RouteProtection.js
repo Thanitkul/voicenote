@@ -8,7 +8,6 @@ export class RouteProtection {
             const authHeader = req.headers['authorization']
             const token = authHeader.split(' ').pop()
             const decoded = jwt.verify(token, process.env.TOKEN_SECRET)
-            console.log(decoded)
 
             req.user = { id: decoded.userId }
 

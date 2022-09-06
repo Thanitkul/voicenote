@@ -37,6 +37,7 @@ router.post("/signin", async function signin(req, res, next) {
 
             const token = sign({
                 userId: user[0]['id']
+                
             }, process.env.TOKEN_SECRET)
 
             res.status(200).json({ token: token })
