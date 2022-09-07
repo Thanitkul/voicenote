@@ -30,7 +30,7 @@ export class SigninComponent implements OnInit {
   }
 
   saveData(token : any) {
-    sessionStorage.setItem('tolkien', token);
+    sessionStorage.setItem('token', token);
   }
 
 }
