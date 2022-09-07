@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 declare var window: any;
-import axios from 'axios';
 import { CourseService } from '../course.service';
 
 @Component({
