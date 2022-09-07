@@ -15,7 +15,7 @@ export class TeacherComponent implements OnInit {
     courses: any;
     
     // Change token here [You need to signup and signin to get token by Thunder client before (only for now)]
-    auth_token = "change token here"
+    auth_token = sessionStorage.getItem('token')
     
     constructor(private courseserv: CourseService) {}
 
@@ -23,6 +23,7 @@ export class TeacherComponent implements OnInit {
         this.formModal = new window.bootstrap.Modal(document.getElementById('myModal'));
         this.courseserv.get_course(this.auth_token).subscribe((res: any) => this.courses = res)
         this.courseserv.get_username(this.auth_token).subscribe((res: any) => this.username = res['username'])
+        console.log(this.auth_token)
     }
     logout(): void {
         sessionStorage.clear()

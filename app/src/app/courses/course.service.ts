@@ -18,7 +18,7 @@ export class CourseService {
 //       })
 
 //   }
-    get_username(auth_token: string) {
+    get_username(auth_token: any) {
         
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export class CourseService {
         })
         return this.http.get('http://localhost:3000/auth/get-username', { headers: headers })
     }
-    get_course(auth_token: string) {
+    get_course(auth_token: any) {
         
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export class CourseService {
         })
         return this.http.get('http://localhost:3000/teacher/courses', { headers: headers })
     }
-    create_course(name: string, auth_token: string) {
+    create_course(name: string, auth_token: any) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${auth_token}`
