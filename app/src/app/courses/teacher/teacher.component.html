@@ -1,23 +1,33 @@
+<!-- Username and logout -->
 <div style=" margin-right: 8%; margin-top: 6%; text-align: right;">
     <h2>T. {{ username }}</h2>
-    <a style="text-decoration: none;" (click)="logout()" routerLink="/" routerLinkActive="active">Logout</a>
+    <a style="text-decoration: none;" (click)="logout()" routerLink="/authentication/landing" routerLinkActive="active">Logout</a>
 </div>
 <br>
+
+<!-- create button -->
 <div type="button" (click)="openFormModal()" class="create_box">
     create
 </div>
+
+
 <!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search "> -->
+
+
+<!-- course rows -->
 <div ng-if="courses_data != null">
     <div style="padding-bottom: 10px; text-align: center;" *ngFor="let course of courses" >
-        <!-- <a routerLink="/speak" routerLinkActive="active" style="text-decoration: none;"> -->
+        <a routerLink="/speak" routerLinkActive="active" style="text-decoration: none;">
             <div class="course_box">
                 <div class="card-title" style="margin-right: 15px;">{{course["courseName"]}}</div>
                 <div class="card-text">Code: {{course["code"]}}</div>
             </div>
-        <!-- </a> -->
+        </a>
     </div>
 </div>
-<!--form modal-->
+
+
+<!--creating form modal-->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

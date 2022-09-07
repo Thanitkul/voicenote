@@ -18,24 +18,23 @@ export class CourseService {
 //       })
 
 //   }
-    get_username() {
-        const auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY2MjQzNTE1OH0.10JbS0TUDkgnxhi_eZ0IKQaad9TDaVRnbazzbhtrk28"
+    get_username(auth_token: string) {
+        
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${auth_token}`
         })
         return this.http.get('http://localhost:3000/auth/get-username', { headers: headers })
     }
-    get_course() {
-        const auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY2MjQzNTE1OH0.10JbS0TUDkgnxhi_eZ0IKQaad9TDaVRnbazzbhtrk28"
+    get_course(auth_token: string) {
+        
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${auth_token}`
         })
         return this.http.get('http://localhost:3000/teacher/courses', { headers: headers })
     }
-    create_course(name: string) {
-        const auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY2MjQzNTE1OH0.10JbS0TUDkgnxhi_eZ0IKQaad9TDaVRnbazzbhtrk28"
+    create_course(name: string, auth_token: string) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${auth_token}`
