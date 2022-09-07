@@ -16,7 +16,8 @@ import { HttpClientModule} from '@angular/common/http';
         HttpClientModule,
         AppRoutingModule,
         Ng2SearchPipeModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule
     ],
     providers: [],
     bootstrap: [AppComponent]
