@@ -8,7 +8,8 @@ import { CourseService } from '../course.service';
   styleUrls: ['./teacher.component.scss']
 })
 export class TeacherComponent implements OnInit {
-    formModal: any;
+    course_modal: any;
+    userinfo_modal: any;
     searchText: any;
     username: any;
     courses: any;
@@ -19,7 +20,8 @@ export class TeacherComponent implements OnInit {
     constructor(private courseserv: CourseService) {}
 
     ngOnInit(): void {
-        this.formModal = new window.bootstrap.Modal(document.getElementById('myModal'));
+        this.course_modal = new window.bootstrap.Modal(document.getElementById('course_modal'));
+        this.userinfo_modal = new window.bootstrap.Modal(document.getElementById('userinfo_modal'));
         this.courseserv.get_course(this.auth_token).subscribe((res: any) => this.courses = res)
         this.courseserv.get_username(this.auth_token).subscribe((res: any) => this.username = res['username'])
         console.log(this.auth_token)
@@ -27,8 +29,11 @@ export class TeacherComponent implements OnInit {
     logout(): void {
         sessionStorage.clear()
     }
-    openFormModal() {
-        this.formModal.show();
+    openCourse_modal() {
+        this.course_modal.show();
+    }
+    openUserinfo_modal() {
+        this.userinfo_modal.show();
     }
     create() {
         var name = (<HTMLInputElement>document.getElementById("name")).value;
