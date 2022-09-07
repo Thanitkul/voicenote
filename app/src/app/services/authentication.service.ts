@@ -12,5 +12,10 @@ export class AuthenticationService {
   signin(data: any){
     return this.http.post(`${environment.apiHost}/auth/signin`, data)
   }
+
+  signup(data: any){
+    return this.http.post(`${environment.apiHost}/auth/signup`, data)
+  }
+
 }
   
