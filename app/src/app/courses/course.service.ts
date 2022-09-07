@@ -8,16 +8,6 @@ export class CourseService {
 
     constructor(private http: HttpClient) { }
 
-//   get_username1() {
-//       let headers = new HttpHeaders()
-//       headers.set('content-type', 'application/json')
-//       headers.set('Access-Control-Allow-Origin', '*')
-//       console.log(headers); 
-//       return this.http.get('http://localhost:3000/auth/get-username', {
-//           headers: headers
-//       })
-
-//   }
     get_username(auth_token: any) {
         
         const headers = new HttpHeaders({
@@ -43,5 +33,23 @@ export class CourseService {
             courseName: name
         };
         this.http.post<any>('http://localhost:3000/teacher/create-course', body).subscribe(res => console.log(res))
+    }
+    get_course_student(auth_token: any) {
+        
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${auth_token}`
+        })
+        return this.http.get('http://localhost:3000/student/courses')
+    }
+    add_course(code: string, auth_token: any) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${auth_token}`
+        })
+        const body = {
+            code: code
+        };
+        this.http.post<any>('http://localhost:3000/student/join-course', body).subscribe(res => console.log(res))
     }
 }
