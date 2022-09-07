@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
     declarations: [
         AppComponent
@@ -14,7 +15,8 @@ import { AppComponent } from './app.component';
         BrowserModule,
         AppRoutingModule,
         Ng2SearchPipeModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule
     ],
     providers: [],
     bootstrap: [AppComponent]
