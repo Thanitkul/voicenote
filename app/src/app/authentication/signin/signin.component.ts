@@ -22,12 +22,22 @@ export class SigninComponent implements OnInit {
       next: (user:any) => {
         this.saveData(user["token"])
       },
+      error(err) {
+        // console.log(err["error"]["message"])
+        alert(err["error"]["message"])
+
+      },
       complete: () => {
         this.router.navigate(['/teacher'])
       }
+  
 
     })
       
+  }
+
+  redirect_signup() {
+    this.router.navigate(['/authentication/signup']);
   }
 
   saveData(token : any) {
