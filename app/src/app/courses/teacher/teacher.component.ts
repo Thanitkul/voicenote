@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 declare var window: any;
 import axios from 'axios';
+import { CourseService } from '../course.service';
 
 @Component({
   selector: 'app-teacher',
@@ -10,96 +11,36 @@ import axios from 'axios';
 export class TeacherComponent implements OnInit {
     formModal: any;
     searchText: any;
-
+    username: any;
+    courses: any;
     
-    constructor() {}
+    // Change token here [You need to signup and signin to get token by Thunder client before (only for now)]
+    auth_token = "change token here"
+    
+    constructor(private courseserv: CourseService) {}
 
     ngOnInit(): void {
-        this.formModal = new window.bootstrap.Modal(
-            document.getElementById('myModal')
-        );
-        this.get_course()
-
-        
+        this.formModal = new window.bootstrap.Modal(document.getElementById('myModal'));
+        this.courseserv.get_course(this.auth_token).subscribe((res: any) => this.courses = res)
+        this.courseserv.get_username(this.auth_token).subscribe((res: any) => this.username = res['username'])
     }
     logout(): void {
         sessionStorage.clear()
-    }
-    async get_course(){
-        try {
-            const token = sessionStorage.getItem('token')
-            console.log('token',token)
-            const config = {
-                headers: { Authorization: `Bearer ${token}` }
-            };
-        
-            const {data} = await axios.get(
-                'http://localhost:3000/teacher/courses',
-                config
-            )
-            localStorage.setItem('courses', JSON.stringify(data));
-            console.log(data)
-            return data
-        } catch (error) {
-            return console.error();
-            
-        }
-    }  
-    async get_username() {
-        try {
-            const token = sessionStorage.getItem('token')
-            const config = {
-                headers: { Authorization: `Bearer ${token}` }
-            };
-
-            const { data } = await axios.get(
-                'http://localhost:3000/auth/get-username',
-                config
-            )
-            console.log('data',data)
-            return data.username
-        } catch (error) {
-            return console.error();
-
-        }
     }
     openFormModal() {
         this.formModal.show();
     }
     create() {
         var name = (<HTMLInputElement>document.getElementById("name")).value;
-        const token = sessionStorage.getItem('token')
-        const config = {
-            headers: { Authorization: `Bearer ${token}` }
-        };
-
-        const bodyParameters = {
-            courseName: name
-        };
-
-        axios.post(
-            'http://localhost:3000/teacher/create-course',
-            bodyParameters,
-            config
-        ).then(console.log).catch(console.log);
+        // const token = sessionStorage.getItem('token')
+        this.courseserv.create_course(name, this.auth_token)
 
         window.location.reload();
     }
-    
 
-    public user_data = (async () => {
-        const users = await this.get_username()
-        return users
-    })()
-
-    loadTasks(): Task[] {
-    const course_data = localStorage.getItem('courses')
-    if (course_data == null) return []
-    return JSON.parse(course_data)
 }
-    public courses_data = this.get_course()
+
 
 
 
     
-}

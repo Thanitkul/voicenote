@@ -24,9 +24,8 @@ router.post("/signin", async function signin(req, res, next) {
             'SELECT * FROM `users` WHERE `email` = ?',
             [req.body.email]
         )
-
-        console.log(user[0]);
-        if (user[0].length != 0) {
+        console.log(user)
+        if (user.length != 0) {
             const isCorrectPassword = await compare(req.body.password, user[0]['password']);
 
             console.log(isCorrectPassword)
@@ -37,11 +36,12 @@ router.post("/signin", async function signin(req, res, next) {
 
             const token = sign({
                 userId: user[0]['id']
+                
             }, process.env.TOKEN_SECRET)
 
             res.status(200).json({ token: token })
         } else {
-            res.json({message: "user not found"})
+            res.status(400).json({message: "user not found"})
         }
     } catch (error) {
         console.log(error)
@@ -84,7 +84,7 @@ router.get("/get-username", RouteProtection.verify, async function getUsername(r
         if (username.length == 1) {
             res.status(200).json(username[0])
         } else {
-            res.json({message: "username not found"})
+            res.status(400).json({message: "username not found"})
         }
     } catch (error) {
         console.log(error);
