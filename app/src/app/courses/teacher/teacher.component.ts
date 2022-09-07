@@ -13,7 +13,9 @@ export class TeacherComponent implements OnInit {
     searchText: any;
     username: any;
     courses: any;
-    auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY2MjUzMDkwN30.jPetcdunTjdE_za_eiW-cZ94kOv7DdkGj9RnslJQyIY"
+    
+    // Change token here [You need to signup and signin to get token by Thunder client before (only for now)]
+    auth_token = "change token here"
     
     constructor(private courseserv: CourseService) {}
 
