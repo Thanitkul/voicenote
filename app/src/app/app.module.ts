@@ -6,7 +6,8 @@ import { RouterModule } from '@angular/router';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { VerifyInterceptor } from './services/verify.interceptor';
 @NgModule({
     declarations: [
         AppComponent
@@ -19,7 +20,11 @@ import { HttpClientModule} from '@angular/common/http';
         FormsModule,
         HttpClientModule
     ],
-    providers: [],
+    providers: [{
+        provide: HTTP_INTERCEPTORS,
+        useClass: VerifyInterceptor,
+        multi: true
+    }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

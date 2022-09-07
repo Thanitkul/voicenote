@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -11,7 +12,7 @@ export class SigninComponent implements OnInit {
     email: '' ,
     password: ''
   }
-  constructor(private authServ: AuthenticationService) { }
+  constructor(private authServ: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +23,7 @@ export class SigninComponent implements OnInit {
         this.saveData(user["token"])
       },
       complete: () => {
-
+        this.router.navigate(['/teacher'])
       }
 
     })
