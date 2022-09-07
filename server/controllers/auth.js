@@ -24,7 +24,6 @@ router.post("/signin", async function signin(req, res, next) {
             'SELECT * FROM `users` WHERE `email` = ?',
             [req.body.email]
         )
-        console.log(user)
         if (user.length != 0) {
             const isCorrectPassword = await compare(req.body.password, user[0]['password']);
 
