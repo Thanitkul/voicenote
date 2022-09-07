@@ -2,11 +2,14 @@
 <div style=" margin-right: 8%; margin-top: 6%; text-align: right;">
     <h2>T. {{ username }}</h2>
     <a style="text-decoration: none;" (click)="logout()" routerLink="/authentication/landing" routerLinkActive="active">Logout</a>
+    <div type="button" (click)="openUserinfo_modal()">
+        INFO
+    </div>
 </div>
 <br>
 
 <!-- create button -->
-<div type="button" (click)="openFormModal()" class="create_box">
+<div type="button" (click)="openCourse_modal()" class="create_box">
     create
 </div>
 
@@ -27,8 +30,8 @@
 </div>
 
 
-<!--creating form modal-->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--creating course modal-->
+<div class="modal fade" id="course_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
@@ -36,6 +39,19 @@
             <input placeholder="Name" id="name" style="width: 90%; margin: 5% ;" class="form-control" type="text">
             <button type="button" class="btn btn-primary" style="width: 90%; margin: 5%;" data-bs-dismiss="modal"
                 (click)="create()">Create</button>
+        </div>
+    </div>
+</div>
+
+<!--INFO modal-->
+<div class="modal fade" id="userinfo_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <li>Username:</li>
+            <li>Data of Birth:</li>
+            <li>E-mail:</li>
         </div>
     </div>
 </div>
