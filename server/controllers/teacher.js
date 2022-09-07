@@ -64,4 +64,28 @@ router.post('/create-course', RouteProtection.verify, async (req, res, next) => 
     }
 });
 
-  export default router;
+router.delete('/delete-course', RouteProtection.verify, async (req, res, next) => {
+    try {
+      const user = jwt.verify(req.headers.authorization.split(' ').pop(), process.env.TOKEN_SECRET)
+
+      const [course, course_header] = await con.query("SELECT id, ownerId FROM courses WHERE id = ?", req.body.courseId
+      )
+      console.log(course)
+      if (course.length != 0) {
+        if (user.userId != course[0].ownerId) {
+          res.status(401).json({ message: "not the owner of the course"})
+        }
+
+        await con.query("DELETE FROM student_course WHERE courseId = ?", req.body.courseId);
+        await con.query("DELETE FROM recordings WHERE courseId = ?", req.body.courseId);
+        await con.query("DELETE FROM courses WHERE id = ?", req.body.courseId);
+
+        res.status(200)
+      } else {
+      res.status(400).json({ message: "course not found"})
+      }
+    } catch (error) {
+        next(error);
+    }
+})
+export default router;
