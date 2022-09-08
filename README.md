@@ -93,5 +93,9 @@ Then, create a `.env` file in `server` folder and add these following codes:
 
 Then add the port your SQL server is running on and the password of your connection.
 
+CHANGE: from 8/9/2022 onwards, pls execute the following query
+
+    ALTER TABLE `voicenote`.`courses` 
+    ADD COLUMN `isLive` TINYINT NOT NULL DEFAULT 0 AFTER `ownerId`;
 
 
