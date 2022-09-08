@@ -37,7 +37,7 @@ export class SigninComponent implements OnInit {
   }
 
   redirect_signup() {
-    this.router.navigate(['/authentication/signup']);
+    this.router.navigate(['/authentication/signup'])
   }
 
   saveData(token : any) {

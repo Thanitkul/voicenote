@@ -1,29 +1,18 @@
-<div style = "display: inline-block">
-    <img class = "img" src = "/assets/images/image2.png">
-</div>
-<div style = "display: inline-block">
-    <div class = "text">Voice</div>
-    <div class = "text1">Note</div>
-    <div class = "box">Teacher</div>
-</div>
+<body>
+    <div class = "corner"></div>
+    <img src = "/assets/images/image2.png">
+    <div class = "voice">Voice</div>
+    <div class = "note">Note</div>
+    <div class = "teacher">TEACHER</div>
 
-<div>
-    <input type="email" placeholder="E-mail" [(ngModel)]="signinForm.email" id="email" class="email" required>
-    <br>
-    <input placeholder="Password" [(ngModel)]="signinForm.password" id= "password" type="password" class = "password" required>
-    <br>
-    <input type="checkbox" id = "rem" name="rem" value = "rem" class = "rem">
-    <label for="rem" class = "label">Remember me</label>
-    <br>
-    <button type ="button" class = "login" (click)="submitSignin()" >login</button>
-</div>
-    
-<div class = "forget">
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ%22%3EForgot">Forget Password?</a>
-</div>
+    <form>
+        <input class = "email" type = "email" placeholder = "Email" required>
+        <input class = "password" type = "password" placeholder = "Password" required>
+        <input class = "checkbox" type = "checkbox"><p class = "rem">Remember me</p>
+    </form>
 
-<!-- <div class = "signup">
-    <b>Don't have an account? </b><p click()="">Sign Up</p> 
-</div> -->
+    <button>Log In</button>
 
-<div class = "text">Don't have an account? <p (click) = "redirect_signup()">Sign up</p></div>
+    <p class = "forgot"><u>Forgot Password?</u></p>
+    <div class = "text">Don't have an account? <p class = "signup" (click) = "redirect_signup()"><u>Sign up</u></p></div>
+</body>
