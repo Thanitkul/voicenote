@@ -16,6 +16,7 @@ export class SigninComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  route_to = sessionStorage.getItem('role')
 
   submitSignin(){
     this.authServ.signin(this.signinForm).subscribe({
@@ -28,7 +29,7 @@ export class SigninComponent implements OnInit {
 
       },
       complete: () => {
-        this.router.navigate(['/teacher'])
+        this.router.navigate(['/' + this.route_to])
       }
   
 
