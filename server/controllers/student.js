@@ -12,7 +12,7 @@ router.get('/courses', RouteProtection.verify, async (req, res, next) => {
     const user = jwt.verify(req.headers.authorization.split(' ').pop(), process.env.TOKEN_SECRET)
       if (user.userId) {
         [courses, headers] = await con.query(
-          'SELECT courses.id, `courseName`, `code` FROM `courses` LEFT JOIN `student_course` ON (courses.id = student_course.courseId) WHERE `studentId` = ?',
+          'SELECT courses.id, `courseName`, `code`, `isLive` FROM `courses` LEFT JOIN `student_course` ON (courses.id = student_course.courseId) WHERE `studentId` = ?',
           [user.userId]
         )
       } else {
