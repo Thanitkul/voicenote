@@ -14,12 +14,12 @@
 </div>
 
 
-<!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search "> -->
+<input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search ">
 
 
 <!-- course rows -->
 <div ng-if="courses_data != null">
-    <div style="padding-bottom: 10px; text-align: center;" *ngFor="let course of courses" >
+    <div style="padding-bottom: 10px; text-align: center;" *ngFor="let course of courses | filter:searchText" >
         <a routerLink="/speak" routerLinkActive="active" style="text-decoration: none;">
             <div class="course_box">
                 <div class="card-title" style="margin-right: 15px;">{{course["courseName"]}}</div>
