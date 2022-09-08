@@ -1,0 +1,15 @@
+<h1>Chat</h1>
+
+<button type="button" (click)="joinRoom('Room A')">Room A</button>
+<button type="button" (click)="joinRoom('Room B')">Room B</button>
+<button type="button" (click)="joinRoom('Room C')">Room C</button>
+
+<br /><br />
+<h3>{{roomSelected}}</h3>
+
+<ul>
+    <li *ngFor="let item of noteList">{{item}}</li>
+</ul>
+
+<br /><br /><br /><br />
+<button type="button" (click)="disconnect()">Disconnect</button>
