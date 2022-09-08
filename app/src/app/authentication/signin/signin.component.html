@@ -5,13 +5,13 @@
     <div class = "note">Note</div>
     <div class = "teacher">TEACHER</div>
 
-    <form>
-        <input class = "email" type = "email" placeholder = "Email" required>
-        <input class = "password" type = "password" placeholder = "Password" required>
+    <div>
+        <input class = "email" type = "email" placeholder = "Email" [(ngModel)]="signinForm.email" required>
+        <input class = "password" type = "password" placeholder = "Password" [(ngModel)]="signinForm.password" required>
         <input class = "checkbox" type = "checkbox"><p class = "rem">Remember me</p>
-    </form>
+    </div>
 
-    <button>Log In</button>
+    <button (click) = "submitSignin()">Log In</button>
 
     <p class = "forgot"><u>Forgot Password?</u></p>
     <div class = "text">Don't have an account? <p class = "signup" (click) = "redirect_signup()"><u>Sign up</u></p></div>
