@@ -6,7 +6,7 @@ const routes: Routes = [
     { path: 'authentication', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
     { path: '', loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule) },
     { path: 'speak', loadChildren: () => import('./speak/speak.module').then(m => m.SpeakModule) },
-    { path: 'note', loadChildren: () => import('./note/note.module').then(m => m.NoteModule) },
+    { path: 'note/:id', loadChildren: () => import('./note/note.module').then(m => m.NoteModule) },
     { path: 'history/:id', loadChildren: () => import('./history/history.module').then(m => m.HistoryModule) }
 ];
 
