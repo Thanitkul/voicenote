@@ -24,7 +24,6 @@ export class TeacherComponent implements OnInit {
         this.userinfo_modal = new window.bootstrap.Modal(document.getElementById('userinfo_modal'));
         this.courseserv.get_course(this.auth_token).subscribe((res: any) => this.courses = res)
         this.courseserv.get_username(this.auth_token).subscribe((res: any) => this.username = res['username'])
-        console.log(this.auth_token)
     }
     logout(): void {
         sessionStorage.clear()

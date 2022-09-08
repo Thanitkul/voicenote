@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule, } from './app-routing.module';
 import { RouterModule } from '@angular/router';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -16,7 +15,6 @@ import { VerifyInterceptor } from './services/verify.interceptor';
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
-        Ng2SearchPipeModule,
         FormsModule,
         HttpClientModule
     ],
