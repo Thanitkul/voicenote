@@ -10,7 +10,7 @@ export class RouteProtection {
             const decoded = jwt.verify(token, process.env.TOKEN_SECRET)
 
             
-            req.user = { id: decoded.id }
+            req.user = { userId: decoded.userId }
 
             return next()
         } catch (error) {

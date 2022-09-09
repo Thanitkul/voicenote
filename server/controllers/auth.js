@@ -2,7 +2,7 @@ import { Router } from "express";
 import { compare, hash } from "bcrypt";
 import jwt from 'jsonwebtoken';
 import { con } from "../server.js";
-const { sign } = jwt;
+const jwt = require('jsonwebtoken')
 import { RouteProtection } from "../helpers/RouteProtection.js";
 
 const router = Router()
@@ -33,7 +33,7 @@ router.post("/signin", async function signin(req, res, next) {
                 message: "Incorrect password"
             })
 
-            const token = sign({
+            const token = jwt.sign({
                 userId: user[0]['id']
                 
             }, process.env.TOKEN_SECRET)
