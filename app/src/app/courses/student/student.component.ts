@@ -15,14 +15,15 @@ export class StudentComponent implements OnInit {
     courses: any;
 
     // Change token here [You need to signup and signin to get token by Thunder client before (only for now)]
-    auth_token = sessionStorage.getItem('token')
+    authToken: string = '';
 
-    constructor(private courseserv: CourseService) {}
+    constructor(private courseserv: CourseService) {
+    }
 
     ngOnInit(): void {
         // this.formModal = new window.bootstrap.Modal(document.getElementById('myModal'));
-        this.courseserv.get_course_student(this.auth_token).subscribe((res: any) => {this.courses = res,console.log(this.courses)})
-        
+        this.authToken = sessionStorage.getItem('token')!
+        this.courseserv.get_course_student(this.authToken).subscribe((res: any) => {this.courses = res,console.log(this.courses)})
     }
     logout(): void {
         sessionStorage.clear()
@@ -33,7 +34,7 @@ export class StudentComponent implements OnInit {
     add() {
         var code = (<HTMLInputElement>document.getElementById("code")).value;
         // const token = sessionStorage.getItem('token')
-        this.courseserv.add_course(code, this.auth_token)
+        this.courseserv.add_course(code, this.authToken)
 
         window.location.reload();
     }
