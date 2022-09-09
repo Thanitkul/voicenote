@@ -3,32 +3,32 @@ import { Router } from '@angular/router'
 import { TeacherComponent } from 'src/app/courses/teacher/teacher.component';
 
 @Component({
-  selector: 'app-landing',
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+    selector: 'app-landing',
+    templateUrl: './landing.component.html',
+    styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
 
-  constructor(private router: Router) { }
+    constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-  redirect_teacher() {
-    this.router.navigate(['authentication/signin']);
-    sessionStorage.setItem('role', "teacher");
+    redirectTeacher() {
+        sessionStorage.setItem('role', "teacher");
+        this.router.navigate(['authentication/signin']);
 
-  }
+    }
 
-  redirect_student() {
-    this.router.navigate(['authentication/signin']);
-    sessionStorage.setItem('role', "student");
+    redirectStudent() {
+        sessionStorage.setItem('role', "student");
+        this.router.navigate(['authentication/signin']);
 
-  }
+    }
 
-  redirect_signup() {
-    this.router.navigate(['authentication/signup'])
-  }
+    redirectSignup() {
+        this.router.navigate(['authentication/signup'])
+    }
 
 
 
