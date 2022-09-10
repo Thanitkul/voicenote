@@ -20,7 +20,7 @@ function makeid(length) {
   return result;
 }
 /**
- * Endpoint http://localhost:3000/api/teacher/courses
+ * Endpoint https://newtonian-voicenote.fly.dev/api/teacher/courses
  */
 router.get("/courses", RouteProtection.verify, async (req, res, next) => {
   try {
@@ -39,7 +39,7 @@ router.get("/courses", RouteProtection.verify, async (req, res, next) => {
 });
 
 /**
- * Endpoint http://localhost:3000/api/teacher/create-course
+ * Endpoint https://newtonian-voicenote.fly.dev/api/teacher/create-course
  */
 router.post(
   "/create-course",
@@ -73,7 +73,7 @@ router.post(
 );
 
 /**
- * Endpoint http://localhost:3000/api/teacher/delete-course
+ * Endpoint https://newtonian-voicenote.fly.dev/api/teacher/delete-course
  */
 router.delete(
   "/delete-course",

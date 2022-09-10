@@ -4,7 +4,7 @@ const RouteProtection = require("../helpers/RouteProtection")
 const router = express.Router()
 
 /**
- * Endpoint http://localhost:3000/api/student/courses
+ * Endpoint https://newtonian-voicenote.fly.dev/api/student/courses
  */
 router.get('/courses', RouteProtection.verify, async (req, res, next) => {
     try {
@@ -23,7 +23,7 @@ router.get('/courses', RouteProtection.verify, async (req, res, next) => {
 })
 
 /**
- * Endpoint http://localhost:3000/api/student/get-recording/:id
+ * Endpoint https://newtonian-voicenote.fly.dev/api/student/get-recording/:id
  */
 router.get('/get-recording/:id', RouteProtection.verify, async (req, res, next) => {
     try {
@@ -37,7 +37,7 @@ router.get('/get-recording/:id', RouteProtection.verify, async (req, res, next) 
 })
 
 /**
- * Endpoint http://localhost:3000/api/student/join-course
+ * Endpoint https://newtonian-voicenote.fly.dev/api/student/join-course
  */
 router.post('/join-course', RouteProtection.verify, async (req, res, next) => {
     try {
