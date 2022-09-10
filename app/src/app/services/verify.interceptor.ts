@@ -15,7 +15,8 @@ export class VerifyInterceptor implements HttpInterceptor {
   constructor(private router: Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = sessionStorage.getItem('token')
+    const token = localStorage.getItem('token')
+    const role = localStorage.getItem('role')
     if(token && request.headers !== undefined){
       return next.handle(
         request.clone({
@@ -25,15 +26,16 @@ export class VerifyInterceptor implements HttpInterceptor {
         })).pipe(tap({
           error: (error: HttpErrorResponse) => {
             if(error.status === 401){
-              this.router.navigate(['/authentication/signin'])
+              this.router.navigate(['/authentication/landing'])
             }
           }
         }))
     }
+
     return next.handle(request).pipe(tap({
       error: (error: HttpErrorResponse) => {
         if(error.status === 401){
-          this.router.navigate(['/authentication/signin'])
+          this.router.navigate(['/authentication/landing'])
         }
       }
     }))
