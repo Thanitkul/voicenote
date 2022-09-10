@@ -2,6 +2,9 @@ const express = require("express")
 const con = require("../models/db")
 const router = express.Router();
 
+/**
+ * Endpoint http://localhost:3000/api/dev/
+ */
 router.get("/users", async (req, res, next) => {
     try {
       const users = await con.query("SELECT * FROM users")
@@ -29,10 +32,10 @@ try {
 }
 });
 
-router.get("/student_course", async (req, res, next) => {
+router.get("/student-course", async (req, res, next) => {
     try {
         const student_course = await con.query("SELECT * FROM student_course")
-        res.send(recordings);
+        res.send(student_course);
     } catch (error) {
         res.json(error)
     }
