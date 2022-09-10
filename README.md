@@ -26,6 +26,25 @@ In `server` run:
 
 `npm run start`
 
+## View Database
+You can view the data in a shared database by requesting to these endpoints:
+
+`GET http://localhost:3000/api/dev/users`
+
+for table `user`
+
+`GET http://localhost:3000/api/dev/courses`
+
+for table `courses`
+
+`GET http://localhost:3000/api/dev/recordings`
+
+for table `recordings`
+
+`GET http://localhost:3000/api/dev/student-course`
+
+for table `student_course`
+
 ## Connecting Database
 
 First, Install mysql5.7 and MySQL Workbench and get the sql server running.
