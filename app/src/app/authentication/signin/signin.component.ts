@@ -16,10 +16,10 @@ export class SigninComponent implements OnInit {
   route_to: string = ''
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('role') == null){
+    if (localStorage.getItem('role') == null){
       this.router.navigate(['/authentication/landing'])
     }
-    this.route_to = sessionStorage.getItem('role')!
+    this.route_to = localStorage.getItem('role')!
 
   }  
 
@@ -49,7 +49,7 @@ export class SigninComponent implements OnInit {
   }
 
   saveData(token : any) {
-    sessionStorage.setItem('token', token);
+    localStorage.setItem('token', token);
   }
 
 }

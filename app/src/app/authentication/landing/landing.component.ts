@@ -16,13 +16,13 @@ export class LandingComponent implements OnInit {
 
   redirect_teacher() {
     this.router.navigate(['authentication/signin']);
-    sessionStorage.setItem('role', "teacher");
+    localStorage.setItem('role', "teacher");
 
   }
 
   redirect_student() {
     this.router.navigate(['authentication/signin']);
-    sessionStorage.setItem('role', "student");
+    localStorage.setItem('role', "student");
 
   }
 
