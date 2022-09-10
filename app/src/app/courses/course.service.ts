@@ -8,7 +8,7 @@ export class CourseService {
 
     constructor(private http: HttpClient) { }
 
-    get_username(auth_token: any) {
+    getUsername(auth_token: string) {
         
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -16,7 +16,7 @@ export class CourseService {
         })
         return this.http.get('http://localhost:3000/auth/get-username')
     }
-    get_course(auth_token: any) {
+    getCourseTeacher(auth_token: string) {
         
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export class CourseService {
         })
         return this.http.get('http://localhost:3000/teacher/courses')
     }
-    create_course(name: string, auth_token: any) {
+    createCourse(name: string, auth_token: string) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${auth_token}`
@@ -34,7 +34,7 @@ export class CourseService {
         };
         this.http.post<any>('http://localhost:3000/teacher/create-course', body).subscribe(res => console.log(res))
     }
-    get_course_student(auth_token: any) {
+    getCourseStudent(auth_token: string) {
         
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export class CourseService {
         })
         return this.http.get('http://localhost:3000/student/courses')
     }
-    add_course(code: string, auth_token: any) {
+    addCourse(code: string, auth_token: string) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${auth_token}`
