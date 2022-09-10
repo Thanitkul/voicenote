@@ -29,19 +29,19 @@ In `server` run:
 ## View Database
 You can view the data in a shared database by requesting to these endpoints:
 
-`GET http://localhost:3000/api/dev/users`
+`GET https://newtonian-voicenote.fly.dev/api/dev/users`
 
 for table `user`
 
-`GET http://localhost:3000/api/dev/courses`
+`GET https://newtonian-voicenote.fly.dev/api/dev/courses`
 
 for table `courses`
 
-`GET http://localhost:3000/api/dev/recordings`
+`GET https://newtonian-voicenote.fly.dev/api/dev/recordings`
 
 for table `recordings`
 
-`GET http://localhost:3000/api/dev/student-course`
+`GET https://newtonian-voicenote.fly.dev/api/dev/student-course`
 
 for table `student_course`
 
