@@ -51,6 +51,7 @@ router.post("/signin", async function signin(req, res, next) {
 
 /**
  * Endpoint http://localhost:3000/api/auth/signup
+ * request dob as yyyy-mm-dd
  */
 router.post("/signup", async function signup(req, res, next) {
     console.log("sign up");
