@@ -7,7 +7,6 @@ const bodyParser = require("body-parser")
 const http = require('http')
 const server = http.createServer(app)
 const { Server } = require("socket.io")
-const mysql = require('mysql2/promise')
 
 const apiRoutes = require('./controllers')
 

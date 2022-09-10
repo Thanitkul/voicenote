@@ -1,10 +1,8 @@
-import { Router } from "express";
-import jwt from 'jsonwebtoken';
-import cryptoRandomString from 'crypto-random-string';
-import { con } from "../server.js";
-import { RouteProtection } from "../helpers/RouteProtection.js";
-
-const router = Router()
+const express = require("express")
+const router = express.Router()
+const cryptoRandomString = require('crypto-random-string')
+const con = require("../models/db")
+const RouteProtection = require("../helpers/RouteProtection")
 
 function codeExists(code, existingCodes) {
     return existingCodes.some(function(el) {
@@ -12,15 +10,17 @@ function codeExists(code, existingCodes) {
     }); 
   }
 
+/**
+* Endpoint http://localhost:3000/api/teacher/courses
+*/
 router.get('/courses', RouteProtection.verify, async (req, res, next) => {
     try {
-        const user = jwt.verify(req.headers.authorization.split(' ').pop(), process.env.TOKEN_SECRET)
         let courses;
         let headers;
-        if (user.userId) {
-            [courses, headers] = await con.query(
+        if (req.user.userId) {
+            courses = await con.query(
               'SELECT * FROM `courses` WHERE `ownerId` = ?',
-              [user.userId]
+              [req.user.userId]
             )
           } else {
             throw new Error()
@@ -32,29 +32,30 @@ router.get('/courses', RouteProtection.verify, async (req, res, next) => {
   
   });
 
+/**
+* Endpoint http://localhost:3000/api/teacher/create-course
+*/
 router.post('/create-course', RouteProtection.verify, async (req, res, next) => {
     try {
-        const user = jwt.verify(req.headers.authorization.split(' ').pop(), process.env.TOKEN_SECRET)
+      console.log(cryptoRandomString)
         var code = cryptoRandomString({length: 6, type: 'alphanumeric'});
 
-        const [existingCodes, headers] = await con.query(
+        const existingCodes = await con.query(
             "SELECT `id` FROM `courses` WHERE `code` = ?",
             [code]
         )
 
-        console.log(existingCodes);
-
         while (codeExists(code, existingCodes)) {
-            var code = cryptoRandomString({length: 6, type: 'alphanumeric'});
+            var code = await cryptoRandomString({length: 6, type: 'alphanumeric'});
         }
         console.log(user.userId)
-        if (user.userId) {
+        if ([req.user.userId]) {
             const course = await con.query(
                 "INSERT INTO `courses` (`courseName`, `code`, `ownerId`) VALUE (?, ?, ?)",
-                [req.body.courseName, code, user.userId],
+                [req.body.courseName, code, [req.user.userId]],
                 function(err, results)
                 {
-                    console.log([req.body.courseName, code, user.userId])
+                    console.log([req.body.courseName, code, [req.user.userId]])
                 }
             )
         res.status(200).json({ message: "Success"})
@@ -64,15 +65,17 @@ router.post('/create-course', RouteProtection.verify, async (req, res, next) => 
     }
 });
 
+/**
+* Endpoint http://localhost:3000/api/teacher/delete-course
+*/
 router.delete('/delete-course', RouteProtection.verify, async (req, res, next) => {
     try {
-      const user = jwt.verify(req.headers.authorization.split(' ').pop(), process.env.TOKEN_SECRET)
 
-      const [course, course_header] = await con.query("SELECT id, ownerId FROM courses WHERE id = ?", req.body.courseId
+      const course = await con.query("SELECT id, ownerId FROM courses WHERE id = ?", req.body.courseId
       )
       console.log(course)
       if (course.length != 0) {
-        if (user.userId != course[0].ownerId) {
+        if ([req.user.userId] != course[0].ownerId) {
           res.status(401).json({ message: "not the owner of the course"})
         }
 
@@ -88,4 +91,4 @@ router.delete('/delete-course', RouteProtection.verify, async (req, res, next) =
         next(error);
     }
 })
-export default router;
+module.exports = router

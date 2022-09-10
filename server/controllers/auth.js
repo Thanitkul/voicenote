@@ -1,11 +1,9 @@
-import { Router } from "express";
-import { compare, hash } from "bcrypt";
-import jwt from 'jsonwebtoken';
-import { con } from "../server.js";
+const express = require("express")
+const router = express.Router()
+const bcrypt = require("bcrypt")
+const con = require("../models/db")
 const jwt = require('jsonwebtoken')
-import { RouteProtection } from "../helpers/RouteProtection.js";
-
-const router = Router()
+const RouteProtection = require("../helpers/RouteProtection")
 
 const findUserWithId = async (userId) => {
     const [data, headers] =  await con.query(
@@ -16,16 +14,19 @@ const findUserWithId = async (userId) => {
     return data || null;
 }
 
+/**
+ * Endpoint http://localhost:3000/api/auth/signin
+ */
 router.post("/signin", async function signin(req, res, next) {
     try {
         console.log(req.body.email)
 
-        const [user, headers] = await con.query(
+        const user = await con.query(
             'SELECT * FROM `users` WHERE `email` = ?',
             [req.body.email]
         )
         if (user.length != 0) {
-            const isCorrectPassword = await compare(req.body.password, user[0]['password']);
+            const isCorrectPassword = await bcrypt.compare(req.body.password, user[0]['password']);
 
             console.log(isCorrectPassword)
 
@@ -48,11 +49,14 @@ router.post("/signin", async function signin(req, res, next) {
 }
 )
 
+/**
+ * Endpoint http://localhost:3000/api/auth/signup
+ */
 router.post("/signup", async function signup(req, res, next) {
     console.log("sign up");
 
     try {
-        const [existingUser, headers] = await con.query(
+        const existingUser = await con.query(
             'SELECT * FROM `users` WHERE `email` = ?',
             [req.body.email]
         )
@@ -61,7 +65,7 @@ router.post("/signup", async function signup(req, res, next) {
     
         const user = await con.query(
             'INSERT INTO `users` (`username`, `email`, `password`, `dob`)VALUE (?, ?, ?, ?)',
-            [req.body.username, req.body.email, await hash(req.body.password, 12), new Date(req.body.dob)]
+            [req.body.username, req.body.email, await bcrypt.hash(req.body.password, 12), new Date(req.body.dob)]
         )
     
     
@@ -73,12 +77,14 @@ router.post("/signup", async function signup(req, res, next) {
     
 })
 
+/**
+ * Endpoint http://localhost:3000/api/auth/get-username
+ */
 router.get("/get-username", RouteProtection.verify, async function getUsername(req, res, next) {
     try {
-        const user = jwt.verify(req.headers.authorization.split(' ').pop(), process.env.TOKEN_SECRET)
-        const [username, headers] = await con.query(
+        const username = await con.query(
             'SELECT `username` FROM `users` WHERE id = ?',
-            [user.userId]
+            [req.user.userId]
         )
         if (username.length == 1) {
             res.status(200).json(username[0])
@@ -90,4 +96,4 @@ router.get("/get-username", RouteProtection.verify, async function getUsername(r
     }
 })
 
-export default router;
+module.exports = router

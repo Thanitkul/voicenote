@@ -1,8 +1,8 @@
-import jwt from 'jsonwebtoken';
-import { con } from '../server.js';
+const jwt = require('jsonwebtoken')
+const con = require("../models/db")
 const { sign } = jwt;
 
-export class RouteProtection {
+class RouteProtection {
     static verify(req, res, next) {
         try {
             const authHeader = req.headers['authorization']
@@ -19,3 +19,5 @@ export class RouteProtection {
         }
     }
 }
+
+module.exports = RouteProtection
