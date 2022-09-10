@@ -3,7 +3,7 @@ const con = require("../models/db")
 const router = express.Router();
 
 /**
- * Endpoint http://localhost:3000/api/dev/
+ * Endpoint https://newtonian-voicenote.fly.dev/api/dev/
  */
 router.get("/users", async (req, res, next) => {
     try {

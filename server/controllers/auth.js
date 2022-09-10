@@ -15,7 +15,7 @@ const findUserWithId = async (userId) => {
 }
 
 /**
- * Endpoint http://localhost:3000/api/auth/signin
+ * Endpoint https://newtonian-voicenote.fly.dev/api/auth/signin
  */
 router.post("/signin", async function signin(req, res, next) {
     try {
@@ -50,7 +50,7 @@ router.post("/signin", async function signin(req, res, next) {
 )
 
 /**
- * Endpoint http://localhost:3000/api/auth/signup
+ * Endpoint https://newtonian-voicenote.fly.dev/api/auth/signup
  * request dob as yyyy-mm-dd
  */
 router.post("/signup", async function signup(req, res, next) {
@@ -79,7 +79,7 @@ router.post("/signup", async function signup(req, res, next) {
 })
 
 /**
- * Endpoint http://localhost:3000/api/auth/get-username
+ * Endpoint https://newtonian-voicenote.fly.dev/api/auth/get-username
  */
 router.get("/get-username", RouteProtection.verify, async function getUsername(req, res, next) {
     try {
