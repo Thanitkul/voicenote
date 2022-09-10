@@ -25,7 +25,6 @@ function makeid(length) {
 router.get("/courses", RouteProtection.verify, async (req, res, next) => {
   try {
     let courses;
-    let headers;
     if (req.user.userId) {
       courses = await con.query("SELECT * FROM `courses` WHERE `ownerId` = ?", [
         req.user.userId,
