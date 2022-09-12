@@ -19,14 +19,14 @@ export class TeacherComponent implements OnInit {
     constructor(private courseserv: CourseService) {}
 
     ngOnInit(): void {
-        this.authToken = sessionStorage.getItem('token')!;
+        this.authToken = localStorage.getItem('token')!;
         this.courseModal = new window.bootstrap.Modal(document.getElementById('course_modal'));
         this.userInfoModal = new window.bootstrap.Modal(document.getElementById('userinfo_modal'));
         this.courseserv.getCourseTeacher(this.authToken).subscribe((res: any) => this.courses = res);
         this.courseserv.getUsername(this.authToken).subscribe((res: any) => this.username = res['username']);
     }
     logout(): void {
-        sessionStorage.clear();
+        localStorage.clear();
     }
     openCourseModal(): void {
         this.courseModal.show();

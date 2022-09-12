@@ -19,13 +19,13 @@ export class StudentComponent implements OnInit {
     constructor(private courseserv: CourseService) {}
 
     ngOnInit(): void {
-        this.authToken = sessionStorage.getItem('token')!;
+        this.authToken = localStorage.getItem('token')!;
         // this.formModal = new window.bootstrap.Modal(document.getElementById('myModal'));
         this.courseserv.getCourseStudent(this.authToken).subscribe((res: any) => {this.courses = res,console.log(this.courses)});
         
     }
     logout(): void {
-        sessionStorage.clear();
+        localStorage.clear();
     }
     openFormModal(): void {
         this.formModal.show();
