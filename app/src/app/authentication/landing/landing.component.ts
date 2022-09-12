@@ -14,19 +14,19 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  redirect_teacher() {
+  redirectTeacher() {
     this.router.navigate(['authentication/signin']);
     localStorage.setItem('role', "teacher");
 
   }
 
-  redirect_student() {
+  redirectStudent() {
     this.router.navigate(['authentication/signin']);
     localStorage.setItem('role', "student");
 
   }
 
-  redirect_signup() {
+  redirectSignup() {
     this.router.navigate(['authentication/signup'])
   }
 
