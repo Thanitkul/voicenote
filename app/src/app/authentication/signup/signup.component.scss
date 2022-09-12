@@ -35,6 +35,7 @@ svg {
     opacity: 0.67;
     border: 0px;
     border-radius: 15px;
+    padding: 10px;
 }
 
 .email {
@@ -45,6 +46,7 @@ svg {
     opacity: 0.67;
     border: 0px;
     border-radius: 15px;
+    padding: 10px;
 }
 
 .password {
@@ -55,6 +57,7 @@ svg {
     opacity: 0.67;
     border: 0px;
     border-radius: 15px;
+    padding: 10px;
 }
 
 .date {
@@ -65,10 +68,7 @@ svg {
     opacity: 0.67;
     border: 0px;
     border-radius: 15px;
-}
-
-.form {
-    padding: 20px
+    padding: 10px;
 }
 
 @media screen and (max-width: 600px) {
