@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { noteService } from './note.service';
-
-declare var transcript: string;
 
 @Component({
   selector: 'app-note',
@@ -10,42 +7,12 @@ declare var transcript: string;
 })
 export class NoteComponent implements OnInit {
   roomSelected: string = 'Room A'
-  message: string = transcript
+//   message: string = transcript
   noteList: string[] = []
 
-  constructor(private service: noteService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.service.socketListen('message').subscribe(
-      (response) => {
-          this.noteList.push(response)
-      })
   }
-//   joinRoom(room: string) {
-//     room = 'Room A'
-//     this.roomSelected = room
-//     this.service.socketConnection(room)
-//     this.service.getChatsByRoom(room).subscribe({
-//         next: (chats: any) => {
-//             this.chatList = chats.map(
-//                 (chat: any) => chat.message)
-//         },
-//         error: (error) => console.log(error)
-//     })
-// }
 
-// sendMessage() {
-//     // socket emit event message
-//     this.service.socketEmit('message', {
-//         // room: this.roomSelected, 
-//         messageText: this.message
-//     })
-//     this.message = ''
-// }
-
-// disconnect() {
-//     console.log('Disconnect')
-// }
 }
-
-
