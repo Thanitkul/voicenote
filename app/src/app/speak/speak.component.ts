@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
 
 
 declare var stt: any;
 declare var startButton: any;
+declare var transcript: string;
 
 
 @Component({
@@ -16,6 +17,8 @@ export class SpeakComponent implements OnInit {
 
   ngOnInit(): void {
     stt();
+    console.log(transcript);
+
   } 
 
   start() {
