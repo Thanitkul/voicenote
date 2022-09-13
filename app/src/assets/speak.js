@@ -9,7 +9,6 @@ var lastDebounceTranscript;
 var two_line = /\n\n/g;
 var one_line = /\n/g;
 var first_char = /\S/; 
-var transcript = '';
 
 
 function stt() { 
@@ -123,6 +122,7 @@ function upgrade(){
 
 function startButton() {
     recognition.lang = 'th-TH';
+    recognizing = true;
     if (recognizing) {
         recognition.stop(); 
         return;
