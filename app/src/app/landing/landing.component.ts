@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
-import { TeacherComponent } from 'src/app/courses/teacher/teacher.component';
 
 @Component({
   selector: 'app-landing',
