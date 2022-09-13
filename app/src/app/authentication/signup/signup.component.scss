@@ -1,12 +1,24 @@
 .top {
     border-radius: 0px 0px 12px 12px;
     width: 100%;
-    height: 30vh;
     background-color: #0B1B66;
     color: #FFFFFF;
     padding: 7%;
-    font-size: 150%;
     font-weight: bolder;
+}
+
+@media screen and (min-width: 601px) {
+    .top {
+        font-size: 50px;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .top {
+        font-size: 25px;
+        height: 225px;
+    }
 }
 
 svg {
@@ -21,9 +33,9 @@ svg {
     margin-left: 10%;
     background-color: #D9D9D9;
     opacity: 0.67;
-    padding: 3%;
     border: 0px;
     border-radius: 15px;
+    padding: 10px;
 }
 
 .email {
@@ -32,9 +44,9 @@ svg {
     margin-left: 10%;
     background-color: #D9D9D9;
     opacity: 0.67;
-    padding: 3%;
     border: 0px;
     border-radius: 15px;
+    padding: 10px;
 }
 
 .password {
@@ -43,9 +55,9 @@ svg {
     margin-left: 10%;
     background-color: #D9D9D9;
     opacity: 0.67;
-    padding: 3%;
     border: 0px;
     border-radius: 15px;
+    padding: 10px;
 }
 
 .date {
@@ -54,9 +66,21 @@ svg {
     margin-left: 10%;
     background-color: #D9D9D9;
     opacity: 0.67;
-    padding: 3%;
     border: 0px;
     border-radius: 15px;
+    padding: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .form {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .form {
+        font-size: 15px;
+    }
 }
 
 button {
@@ -69,6 +93,18 @@ button {
     border-radius: 15px;
     color: #FFFFFF;
     font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+    button {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    button {
+        font-size: 15px;
+    }
 }
 
 .text {
@@ -85,4 +121,16 @@ button {
 .signin {
     display: inline-block;
     text-decoration: underline;
+}
+
+@media screen and (max-width: 600px) {
+    .text {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .text {
+        font-size: 12px;
+    }
 }

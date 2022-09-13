@@ -1,4 +1,5 @@
 // initialize recognition
+
 var recognition; 
 var recognizing = false;
 var final_transcript = '';
@@ -8,7 +9,8 @@ var start_timestamp;
 var lastDebounceTranscript;
 var two_line = /\n\n/g;
 var one_line = /\n/g;
-var first_char = /\S/;
+var first_char = /\S/; 
+var transcript = '';
 
 
 function stt() { 
@@ -58,6 +60,7 @@ function stt() {
     };
 
     recognition.onresult = function(event) {
+        console.log(transcript);
         var interim_transcript = '';
         if (typeof(event.results) == 'undefined') {
             recognition.onend = null;
@@ -77,6 +80,7 @@ function stt() {
                 lastDebounceTranscript = transcript+confidence;
                 console.log(lastDebounceTranscript);
                 */
+                console.log(transcript);
                 if (final_transcript == '') {
 
                     final_transcript += transcript;
@@ -91,6 +95,7 @@ function stt() {
         }
         console.log(interim_transcript)
         console.log(final_transcript);
+        console.log(transcript);
         interim_span.innerHTML = linebreak(interim_transcript);
         final_span.innerHTML = linebreak(final_transcript);
         if (final_transcript || interim_transcript) {
@@ -162,6 +167,7 @@ function changeButton() {
     }
     else { // press to stop
       // ui
+        console.log(transcript);
         $('#btn-reset').click(function() {
             $('#btn-transcribe').html(ready_text);
             $('#btn-transcribe').removeClass('btn-danger');

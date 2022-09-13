@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
+import { StudentComponent } from 'src/app/courses/student/student.component';
 
 @Component({
   selector: 'app-signin',
@@ -13,10 +14,24 @@ export class SigninComponent implements OnInit {
     password: ''
   }
   constructor(private authServ: AuthenticationService, private router: Router) { }
+  route_to: string = ''
+  name: string = ''
+  
 
   ngOnInit(): void {
-  }
-  route_to = sessionStorage.getItem('role')
+    if (localStorage.getItem('role') == null){
+      this.router.navigate(['/authentication/landing'])
+    }
+    this.route_to = localStorage.getItem('role')!
+    this.name = this.route_to.toUpperCase()
+
+    if (this.route_to == "student") {
+      document.getElementsByName("who")[0].style.backgroundColor = "#594835"
+    }
+
+  }  
+
+  
 
   submitSignin(){
     this.authServ.signin(this.signinForm).subscribe({
@@ -37,12 +52,12 @@ export class SigninComponent implements OnInit {
       
   }
 
-  redirect_signup() {
+  redirectSignup() {
     this.router.navigate(['/authentication/signup'])
   }
 
   saveData(token : any) {
-    sessionStorage.setItem('token', token);
+    localStorage.setItem('token', token);
   }
 
 }

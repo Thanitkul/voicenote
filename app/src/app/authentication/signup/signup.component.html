@@ -4,7 +4,7 @@
     <path d="M129.25 234.189V258.5H152.75V234.189C199.033 228.373 235 188.858 235 141H211.5C211.5 179.881 179.881 211.5 141 211.5C102.119 211.5 70.5 179.881 70.5 141H47C47 188.846 82.9668 228.373 129.25 234.189Z" fill="white" fill-opacity="1"/>
 </svg>
     
-<div>
+<div class = "form">
     <input type = "name" class = "name" placeholder = "Name" required [(ngModel)]="signupForm.username">
     <input type = "email" class = "email" placeholder = "Email" required [(ngModel)]="signupForm.email">
     <input type = "password" class = "password" placeholder = "Password" required [(ngModel)]="signupForm.password">
@@ -13,4 +13,4 @@
 
 <button (click) = "Register()">Sign up</button>
 
-<div class = "text">Already have an account? <p class = "signin" (click) = "redirect_signin()">Sign in</p></div>
+<div class = "text">Already have an account? <p class = "signin" (click) = "redirectSignin()">Sign in</p></div>
