@@ -27,36 +27,10 @@ app.get("/", (req, res) => {
 
 app.use('/api', apiRoutes);
 
-const IO = new Server(server, {
-    transports: ['websocket', 'polling']
-})
+const io = new Server(server)
 
-
-IO.on('connection', (socket) => {
-  console.log('Socket was connect');
-
-  socket.on('error', (error) => {
-      console.log('Socket error: ', error);
-  });
-
-  socket.on('disconnect', (error) => {
-      console.log('Socket was disconnect');
-  });
-
-  // socket.on('join_room', (room) => {
-  //     console.log('join_room event ', room)
-  //     socket.join(room);
-  // });
-
-  socket.on('message', ({ messageText }) => {
-      // await db.query('INSERT INTO chats (message, room, created) VALUES (?, ?, ?)', [
-      //     messageText, 
-      //     room,
-      //     new Date()
-      // ])
-
-      IO.emit('message', messageText)
-  });
+io.on('connection', (socket) => {
+    console.log('a user connected')
 })
 
 server.listen(port, () => {

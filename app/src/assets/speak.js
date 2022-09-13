@@ -3,7 +3,6 @@
 var recognition; 
 var recognizing = false;
 var final_transcript = '';
-var transcript = '';
 var ignore_onend;
 var start_timestamp;
 var lastDebounceTranscript;
@@ -81,7 +80,6 @@ function stt() {
                 console.log(lastDebounceTranscript);
                 */
                 console.log(transcript);
-                return transcript;
                 if (final_transcript == '') {
 
                     final_transcript += transcript;
@@ -102,7 +100,7 @@ function stt() {
         if (final_transcript || interim_transcript) {
             // do something
         }
-        return final_transcript;
+        return transcript;
     } 
 }
 
