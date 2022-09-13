@@ -43,10 +43,10 @@ IO.on('connection', (socket) => {
       console.log('Socket was disconnect');
   });
 
-  // socket.on('join_room', (room) => {
-  //     console.log('join_room event ', room)
-  //     socket.join(room);
-  // });
+  socket.on('join_room', (room) => {
+      console.log('join_room event ', room)
+      socket.join(room);
+  });
 
   socket.on('message', ({ messageText }) => {
       // await db.query('INSERT INTO chats (message, room, created) VALUES (?, ?, ?)', [

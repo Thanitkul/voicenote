@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
     providedIn: 'root'
 })
-export class noteService {
+export class speakService {
     private socket!: Socket;
 
     constructor(private http: HttpClient) {
@@ -24,9 +24,9 @@ export class noteService {
         }
     }
 
-    // socketEmit(event: string, data: any) {
-    //     this.socket.emit(event, data)
-    // }
+    socketEmit(event: string, data: any) {
+        this.socket.emit(event, data)
+    }
 
     // socketDisconnect() {
     //     this.socket.disconnect();

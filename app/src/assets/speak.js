@@ -10,7 +10,6 @@ var lastDebounceTranscript;
 var two_line = /\n\n/g;
 var one_line = /\n/g;
 var first_char = /\S/; 
-var transcript = '';
 
 
 function stt() { 
@@ -81,7 +80,6 @@ function stt() {
                 console.log(lastDebounceTranscript);
                 */
                 console.log(transcript);
-                return transcript;
                 if (final_transcript == '') {
 
                     final_transcript += transcript;
@@ -102,7 +100,7 @@ function stt() {
         if (final_transcript || interim_transcript) {
             // do something
         }
-        return final_transcript;
+        return transcript;
     } 
 }
 
@@ -125,6 +123,7 @@ function upgrade(){
 
 function startButton() {
     recognition.lang = 'th-TH';
+    recognizing = true;
     if (recognizing) {
         recognition.stop(); 
         return;
