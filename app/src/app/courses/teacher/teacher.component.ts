@@ -10,9 +10,11 @@ import { CourseService } from '../course.service';
 export class TeacherComponent implements OnInit {
     courseModal: any;
     userInfoModal: any;
+    deleteModal: any;
     searchText: any;
     username: any;
     courses: any;
+    deleteId: any;
     authToken: string = "";
     
     
@@ -22,6 +24,7 @@ export class TeacherComponent implements OnInit {
         this.authToken = localStorage.getItem('token')!;
         this.courseModal = new window.bootstrap.Modal(document.getElementById('course_modal'));
         this.userInfoModal = new window.bootstrap.Modal(document.getElementById('userinfo_modal'));
+        this.deleteModal = new window.bootstrap.Modal(document.getElementById('delete_modal'));
         this.courseserv.getCourseTeacher(this.authToken).subscribe((res: any) => {this.courses = res});
         this.courseserv.getUsername(this.authToken).subscribe((res: any) => this.username = res['username']);
         
@@ -35,6 +38,10 @@ export class TeacherComponent implements OnInit {
     openUserInfoModal(): void {
         this.userInfoModal.show();
     }
+    openDeleteModal(id: number): void {
+        this.deleteModal.show();
+        this.deleteId = id
+    }
     create(): void {
         var name = (<HTMLInputElement>document.getElementById("name")).value;
         this.courseserv.createCourse(name, this.authToken).subscribe(res => {
@@ -42,9 +49,12 @@ export class TeacherComponent implements OnInit {
         })
         
     }
-    delete(id: number): any {
-        this.courseserv.deleteCourse(id).subscribe(res => console.log(res))
-        this.courses =  this.courses.filter((i:any) => i.id != id)
+    delete(confirm: boolean): any {
+        if (confirm == true){
+            this.courseserv.deleteCourse(this.deleteId).subscribe(res => console.log(res))
+            this.courses =  this.courses.filter((i:any) => i.id != this.deleteId)
+        }
+        this.deleteId = ''
     }
 
 

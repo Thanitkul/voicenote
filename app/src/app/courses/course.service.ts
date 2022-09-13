@@ -57,7 +57,6 @@ export class CourseService {
         const body = {
             courseId: id
         };
-        console.log(body)
         return this.http.delete<any>(`${environment.apiHost}/teacher/delete-course`, {body: body})
     }
 }

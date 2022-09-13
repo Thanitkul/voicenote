@@ -13,7 +13,7 @@
     create
 </div>
 
-<div class="course_box2">box</div>>
+<div class="course_box2">box</div>
 
 <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search ">
 
@@ -27,7 +27,7 @@
                 <div class="card-text" id="course_box_code">Code: {{course["code"]}}</div>
             </div>
         </a>
-        <div (click)="delete(course.id)" style="position: absolute; left: 350px;">
+        <div (click)="openDeleteModal(course.id)" style="position: absolute; left: 350px;">
             <svg width="30" height="30" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 791.908 791.908"
                 style="enable-background:new 0 0 791.908 791.908;" xml:space="preserve">
@@ -51,7 +51,6 @@
     </div>
 </div>
 
-
 <!--creating course modal-->
 <div class="modal fade" id="course_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -74,6 +73,21 @@
             <li>Username:</li>
             <li>Data of Birth:</li>
             <li>E-mail:</li>
+        </div>
+    </div>
+</div>
+
+<!--creating delte modal-->
+<div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                style="position: absolute; right: 5%; top: 5%;" aria-label="Close"></button>
+            <div placeholder="Name" id="name" style="width: 90%; margin: 5%; text-align: left;" class="form-control"
+                type="text">Are you sure want to delete this course?</div>
+            <button type="button" class="btn btn-primary" id="create_button" data-bs-dismiss="modal"
+                (click)="delete(true)">Delete</button>
         </div>
     </div>
 </div>
