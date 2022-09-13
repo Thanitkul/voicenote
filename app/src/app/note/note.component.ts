@@ -9,7 +9,7 @@ declare var transcript: string;
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent implements OnInit {
-  roomSelected: string = 'Room A'
+  // roomSelected: string = 'Room A'
   message: string = transcript
   noteList: string[] = []
 
