@@ -2,6 +2,7 @@
 var recognition; 
 var recognizing = false;
 var final_transcript = '';
+var transcript = '';
 var ignore_onend;
 var start_timestamp;
 var lastDebounceTranscript;
@@ -65,7 +66,7 @@ function stt() {
             return;
         }
         for (var i = event.resultIndex; i < event.results.length; ++i) {
-            var transcript = event.results[i][0].transcript;
+            transcript = event.results[i][0].transcript;
             //confidence not used to finalized
             // var confidence = event.results[i][0].confidence; 
             // var isFinal = event.results[i].isFinal && (confidence > 0);
@@ -83,7 +84,7 @@ function stt() {
                 else {
                     final_transcript += ' ' + transcript;
                 }
-
+            return transcript;
             } else {
             interim_transcript += '' + transcript;
             }
@@ -95,6 +96,7 @@ function stt() {
         if (final_transcript || interim_transcript) {
             // do something
         }
+        return final_transcript;
     } 
 }
 
