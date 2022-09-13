@@ -3,7 +3,6 @@
 var recognition; 
 var recognizing = false;
 var final_transcript = '';
-var transcript = '';
 var ignore_onend;
 var start_timestamp;
 var lastDebounceTranscript;

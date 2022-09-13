@@ -85,7 +85,7 @@ svg {
 
 button {
     width: 80%;
-    margin-top: 10%;
+    margin-top: 6%;
     margin-left: 10%;
     background-color: #E8963F;
     padding: 3%;
@@ -133,4 +133,15 @@ button {
     .text {
         font-size: 12px;
     }
+}
+
+.checkbox {
+  display: inline-block;
+  margin-left: 12%;
+  margin-top: 10%;
+}
+
+.policy {
+  display: inline-block;
+  margin-left: 10px;
 }

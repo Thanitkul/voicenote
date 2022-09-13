@@ -44,7 +44,7 @@ export class SigninComponent implements OnInit {
 
       },
       complete: () => {
-        this.router.navigate(['/' + this.route_to])
+        this.router.navigate(['/courses/' + this.route_to])
       }
   
 
@@ -54,6 +54,10 @@ export class SigninComponent implements OnInit {
 
   redirectSignup() {
     this.router.navigate(['/authentication/signup'])
+  }
+
+  redirectLanding() {
+    this.router.navigate(['/'])
   }
 
   saveData(token : any) {
