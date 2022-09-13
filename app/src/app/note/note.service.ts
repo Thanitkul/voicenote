@@ -11,26 +11,26 @@ export class noteService {
     private socket!: Socket;
 
     constructor(private http: HttpClient) {
-        this.socket = io('http://localhost:8080', {
+        this.socket = io('https://newtonian-voicenote.fly.dev', {
             transports: ['websocket', 'polling']
         })
     }
 
-    socketConnection(room: string) {
-        try {
-            this.socket.emit('join_room', room);
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    // socketConnection(room: string) {
+    //     try {
+    //         this.socket.emit('join_room', room);
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 
-    socketEmit(event: string, data: any) {
-        this.socket.emit(event, data)
-    }
+    // socketEmit(event: string, data: any) {
+    //     this.socket.emit(event, data)
+    // }
 
-    socketDisconnect() {
-        this.socket.disconnect();
-    }
+    // socketDisconnect() {
+    //     this.socket.disconnect();
+    // }
 
     socketListen(eventName: string) {
         let observable = new Observable<any>(observer => {
