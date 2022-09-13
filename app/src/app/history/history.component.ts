@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { HttpClientModule } from '@angular/common/http';
+import { HistoryService } from './history.service';
 
 @Component({
   selector: 'app-history',
@@ -12,13 +13,15 @@ export class HistoryComponent implements OnInit {
 
   recordings: any;
 
+  course_id:any = 22;
 
-  constructor(private router: Router, private http: HttpClientModule) { }
+
+  constructor(private router: Router, private http: HttpClientModule, private service: HistoryService) { }
 
   
 
   ngOnInit(): void {
-    
+    this.service.getrecordings(this.course_id).subscribe((Response:any) => {this.recordings = Response, console.log(Response)});
   }
 
   redirect(){

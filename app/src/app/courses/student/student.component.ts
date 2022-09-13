@@ -20,7 +20,7 @@ export class StudentComponent implements OnInit {
 
     ngOnInit(): void {
         this.authToken = localStorage.getItem('token')!;
-        // this.formModal = new window.bootstrap.Modal(document.getElementById('myModal'));
+        this.formModal = new window.bootstrap.Modal(document.getElementById('myModal'));
         this.courseserv.getCourseStudent(this.authToken).subscribe((res: any) => {this.courses = res,console.log(this.courses)});
         
     }
