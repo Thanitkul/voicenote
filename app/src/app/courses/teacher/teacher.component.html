@@ -1,7 +1,7 @@
 <!-- Username and logout -->
 <div style=" margin-right: 8%; margin-top: 6%; text-align: right;">
-    <h2>T. {{ username }}</h2>
-    <a style="text-decoration: none;" (click)="logout()" routerLink="/authentication/landing" routerLinkActive="active">Logout</a>
+    <h2 id="course_teacher">T. {{ username }}</h2>
+    <a  class="course_logout_button" style="text-decoration: none;" (click)="logout()" routerLink="/authentication/landing" routerLinkActive="active">Logout</a>
 </div>
 <br>
 
@@ -10,6 +10,7 @@
     create
 </div>
 
+<div class="course_box2">box</div>>
 
 <!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search "> -->
 
@@ -19,8 +20,8 @@
     <div style="padding-bottom: 10px; text-align: center;" *ngFor="let course of courses" >
         <a routerLink="/speak" routerLinkActive="active" style="text-decoration: none;">
             <div class="course_box">
-                <div class="card-title" style="margin-right: 15px;">{{course["courseName"]}}</div>
-                <div class="card-text">Code: {{course["code"]}}</div>
+                <div class="card-title" id="course_box_subject">{{course["courseName"]}}</div>
+                <div class="card-text" id="course_box_code">Code: {{course["code"]}}</div>
             </div>
         </a>
     </div>
@@ -32,9 +33,9 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            <input placeholder="Name" id="name" style="width: 90%; margin: 5% ;" class="form-control" type="text">
-            <button type="button" class="btn btn-primary" style="width: 90%; margin: 5%;" data-bs-dismiss="modal"
+            <button type="button" class="btn-close" data-bs-dismiss="modal" style="position: absolute; right: 5%; top: 5%;" aria-label="Close"></button>
+            <input placeholder="Name" id="name" style="width: 90%; margin: 5%; text-align: left;" class="form-control" type="text">
+            <button type="button" class="btn btn-primary" id="create_button" data-bs-dismiss="modal"
                 (click)="create()">Create</button>
         </div>
     </div>
