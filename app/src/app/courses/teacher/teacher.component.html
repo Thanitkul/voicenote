@@ -57,7 +57,7 @@
         <div class="modal-content">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" style="position: absolute; right: 5%; top: 5%;" aria-label="Close"></button>
-            <input placeholder="Name" id="name" style="width: 90%; margin: 5%; text-align: left;" class="form-control" type="text">
+            <input placeholder="Name" id="name" style="width: 90%; margin: 5%; text-align: left;" class="form-control" [(ngModel)]="name" type="text">
             <button type="button" class="btn btn-primary" id="create_button" data-bs-dismiss="modal"
                 (click)="create()">Create</button>
         </div>

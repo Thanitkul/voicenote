@@ -15,6 +15,7 @@ export class TeacherComponent implements OnInit {
     username: any;
     courses: any;
     deleteId: any;
+    name: string = "";
     authToken: string = "";
     
     
@@ -43,10 +44,11 @@ export class TeacherComponent implements OnInit {
         this.deleteId = id
     }
     create(): void {
-        var name = (<HTMLInputElement>document.getElementById("name")).value;
-        this.courseserv.createCourse(name, this.authToken).subscribe(res => {
+        this.courseserv.createCourse(this.name, this.authToken).subscribe(res => {
             this.courseserv.getCourseTeacher(this.authToken).subscribe((res: any) => {this.courses = res})
-        })
+        });
+        this.name = ''
+        
         
     }
     delete(confirm: boolean): any {
