@@ -16,7 +16,6 @@ import { VerifyInterceptor } from './services/verify.interceptor';
         HttpClientModule,
         AppRoutingModule,
         FormsModule,
-        HttpClientModule
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,
