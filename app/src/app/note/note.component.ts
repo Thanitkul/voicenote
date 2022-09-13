@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { noteService } from './note.service';
+import { noteService } from './note.service';
 
 declare var transcript: string;
 
@@ -14,18 +14,14 @@ export class NoteComponent implements OnInit {
   message: string = transcript
   wordList: string[] = []
 
-  // constructor(private service: noteService) { }
+  constructor(private service: noteService) { }
 
   ngOnInit(): void {
-      console.log(transcript);
-    // if (!transcript) {
-    //   console.log("this work");
-    // }
-    }
-    // this.service.socketListen('message').subscribe(
-    //   (response) => {
-    //       this.wordList.push(response)
-    //   })
+    this.service.socketListen('message').subscribe(
+      (response) => {
+          this.wordList.push(response)
+      })
+}
 }
 
   // joinRoom(room: string) {
