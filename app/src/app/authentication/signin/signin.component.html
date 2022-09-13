@@ -17,9 +17,9 @@
         <input class = "password" type = "password" placeholder = "Password" [(ngModel)]="signinForm.password" required>
         <input class = "checkbox" type = "checkbox"><p class = "rem">Remember me</p>
     </div>
-
+    
     <button (click) = "submitSignin()">Log In</button>
-
+    <a routerLink="/">Back to landing page</a>
     <p class = "forgot"><u>Forgot Password?</u></p>
     <div class = "text">Don't have an account? <p class = "signup" (click) = "redirectSignup()"><u>Sign up</u></p></div>
 </body>
