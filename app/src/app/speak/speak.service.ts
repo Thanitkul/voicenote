@@ -16,7 +16,7 @@ export class speakService {
         })
     }
 
-    socketConnection(room: string) {
+    socketConnection(room: number | string) {
         try {
             this.socket.emit('join_room', room);
         } catch (error) {

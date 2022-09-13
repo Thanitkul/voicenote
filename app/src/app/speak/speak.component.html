@@ -1,46 +1,14 @@
-<!doctype html>
-<html lang="th">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<div class='container'>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <h1>Speech to text Demo</h1>
 
-    <!-- App style -->
-    <style>
-      .interim {
-        color: gray;
-      }
-      .final {
-        color: black;
-        padding-right: 3px;
-      }
-      .past {
-        color: black;
-        padding-right: 3px;
-      }
-    </style>
+    <!-- <button type="button" id='btn-transcribe' class="btn btn-primary btn-lg my-3"
+        onclick="changeButton()">Start</button> -->
+    <button type="button" id='btn-transcribe' class="btn btn-primary btn-lg my-3"
+        (click)="start()">Start</button>
+    <button type="button" id='btn-reset' class="btn btn-primary btn-lg my-3" (click)="stop()">Reset</button>
 
-    <title>Speech to text Demo</title>
-  </head>
-  <body>
-    <div class='container'>
+    <p *ngFor="let message of displayList">{{message}}</p>
+    
 
-      <h1>Speech to text Demo</h1>
-
-      <button type="button" id='btn-transcribe' class="btn btn-primary btn-lg my-3" onclick="changeButton()">Start</button>
-      <button type="button" id='btn-reset' class="btn btn-primary btn-lg my-3">Reset</button>
-      <span id='info'></span>
-      <blockquote class="blockquote">
-        <div id="results">
-          <span class="past" id="past_span"></span>
-          <span class="final" id="final_span"></span>
-          <span class="interim" id="interim_span"></span>
-        </div>
-      </blockquote>
-
-    </div>
-  </body>
-</html>
+</div>
