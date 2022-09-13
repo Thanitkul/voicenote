@@ -7,6 +7,7 @@ const bodyParser = require("body-parser")
 const http = require('http')
 const server = http.createServer(app)
 const { Server } = require("socket.io")
+const con = require("./models/db")
 
 const apiRoutes = require('./controllers')
 
@@ -49,11 +50,11 @@ IO.on('connection', (socket) => {
   });
 
   socket.on('message', async ({ room, messageText }) => {
-      await db.query('INSERT INTO chats (message, room, created) VALUES (?, ?, ?)', [
-          messageText, 
-          room,
-          new Date()
-      ])
+      // await con.query('INSERT INTO chats (message, room, created) VALUES (?, ?, ?)', [
+      //     messageText, 
+      //     room,
+      //     new Date()
+      // ])
       
       IO.to(room).emit('message', messageText)
   });
