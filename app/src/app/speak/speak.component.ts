@@ -113,43 +113,17 @@ export class SpeakComponent implements OnInit {
             return '';
         }
 
-        // console.log(event.resultIndex);
-        // console.log(event.results[0]);
         for (var i = event.resultIndex; i < event.results.length; ++i) {
             let _transcript = event.results[i][0].transcript;
             let confidence = event.results[i][0].confidence;
-            
-            console.log('i = ', i);
-            console.log('event.results[i]: ', event.results[i].isFinal);
-            console.log(Math.round(confidence));
 
             if (event.results[i].isFinal && Math.round(confidence) > 0) {
-                console.log('===============');
-
-                console.log('this.transcript: ', this.transcript);
                 this.service.socketEmit('message', {
                     room: 1,
                     messageText: _transcript
                 })
-                // if (this.final_transcript == '') {
-                //     this.final_transcript += this.transcript;
-                // }
-                // else {
-                //     this.final_transcript += ' ' + this.transcript;
-                // }
-
-            } 
-            // else {
-            //     interim_transcript += '' + this.transcript;
-            // }
+            }
         }
-
-        // this.displayText = interim_transcript;
-        // console.log('this.final_transcript: ', interim_transcript)
-        // console.log('this.final_transcript: ', this.final_transcript);
-        // console.log('this.final_transcript: ', this.transcript);
-
-        // return this.transcript;
     }
 
     stop() {
