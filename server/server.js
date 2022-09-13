@@ -48,17 +48,17 @@ IO.on('connection', (socket) => {
       socket.join(room);
   });
 
-  socket.on('message', ({ messageText }) => {
-      // await db.query('INSERT INTO chats (message, room, created) VALUES (?, ?, ?)', [
-      //     messageText, 
-      //     room,
-      //     new Date()
-      // ])
-
-      IO.emit('message', messageText)
+  socket.on('message', async ({ room, messageText }) => {
+      await db.query('INSERT INTO chats (message, room, created) VALUES (?, ?, ?)', [
+          messageText, 
+          room,
+          new Date()
+      ])
+      
+      IO.to(room).emit('message', messageText)
   });
 })
 
 server.listen(port, () => {
-  console.log("Starting node.js at port " + port)
+  console.log(`Service listening on port ${port}`)
 })
