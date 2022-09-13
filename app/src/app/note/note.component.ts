@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-
+import { noteService } from './note.service';
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent implements OnInit {
-  roomSelected: string = 'Room A'
-//   message: string = transcript
-  noteList: string[] = []
+  displayList: string[] = [];
+    
+    constructor(private service: noteService) { }
 
-  constructor() { }
+    ngOnInit(): void {
+        this.service.socketConnection(1);
+        this.service.socketListen('message').subscribe({
+            next: (response) => {
+                this.displayList.push(response)
+            }
+        })
+    }
 
-  ngOnInit(): void {
-  }
 
 }
