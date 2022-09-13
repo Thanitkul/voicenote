@@ -10,9 +10,12 @@ import { CourseService } from '../course.service';
 export class TeacherComponent implements OnInit {
     courseModal: any;
     userInfoModal: any;
+    deleteModal: any;
     searchText: any;
     username: any;
     courses: any;
+    deleteId: any;
+    name: string = "";
     authToken: string = "";
     
     
@@ -22,8 +25,10 @@ export class TeacherComponent implements OnInit {
         this.authToken = localStorage.getItem('token')!;
         this.courseModal = new window.bootstrap.Modal(document.getElementById('course_modal'));
         this.userInfoModal = new window.bootstrap.Modal(document.getElementById('userinfo_modal'));
-        this.courseserv.getCourseTeacher(this.authToken).subscribe((res: any) => this.courses = res);
+        this.deleteModal = new window.bootstrap.Modal(document.getElementById('delete_modal'));
+        this.courseserv.getCourseTeacher(this.authToken).subscribe((res: any) => {this.courses = res});
         this.courseserv.getUsername(this.authToken).subscribe((res: any) => this.username = res['username']);
+        
     }
     logout(): void {
         localStorage.clear();
@@ -34,11 +39,26 @@ export class TeacherComponent implements OnInit {
     openUserInfoModal(): void {
         this.userInfoModal.show();
     }
-    create(): void {
-        var name = (<HTMLInputElement>document.getElementById("name")).value;
-        this.courseserv.createCourse(name, this.authToken);
-        window.location.reload();
+    openDeleteModal(id: number): void {
+        this.deleteModal.show();
+        this.deleteId = id
     }
+    create(): void {
+        this.courseserv.createCourse(this.name, this.authToken).subscribe(res => {
+            this.courseserv.getCourseTeacher(this.authToken).subscribe((res: any) => {this.courses = res})
+        });
+        this.name = ''
+        
+        
+    }
+    delete(confirm: boolean): any {
+        if (confirm == true){
+            this.courseserv.deleteCourse(this.deleteId).subscribe(res => console.log(res))
+            this.courses =  this.courses.filter((i:any) => i.id != this.deleteId)
+        }
+        this.deleteId = ''
+    }
+
 
 }
 
