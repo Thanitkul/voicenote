@@ -1,95 +1,122 @@
-.img{
-    margin-top: 15%;
-    margin-left: -210px;
+body {
+    background-color: #0B1B66;
+}
+
+.corner {
+    width: 100%;
+    height: 100vh;
+    border-bottom-right-radius: 150px;
+    border-top-right-radius: 150px;
+    background-color: #FFFFFF;
+}
+
+svg {
+    position: absolute;
+    width: 50vh;
+    left: -25vh;
+    top: 10vh;
+}
+
+.voice {
+    position: absolute;
+    font-size: 21vw;
+    font-weight: bolder;
+    color: #0B1B66;
+    top: 20vh;
+    right: 5vh;
+}
+
+.note {
+    position: absolute;
+    font-size: 21vw;
+    font-weight: bolder;
+    color: #0B1B66;
+    top: 32vh;
+    right: 5vh;
+}
+
+.who {
+    position: absolute;
+    font-size: 6vw;
+    color: #FFFFFF;
+    background-color: #E8963F;
+    top: 48vh;
+    right: 5vh;
+    padding: 2%;
+    border: 0px;
+    border-radius: 15px;
 }
 
 .email {
-    margin-left: 10%;
-    margin-top: 0%;
-    font-family: 'Times New Roman', Times, serif;
-    border-radius: 6px;
-    border: 0px;
+    position: absolute;
     width: 80%;
+    margin-left: 10%;
+    top: 60vh;
     background-color: #D9D9D9;
-    padding: 15px;
     opacity: 0.67;
-    font-size: 20px;
+    padding: 3%;
+    border: 0px;
+    border-radius: 15px;
 }
 
 .password {
-    margin-left: 10%;
-    margin-top: 6%;
-    font-family: 'Times New Roman', Times, serif;
-    border-radius: 6px;
-    border: 0px;
+    position: absolute;
     width: 80%;
+    margin-left: 10%;
+    top: 68vh;
     background-color: #D9D9D9;
-    padding: 15px;
     opacity: 0.67;
-    font-size: 20px;
+    padding: 3%;
+    border: 0px;
+    border-radius: 15px;
+}
+
+.checkbox {
+    position: absolute;
+    top: 76vh;
+    left: 12vw;
+    background-color: #000000;
 }
 
 .rem {
-    margin-left: 11%;
-    margin-top: 5%;
+    position: absolute;
+    top: 75.2vh;
+    left: 17vw;
 }
 
-.label {
-    margin-left: 2%;
-    font-family:'Times New Roman', Times, serif;
-    color: #000000;
-    opacity: 0.5;
-}
-
-.login {
-    margin-left: 10%;
-    margin-top: 3%;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;
-    border-radius: 6px;
-    border: 0px;
+button {
+    position: absolute;
     width: 80%;
-    background-color: #ff9422;
-    padding: 10px;
-    color: #F4F2E9;
+    margin-left: 10%;
+    background-color: #E8963F;
+    top: 80vh;
+    padding: 3%;
+    border: 0px;
+    border-radius: 15px;
+    color: #FFFFFF;
     font-weight: bold;
 }
 
-.text {
-    font-size: 400%;
-    font-weight: bolder;
-    margin-top: 100%;
-}
-
-.text1 {
-    font-size: 200%;
-    font-weight: bolder;
-    margin-top: -10%;
-}
-
-.forget {
+.forgot {
+    position: absolute;
+    font-size: 3vw;
+    top: 88vh;
+    right: 0;
+    left: 0;
     text-align: center;
-    margin-top: 8%;
-    font-size: 12px;
+}
+
+.text {
+    position: absolute;
+    display: inline-block;
+    font-size: 4vw;
+    top: 91vh;
+    right: 0;
+    left: 0;
+    text-align: center;
+    color: #0B1B66;
 }
 
 .signup {
-    text-align: center;
-    margin-top: 3%;
-    font-size: 14px;
-    font-weight: lighter;
-    font-family: 'Times New Roman', Times, serif;
-    color:#000000;
-}
-
-.box {
-    width: 60%;
-    border: 0px;
-    border-radius: 15px;
-    background-color: orange;
-    margin: 20px;
-    padding: 3px;
-    text-align: center;
-    color: white;
-    font-weight: bolder;
+    display: inline-block;
 }

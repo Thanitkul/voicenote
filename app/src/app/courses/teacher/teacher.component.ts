@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 declare var window: any;
-import axios from 'axios';
 import { CourseService } from '../course.service';
 
 @Component({
@@ -9,32 +8,35 @@ import { CourseService } from '../course.service';
   styleUrls: ['./teacher.component.scss']
 })
 export class TeacherComponent implements OnInit {
-    formModal: any;
+    courseModal: any;
+    userInfoModal: any;
     searchText: any;
     username: any;
     courses: any;
+    authToken: string = "";
     
-    // Change token here [You need to signup and signin to get token by Thunder client before (only for now)]
-    auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTY2MjYyNzUyMX0.BNiZVRPZXt6ImFmKbSh9p7j6mxwxCw3uv1kaxjFY4dg"
     
     constructor(private courseserv: CourseService) {}
 
     ngOnInit(): void {
-        this.formModal = new window.bootstrap.Modal(document.getElementById('myModal'));
-        this.courseserv.get_course(this.auth_token).subscribe((res: any) => this.courses = res)
-        this.courseserv.get_username(this.auth_token).subscribe((res: any) => this.username = res['username'])
+        this.authToken = localStorage.getItem('token')!;
+        this.courseModal = new window.bootstrap.Modal(document.getElementById('course_modal'));
+        this.userInfoModal = new window.bootstrap.Modal(document.getElementById('userinfo_modal'));
+        this.courseserv.getCourseTeacher(this.authToken).subscribe((res: any) => this.courses = res);
+        this.courseserv.getUsername(this.authToken).subscribe((res: any) => this.username = res['username']);
     }
     logout(): void {
-        sessionStorage.clear()
+        localStorage.clear();
     }
-    openFormModal() {
-        this.formModal.show();
+    openCourseModal(): void {
+        this.courseModal.show();
     }
-    create() {
+    openUserInfoModal(): void {
+        this.userInfoModal.show();
+    }
+    create(): void {
         var name = (<HTMLInputElement>document.getElementById("name")).value;
-        // const token = sessionStorage.getItem('token')
-        this.courseserv.create_course(name, this.auth_token)
-
+        this.courseserv.createCourse(name, this.authToken);
         window.location.reload();
     }
 

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CourseService } from '../course.service';
+declare var window: any;
+
 
 @Component({
   selector: 'app-student',
@@ -7,9 +10,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
 
-  constructor() { }
+    formModal: any;
+    searchText: any;
+    username: any;
+    courses: any;
+    authToken: string = '';
 
-  ngOnInit(): void {
-  }
+    constructor(private courseserv: CourseService) {}
+
+    ngOnInit(): void {
+        this.authToken = localStorage.getItem('token')!;
+        // this.formModal = new window.bootstrap.Modal(document.getElementById('myModal'));
+        this.courseserv.getCourseStudent(this.authToken).subscribe((res: any) => {this.courses = res,console.log(this.courses)});
+        
+    }
+    logout(): void {
+        localStorage.clear();
+    }
+    openFormModal(): void {
+        this.formModal.show();
+    }
+    add(): void {
+        var code = (<HTMLInputElement>document.getElementById("code")).value;
+        this.courseserv.addCourse(code, this.authToken);
+
+        window.location.reload();
+    }
 
 }

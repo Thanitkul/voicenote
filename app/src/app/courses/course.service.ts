@@ -1,6 +1,7 @@
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -8,33 +9,23 @@ export class CourseService {
 
     constructor(private http: HttpClient) { }
 
-//   get_username1() {
-//       let headers = new HttpHeaders()
-//       headers.set('content-type', 'application/json')
-//       headers.set('Access-Control-Allow-Origin', '*')
-//       console.log(headers); 
-//       return this.http.get('http://localhost:3000/auth/get-username', {
-//           headers: headers
-//       })
-
-//   }
-    get_username(auth_token: string) {
+    getUsername(auth_token: string) {
         
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${auth_token}`
         })
-        return this.http.get('http://localhost:3000/auth/get-username', { headers: headers })
+        return this.http.get(`${environment.apiHost}/auth/get-username`)
     }
-    get_course(auth_token: string) {
+    getCourseTeacher(auth_token: string) {
         
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${auth_token}`
         })
-        return this.http.get('http://localhost:3000/teacher/courses', { headers: headers })
+        return this.http.get(`${environment.apiHost}/teacher/courses`)
     }
-    create_course(name: string, auth_token: string) {
+    createCourse(name: string, auth_token: string) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${auth_token}`
@@ -42,6 +33,24 @@ export class CourseService {
         const body = {
             courseName: name
         };
-        this.http.post<any>('http://localhost:3000/teacher/create-course', body, { headers: headers }).subscribe(res => console.log(res))
+        this.http.post<any>(`${environment.apiHost}/teacher/create-course`, body).subscribe(res => console.log(res))
+    }
+    getCourseStudent(auth_token: string) {
+        
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${auth_token}`
+        })
+        return this.http.get(`${environment.apiHost}/student/courses`)
+    }
+    addCourse(code: string, auth_token: string) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${auth_token}`
+        })
+        const body = {
+            code: code
+        };
+        this.http.post<any>(`${environment.apiHost}/student/join-course`, body).subscribe(res => console.log(res))
     }
 }

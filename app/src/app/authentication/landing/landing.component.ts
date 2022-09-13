@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
+import { TeacherComponent } from 'src/app/courses/teacher/teacher.component';
 
 @Component({
   selector: 'app-landing',
@@ -13,16 +14,22 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  redirect_teacher() {
-    this.router.navigate(['/teacher']);
+  redirectTeacher() {
+    this.router.navigate(['authentication/signin']);
+    localStorage.setItem('role', "teacher");
+
   }
 
-  redirect_student() {
-    this.router.navigate(['/student']);
+  redirectStudent() {
+    this.router.navigate(['authentication/signin']);
+    localStorage.setItem('role', "student");
+
   }
 
-  redirect_signup() {
+  redirectSignup() {
     this.router.navigate(['authentication/signup'])
   }
+
+
 
 }

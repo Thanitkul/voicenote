@@ -10,7 +10,7 @@ body {
     background-color: #FFFFFF;
 }
 
-img {
+svg {
     position: absolute;
     width: 50vh;
     left: -25vh;
@@ -19,35 +19,35 @@ img {
 
 .voice {
     position: absolute;
-    font-size: 600%;
+    font-size: 21vw;
     font-weight: bolder;
     color: #0B1B66;
-    top: 18vh;
+    top: 20vh;
     right: 5vh;
 }
 
 .note {
     position: absolute;
-    font-size: 600%;
+    font-size: 21vw;
     font-weight: bolder;
     color: #0B1B66;
-    top: 28vh;
+    top: 32vh;
     right: 5vh;
 }
 
 .note-taking {
     position: absolute;
-    font-size: 150%;
+    font-size: 6vw;
     color: #0B1B66;
-    top: 41vh;
+    top: 46vh;
     right: 5vh;
 }
 
 .made-easy {
     position: absolute;
-    font-size: 150%;
+    font-size: 6vw;
     color: #0B1B66;
-    top: 44vh;
+    top: 50vh;
     right: 5vh;
 }
 

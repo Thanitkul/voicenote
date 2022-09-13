@@ -1,26 +1,25 @@
-<div style = "display: inline-block">
-    <img class = "img" src = "/assets/images/image2.png">
-</div>
-<div style = "display: inline-block">
-    <div class = "text">Voice</div>
-    <div class = "text1">Note</div>
-    <div class = "box">Teacher</div>
-</div>
-<form>
-    <input type="email" placeholder="E-mail" id = "email" class = "email" required>
-    <br>
-    <input placeholder="Password" id = "password" type="password" class = "password" required>
-    <br>
-    <input type="checkbox" id = "rem" name="rem" value = "rem" class = "rem">
-    <label for="rem" class = "label">Remember me</label>
-    <br>
-    <button type ="button" class = "login">login</button>
-</form>
+<body>
+    <div class = "corner"></div>
+    <svg width="282" height="490" viewBox="0 0 282 282" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M141 188C166.921 188 188 166.921 188 141V70.5C188 44.4503 167.026 23.2533 141.247 23.2533C140.42 23.2582 139.596 23.3568 138.791 23.547C126.727 24.1319 115.349 29.3322 107.012 38.0718C98.6745 46.8114 94.016 58.4215 94 70.5V141C94 166.921 115.08 188 141 188Z"
+            fill="#0B1B66" fill-opacity="1" />
+        <path
+            d="M129.25 234.189V258.5H152.75V234.189C199.033 228.373 235 188.858 235 141H211.5C211.5 179.881 179.881 211.5 141 211.5C102.119 211.5 70.5 179.881 70.5 141H47C47 188.846 82.9668 228.373 129.25 234.189Z"
+            fill= "#0B1B66" fill-opacity="1" />
+    </svg>
+    <div class = "voice">Voice</div>
+    <div class = "note">Note</div>
+    <div class = "who" name = "who">{{name}}</div>
 
-<div class = "forget">
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ%22%3EForgot">Forget Password?</a>
-</div>
+    <div>
+        <input class = "email" type = "email" placeholder = "Email" [(ngModel)]="signinForm.email" required>
+        <input class = "password" type = "password" placeholder = "Password" [(ngModel)]="signinForm.password" required>
+        <input class = "checkbox" type = "checkbox"><p class = "rem">Remember me</p>
+    </div>
 
-<div class = "signup">
-    <b>Don't have an account? </b><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ%22%3ESign">Sign Up</a> 
-</div>
+    <button (click) = "submitSignin()">Log In</button>
+
+    <p class = "forgot"><u>Forgot Password?</u></p>
+    <div class = "text">Don't have an account? <p class = "signup" (click) = "redirectSignup()"><u>Sign up</u></p></div>
+</body>

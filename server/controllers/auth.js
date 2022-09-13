@@ -1,11 +1,9 @@
-import { Router } from "express";
-import { compare, hash } from "bcrypt";
-import jwt from 'jsonwebtoken';
-import { con } from "../server.js";
-const { sign } = jwt;
-import { RouteProtection } from "../helpers/RouteProtection.js";
-
-const router = Router()
+const express = require("express")
+const router = express.Router()
+const bcrypt = require("bcrypt")
+const con = require("../models/db")
+const jwt = require('jsonwebtoken')
+const RouteProtection = require("../helpers/RouteProtection")
 
 const findUserWithId = async (userId) => {
     const [data, headers] =  await con.query(
@@ -16,18 +14,19 @@ const findUserWithId = async (userId) => {
     return data || null;
 }
 
+/**
+ * Endpoint https://newtonian-voicenote.fly.dev/api/auth/signin
+ */
 router.post("/signin", async function signin(req, res, next) {
     try {
         console.log(req.body.email)
 
-        const [user, headers] = await con.query(
+        const user = await con.query(
             'SELECT * FROM `users` WHERE `email` = ?',
             [req.body.email]
         )
-
-        console.log(user[0]);
-        if (user[0].length != 0) {
-            const isCorrectPassword = await compare(req.body.password, user[0]['password']);
+        if (user.length != 0) {
+            const isCorrectPassword = await bcrypt.compare(req.body.password, user[0]['password']);
 
             console.log(isCorrectPassword)
 
@@ -35,13 +34,14 @@ router.post("/signin", async function signin(req, res, next) {
                 message: "Incorrect password"
             })
 
-            const token = sign({
+            const token = jwt.sign({
                 userId: user[0]['id']
+                
             }, process.env.TOKEN_SECRET)
 
             res.status(200).json({ token: token })
         } else {
-            res.json({message: "user not found"})
+            res.status(400).json({message: "user not found"})
         }
     } catch (error) {
         console.log(error)
@@ -49,24 +49,28 @@ router.post("/signin", async function signin(req, res, next) {
 }
 )
 
+/**
+ * Endpoint https://newtonian-voicenote.fly.dev/api/auth/signup
+ * request dob as yyyy-mm-dd
+ */
 router.post("/signup", async function signup(req, res, next) {
     console.log("sign up");
 
     try {
-        const [existingUser, headers] = await con.query(
+        const existingUser = await con.query(
             'SELECT * FROM `users` WHERE `email` = ?',
             [req.body.email]
         )
 
-        if (existingUser.length != 0) throw new Error("User already existed")
-    
-        const user = await con.query(
-            'INSERT INTO `users` (`username`, `email`, `password`, `dob`)VALUE (?, ?, ?, ?)',
-            [req.body.username, req.body.email, await hash(req.body.password, 12), new Date(req.body.dob)]
-        )
-    
-    
-        res.status(200).json({ message: "Success"})
+        if (existingUser.length != 0) {
+            res.status(400).json({ message: "User already exist"})
+        } else {
+            const user = await con.query(
+                'INSERT INTO `users` (`username`, `email`, `password`, `dob`)VALUE (?, ?, ?, ?)',
+                [req.body.username, req.body.email, await bcrypt.hash(req.body.password, 12), new Date(req.body.dob)]
+            )
+            res.status(200).json({ message: "Success"})
+        }
     } catch (error) {
         console.log(error)
         res.status(500).json({message: error, type: "something went wrong"})
@@ -74,21 +78,23 @@ router.post("/signup", async function signup(req, res, next) {
     
 })
 
+/**
+ * Endpoint https://newtonian-voicenote.fly.dev/api/auth/get-username
+ */
 router.get("/get-username", RouteProtection.verify, async function getUsername(req, res, next) {
     try {
-        const user = jwt.verify(req.headers.authorization.split(' ').pop(), process.env.TOKEN_SECRET)
-        const [username, headers] = await con.query(
+        const username = await con.query(
             'SELECT `username` FROM `users` WHERE id = ?',
-            [user.userId]
+            [req.user.userId]
         )
         if (username.length == 1) {
             res.status(200).json(username[0])
         } else {
-            res.json({message: "username not found"})
+            res.status(400).json({message: "username not found"})
         }
     } catch (error) {
         console.log(error);
     }
 })
 
-export default router;
+module.exports = router

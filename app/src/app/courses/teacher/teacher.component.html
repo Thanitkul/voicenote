@@ -1,23 +1,26 @@
 <!-- Username and logout -->
 <div style=" margin-right: 8%; margin-top: 6%; text-align: right;">
-    <h2 id="course_teacher">T. {{ username }}</h2>
-    <a  class="course_logout_button" style="text-decoration: none;" (click)="logout()" routerLink="/authentication/landing" routerLinkActive="active">Logout</a>
+    <h2>T. {{ username }}</h2>
+    <a style="text-decoration: none;" (click)="logout()" routerLink="/authentication/landing" routerLinkActive="active">Logout</a>
+    <div type="button" (click)="openUserInfoModal()">
+        INFO
+    </div>
 </div>
 <br>
 
 <!-- create button -->
-<div type="button" (click)="openFormModal()" class="create_box">
+<div type="button" (click)="openCourseModal()" class="create_box">
     create
 </div>
 
 <div class="course_box2">box</div>>
 
-<!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search "> -->
+<input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search ">
 
 
 <!-- course rows -->
 <div ng-if="courses_data != null">
-    <div style="padding-bottom: 10px; text-align: center;" *ngFor="let course of courses" >
+    <div style="padding-bottom: 10px; text-align: center;" *ngFor="let course of courses | filter:searchText" >
         <a routerLink="/speak" routerLinkActive="active" style="text-decoration: none;">
             <div class="course_box">
                 <div class="card-title" id="course_box_subject">{{course["courseName"]}}</div>
@@ -28,8 +31,8 @@
 </div>
 
 
-<!--creating form modal-->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--creating course modal-->
+<div class="modal fade" id="course_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
@@ -37,6 +40,19 @@
             <input placeholder="Name" id="name" style="width: 90%; margin: 5%; text-align: left;" class="form-control" type="text">
             <button type="button" class="btn btn-primary" id="create_button" data-bs-dismiss="modal"
                 (click)="create()">Create</button>
+        </div>
+    </div>
+</div>
+
+<!--INFO modal-->
+<div class="modal fade" id="userinfo_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <li>Username:</li>
+            <li>Data of Birth:</li>
+            <li>E-mail:</li>
         </div>
     </div>
 </div>
