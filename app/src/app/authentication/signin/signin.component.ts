@@ -56,6 +56,10 @@ export class SigninComponent implements OnInit {
     this.router.navigate(['/authentication/signup'])
   }
 
+  redirectLanding() {
+    this.router.navigate(['/'])
+  }
+
   saveData(token : any) {
     localStorage.setItem('token', token);
   }
