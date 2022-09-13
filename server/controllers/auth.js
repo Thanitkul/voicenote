@@ -62,15 +62,15 @@ router.post("/signup", async function signup(req, res, next) {
             [req.body.email]
         )
 
-        if (existingUser.length != 0) throw new Error("User already existed")
-    
-        const user = await con.query(
-            'INSERT INTO `users` (`username`, `email`, `password`, `dob`)VALUE (?, ?, ?, ?)',
-            [req.body.username, req.body.email, await bcrypt.hash(req.body.password, 12), new Date(req.body.dob)]
-        )
-    
-    
-        res.status(200).json({ message: "Success"})
+        if (existingUser.length != 0) {
+            res.status(400).json({ message: "User already exist"})
+        } else {
+            const user = await con.query(
+                'INSERT INTO `users` (`username`, `email`, `password`, `dob`)VALUE (?, ?, ?, ?)',
+                [req.body.username, req.body.email, await bcrypt.hash(req.body.password, 12), new Date(req.body.dob)]
+            )
+            res.status(200).json({ message: "Success"})
+        }
     } catch (error) {
         console.log(error)
         res.status(500).json({message: error, type: "something went wrong"})
