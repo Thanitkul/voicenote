@@ -22,8 +22,9 @@ export class TeacherComponent implements OnInit {
         this.authToken = localStorage.getItem('token')!;
         this.courseModal = new window.bootstrap.Modal(document.getElementById('course_modal'));
         this.userInfoModal = new window.bootstrap.Modal(document.getElementById('userinfo_modal'));
-        this.courseserv.getCourseTeacher(this.authToken).subscribe((res: any) => this.courses = res);
+        this.courseserv.getCourseTeacher(this.authToken).subscribe((res: any) => {this.courses = res});
         this.courseserv.getUsername(this.authToken).subscribe((res: any) => this.username = res['username']);
+        
     }
     logout(): void {
         localStorage.clear();
@@ -36,9 +37,16 @@ export class TeacherComponent implements OnInit {
     }
     create(): void {
         var name = (<HTMLInputElement>document.getElementById("name")).value;
-        this.courseserv.createCourse(name, this.authToken);
-        window.location.reload();
+        this.courseserv.createCourse(name, this.authToken).subscribe(res => {
+            this.courseserv.getCourseTeacher(this.authToken).subscribe((res: any) => {this.courses = res})
+        })
+        
     }
+    delete(id: number): any {
+        this.courseserv.deleteCourse(id).subscribe(res => console.log(res))
+        this.courses =  this.courses.filter((i:any) => i.id != id)
+    }
+
 
 }
 

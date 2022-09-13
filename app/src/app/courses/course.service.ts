@@ -33,7 +33,7 @@ export class CourseService {
         const body = {
             courseName: name
         };
-        this.http.post<any>(`${environment.apiHost}/teacher/create-course`, body).subscribe(res => console.log(res))
+        return this.http.post<any>(`${environment.apiHost}/teacher/create-course`, body)
     }
     getCourseStudent(auth_token: string) {
         
@@ -52,5 +52,12 @@ export class CourseService {
             code: code
         };
         this.http.post<any>(`${environment.apiHost}/student/join-course`, body).subscribe(res => console.log(res))
+    }
+    deleteCourse(id: number) {
+        const body = {
+            courseId: id
+        };
+        console.log(body)
+        return this.http.delete<any>(`${environment.apiHost}/teacher/delete-course`, {body: body})
     }
 }
