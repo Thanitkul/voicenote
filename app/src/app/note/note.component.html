@@ -1,5 +1,23 @@
 <div class='container'>
-    <h1>Note</h1>
-
-    <p *ngFor="let message of displayList">{{message}}</p>
+    <div class="container__topbar">
+        <div class="container__topbar--arrow">
+            <svg width="16" height="25" viewBox="0 0 16 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.1274 0L0 12.1274L12.1274 24.2548L15.1321 21.25L6.0095 12.1274L15.1321 3.00475L12.1274 0Z" fill="white"/>
+            </svg>                
+        </div>
+        <h1 class="container__topbar--subject">Math</h1>
+    </div>
+    <div class="container__body">
+        <p *ngFor="let message of displayList">{{message}}</p>
+    </div>
+    <div class="container__bottombar">
+        <div class="container__bottombar--pdf">PDF</div>
+        <div class="container__bottombar--share">
+            <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.65625 13.125C7.05219 13.125 6.5625 13.6147 6.5625 14.2188V31.7188C6.5625 32.3228 7.05219 32.8125 7.65625 32.8125H27.3438C27.9478 32.8125 28.4375 32.3228 28.4375 31.7188V14.2188C28.4375 13.6147 27.9478 13.125 27.3438 13.125H22.9688C22.3647 13.125 21.875 12.6353 21.875 12.0312C21.875 11.4272 22.3647 10.9375 22.9688 10.9375H27.3438C29.1559 10.9375 30.625 12.4066 30.625 14.2188V31.7188C30.625 33.5309 29.1559 35 27.3438 35H7.65625C5.84406 35 4.375 33.5309 4.375 31.7188V14.2188C4.375 12.4066 5.84407 10.9375 7.65625 10.9375H12.0312C12.6353 10.9375 13.125 11.4272 13.125 12.0312C13.125 12.6353 12.6353 13.125 12.0312 13.125H7.65625Z" fill="#0B1B66"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.7266 0.320352C17.1537 -0.106784 17.8463 -0.106784 18.2734 0.320352L24.8359 6.88285C25.263 7.30999 25.263 8.00251 24.8359 8.42965C24.4088 8.85678 23.7162 8.85678 23.2891 8.42965L18.5938 3.7343V22.9688C18.5938 23.5728 18.1041 24.0625 17.5 24.0625C16.8959 24.0625 16.4062 23.5728 16.4062 22.9688V3.7343L11.7109 8.42965C11.2838 8.85678 10.5912 8.85678 10.1641 8.42965C9.73697 8.00251 9.73697 7.30999 10.1641 6.88285L16.7266 0.320352Z" fill="#0B1B66"/>
+            </svg>                
+        </div>
+    </div>
+    
 </div>
