@@ -58,6 +58,9 @@ export class TeacherComponent implements OnInit {
         }
         this.deleteId = ''
     }
+    live(id: number): void {
+        this.courseserv.startLive(id).subscribe(res => {console.log(res)})
+    }
 
 
 }

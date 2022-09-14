@@ -39,4 +39,10 @@ export class CourseService {
         };
         return this.http.delete<any>(`${environment.apiHost}/teacher/delete-course`, {body: body})
     }
+    startLive(id: number) {
+        const body = {
+            courseId: id
+        };
+        return this.http.post<any>(`${environment.apiHost}/teacher/start-live`, body)
+    }
 }
