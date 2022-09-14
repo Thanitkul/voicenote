@@ -10,31 +10,59 @@ declare var window: any;
 })
 export class StudentComponent implements OnInit {
 
-    formModal: any;
+    addCourse: any;
+    userInfoModal: any;
+    deleteModal: any;
     searchText: any;
     username: any;
     courses: any;
+    deleteId: any;
     authToken: string = '';
 
     constructor(private courseserv: CourseService) {}
 
     ngOnInit(): void {
         this.authToken = localStorage.getItem('token')!;
-        // this.formModal = new window.bootstrap.Modal(document.getElementById('myModal'));
-        this.courseserv.getCourseStudent(this.authToken).subscribe((res: any) => {this.courses = res,console.log(this.courses)});
+        this.userInfoModal = new window.bootstrap.Modal(document.getElementById('userinfo_modal'));
+        this.deleteModal = new window.bootstrap.Modal(document.getElementById('delete_modal'));
+        this.addCourse = new window.bootstrap.Modal(document.getElementById('addcourse_modal'));
+        this.courseserv.getCourseStudent().subscribe((res: any) => {this.courses = res,console.log(this.courses)});
         
     }
     logout(): void {
         localStorage.clear();
     }
-    openFormModal(): void {
-        this.formModal.show();
+    openAddCourse(): void {
+        this.addCourse.show();
+    }
+    openUserInfoModal(): void {
+        this.userInfoModal.show();
+    }
+    openDeleteModal(id: number): void {
+        this.deleteModal.show();
+        this.deleteId = id
     }
     add(): void {
         var code = (<HTMLInputElement>document.getElementById("code")).value;
-        this.courseserv.addCourse(code, this.authToken);
+        this.courseserv.addCourse(code).subscribe((res: any) => {
+            if (res.message == "user already joined"){
+                alert("You already joined")
+            }
+            
+            this.courseserv.getCourseStudent().subscribe((res: any) => {this.courses = res})
+            
+            
+            
+        })
 
-        window.location.reload();
+    }
+    delete(confirm: boolean): any {
+        if (confirm == true){
+            // this.courseserv.deleteCourse(this.deleteId).subscribe(res => console.log(res))
+            // this.courses =  this.courses.filter((i:any) => i.id != this.deleteId)
+            console.log("have no function for student to leave course now")
+        }
+        this.deleteId = ''
     }
 
 }

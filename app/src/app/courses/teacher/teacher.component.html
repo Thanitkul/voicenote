@@ -21,7 +21,7 @@
 <!-- course rows -->
 <div ng-if="courses_data != null">
     <div style="padding-bottom: 10px; text-align: center;" *ngFor="let course of courses | filter:searchText" >
-        <a routerLink="/speak" routerLinkActive="active" style="text-decoration: none;">
+        <a routerLink="/speak" routerLinkActive="active" (click)="live(course.id)" style="text-decoration: none;">
             <div class="course_box">
                 <div class="card-title" id="course_box_subject">{{course["courseName"]}}</div>
                 <div class="card-text" id="course_box_code">Code: {{course["code"]}}</div>
