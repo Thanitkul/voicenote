@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { SpeakRoutingModule } from './speak-routing.module';
 import { SpeakComponent } from './speak.component';
+import { ListenComponent } from './listen/listen.component';
 
 
 @NgModule({
   declarations: [
-    SpeakComponent
+    SpeakComponent,
+    ListenComponent
   ],
   imports: [
     CommonModule,

@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent implements OnInit {
+  roomSelected: string = 'Room A'
+//   message: string = transcript
+  noteList: string[] = []
 
   constructor() { }
 
