@@ -31,7 +31,7 @@ export class CourseService {
         const body = {
             code: code
         };
-        this.http.post<any>(`${environment.apiHost}/student/join-course`, body).subscribe(res => console.log(res))
+        return this.http.post<any>(`${environment.apiHost}/student/join-course`, body)
     }
     deleteCourse(id: number) {
         const body = {
