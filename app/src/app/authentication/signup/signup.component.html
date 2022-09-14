@@ -11,8 +11,8 @@
     <input type = "date" class = "date" placeholder = "DD/MM/YY" required [(ngModel)]="signupForm.dob">
 </div>    
 
-<input class = "checkbox" type = "checkbox"><p class = "policy">Agree to term of policy</p>
-
 <button (click) = "Register()">Sign up</button>
+
+<div class="policy">By clicking Sign up you agree to our <a class="TandC" herf="https://www.google.com/">Terms and Conditions</a> and <a class="TandC" href="https://www.youtube.com/">Privacy Statement</a></div>
 
 <div class = "text">Already have an account? <p class = "signin" (click) = "redirectSignin()">Sign in</p></div>
