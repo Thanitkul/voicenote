@@ -1,8 +1,8 @@
 <!-- Username and logout -->
 <div style=" margin-right: 8%; margin-top: 6%; text-align: right;">
-    <h2>T. {{ username }}</h2>
-    <a style="text-decoration: none;" (click)="logout()" routerLink="" routerLinkActive="active">Logout</a>
-    <div type="button" (click)="openUserInfoModal()">
+    <h2 id="course_teacher">T. {{ username }}</h2>
+    <a class="course_logout" style="text-decoration: none;" (click)="logout()" routerLink="" routerLinkActive="active">Logout</a>
+    <div class="course_info" type="button" (click)="openUserInfoModal()">
         INFO
     </div>
 </div>
@@ -15,7 +15,7 @@
 
 <div class="course_box2">box</div>
 
-<input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search ">
+<input class="form-control" id="course_searchbox" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search ">
 
 
 <!-- course rows -->
@@ -27,7 +27,7 @@
                 <div class="card-text" id="course_box_code">Code: {{course["code"]}}</div>
             </div>
         </a>
-        <div (click)="openDeleteModal(course.id)" style="position: absolute; left: 350px;">
+        <div (click)="openDeleteModal(course.id)" class="bin">
             <svg width="30" height="30" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 791.908 791.908"
                 style="enable-background:new 0 0 791.908 791.908;" xml:space="preserve">
@@ -57,7 +57,7 @@
         <div class="modal-content">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" style="position: absolute; right: 5%; top: 5%;" aria-label="Close"></button>
-            <input placeholder="Name" id="name" style="width: 90%; margin: 5%; text-align: left;" class="form-control" [(ngModel)]="name" type="text">
+            <input placeholder="Name" id="name" style="width: 80%; text-align: left; position: absolute; left: 3.5vh; border-radius: 15px;" class="form-control" [(ngModel)]="name" type="text">
             <button type="button" class="btn btn-primary" id="create_button" data-bs-dismiss="modal"
                 (click)="create()">Create</button>
         </div>
@@ -67,12 +67,14 @@
 <!--INFO modal-->
 <div class="modal fade" id="userinfo_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style="background-color: #0B1B66;">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            <li>Username: {{ username }}</li>
-            <li>Data of Birth: 2022/04/33</li>
-            <li>E-mail: managabachi@gmai.com</li>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 1vh; top: 1vh;"></button>
+            <div id="teacher_info">
+                <ul>Username: {{ username }}</ul>
+                <ul>Data of Birth: 2022/04/33</ul>
+                <ul>E-mail: managabachi@gmai.com</ul>
+            </div>
         </div>
     </div>
 </div>
@@ -84,9 +86,9 @@
             <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"
                 style="position: absolute; right: 5%; top: 5%;" aria-label="Close"></button>
-            <div placeholder="Name" id="name" style="width: 90%; margin: 5%; text-align: left;" class="form-control"
+            <div placeholder="Name" id="name" style="width: 80%; text-align: left; position: absolute; left: 3.5vh; border-radius: 15px; text-align: center; padding-top: 40px" class="form-control"
                 type="text">Are you sure want to delete this course?</div>
-            <button type="button" class="btn btn-primary" id="create_button" data-bs-dismiss="modal"
+            <button type="button" class="btn btn-primary" id="course_deletebutton" data-bs-dismiss="modal"
                 (click)="delete(true)">Delete</button>
         </div>
     </div>
