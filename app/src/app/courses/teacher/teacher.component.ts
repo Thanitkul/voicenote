@@ -26,8 +26,8 @@ export class TeacherComponent implements OnInit {
         this.courseModal = new window.bootstrap.Modal(document.getElementById('course_modal'));
         this.userInfoModal = new window.bootstrap.Modal(document.getElementById('userinfo_modal'));
         this.deleteModal = new window.bootstrap.Modal(document.getElementById('delete_modal'));
-        this.courseserv.getCourseTeacher(this.authToken).subscribe((res: any) => {this.courses = res});
-        this.courseserv.getUsername(this.authToken).subscribe((res: any) => this.username = res['username']);
+        this.courseserv.getCourseTeacher().subscribe((res: any) => {this.courses = res});
+        this.courseserv.getUsername().subscribe((res: any) => this.username = res['username']);
         
     }
     logout(): void {
@@ -44,8 +44,8 @@ export class TeacherComponent implements OnInit {
         this.deleteId = id
     }
     create(): void {
-        this.courseserv.createCourse(this.name, this.authToken).subscribe(res => {
-            this.courseserv.getCourseTeacher(this.authToken).subscribe((res: any) => {this.courses = res})
+        this.courseserv.createCourse(this.name).subscribe(res => {
+            this.courseserv.getCourseTeacher().subscribe((res: any) => {this.courses = res})
         });
         this.name = ''
         
