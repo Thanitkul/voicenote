@@ -26,21 +26,57 @@ svg {
     right: 5vh;
 }
 
+@media screen and (min-width: 601px) {
+    .voice {
+        font-size: 150px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .voice {
+        font-size: 100px;
+    }
+}
+
 .note {
     position: absolute;
     font-size: 21vw;
     font-weight: bolder;
     color: #0B1B66;
-    top: 32vh;
+    top: 30vh;
     right: 5vh;
+}
+
+@media screen and (min-width: 601px) {
+    .note {
+        font-size: 150px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .note {
+        font-size: 100px;
+    }
 }
 
 .note-taking {
     position: absolute;
     font-size: 6vw;
     color: #0B1B66;
-    top: 46vh;
+    top: 45vh;
     right: 5vh;
+}
+
+@media screen and (min-width: 601px) {
+    .note-taking {
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .note-taking {
+        font-size: 25px;
+    }
 }
 
 .made-easy {
@@ -49,6 +85,18 @@ svg {
     color: #0B1B66;
     top: 50vh;
     right: 5vh;
+}
+
+@media screen and (min-width: 601px) {
+    .made-easy {
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .made-easy {
+        font-size: 25px;
+    }
 }
 
 .teacher {
@@ -65,6 +113,18 @@ svg {
     font-size: 125%;
 }
 
+@media screen and (min-width: 601px) {
+    .teacher {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .teacher {
+        font-size: 15px;
+    }
+}
+
 .student {
     position: absolute;
     top: 75vh;
@@ -79,6 +139,18 @@ svg {
     font-size: 125%;
 }
 
+@media screen and (min-width: 601px) {
+    .student {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .student {
+        font-size: 15px;
+    }
+}
+
 .new {
     display: inline-block;
     position: absolute;
@@ -86,6 +158,18 @@ svg {
     left: 0;
     right: 0;
     text-align: center;
+}
+
+@media screen and (min-width: 601px) {
+    .new {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .new {
+        font-size: 12px;
+    }
 }
 
 .account {

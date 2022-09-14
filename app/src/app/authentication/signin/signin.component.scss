@@ -26,13 +26,37 @@ svg {
     right: 5vh;
 }
 
+@media screen and (min-width: 601px) {
+    .voice {
+        font-size: 150px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .voice {
+        font-size: 100px;
+    }
+}
+
 .note {
     position: absolute;
     font-size: 21vw;
     font-weight: bolder;
     color: #0B1B66;
-    top: 32vh;
+    top: 30vh;
     right: 5vh;
+}
+
+@media screen and (min-width: 601px) {
+    .note {
+        font-size: 150px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .note {
+        font-size: 100px;
+    }
 }
 
 .who {
@@ -71,6 +95,18 @@ svg {
     border-radius: 15px;
 }
 
+@media screen and (min-width: 601px) {
+    .form {
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .form {
+        font-size: 25px;
+    }
+}
+
 .checkbox {
     position: absolute;
     top: 76vh;
@@ -97,6 +133,18 @@ button {
     font-weight: bold;
 }
 
+@media screen and (min-width: 601px) {
+    button {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    button {
+        font-size: 15px;
+    }
+}
+
 .forgot {
     position: absolute;
     font-size: 3vw;
@@ -115,6 +163,18 @@ button {
     left: 0;
     text-align: center;
     color: #0B1B66;
+}
+
+@media screen and (min-width: 601px) {
+    .text {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .text {
+        font-size: 15px;
+    }
 }
 
 .signup {

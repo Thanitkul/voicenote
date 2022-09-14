@@ -71,7 +71,7 @@ svg {
     padding: 10px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 601px) {
     .form {
         font-size: 30px;
     }
@@ -95,7 +95,7 @@ button {
     font-weight: bold;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 601px) {
     button {
         font-size: 30px;
     }
@@ -123,7 +123,7 @@ button {
     text-decoration: underline;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 601px) {
     .text {
         font-size: 24px;
     }
