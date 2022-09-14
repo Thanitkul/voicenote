@@ -3,11 +3,14 @@
     <h2>Classes</h2>
     <a style="text-decoration: none;" (click)="logout()" routerLink="/"
         routerLinkActive="active">Logout</a>
+    <div type="button" (click)="openUserInfoModal()">
+        INFO
+    </div>
 </div>
 <br>
 
 <!-- create button -->
-<div type="button" (click)="openFormModal()" class="create_box">
+<div type="button" (click)="openAddCourse()" class="create_box">
     create
 </div>
 
@@ -55,14 +58,14 @@
 
 
 <!--creating form modal-->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addcourse_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             <input placeholder="code" id="code" style="width: 90%; margin: 5% ;" class="form-control" type="text">
             <button type="button" class="btn btn-primary" style="width: 90%; margin: 5%;" data-bs-dismiss="modal"
-                (click)="add()">Create</button>
+                (click)="add()">Add</button>
         </div>
     </div>
 </div>

@@ -10,7 +10,7 @@ declare var window: any;
 })
 export class StudentComponent implements OnInit {
 
-    formModal: any;
+    addCourse: any;
     userInfoModal: any;
     deleteModal: any;
     searchText: any;
@@ -25,15 +25,15 @@ export class StudentComponent implements OnInit {
         this.authToken = localStorage.getItem('token')!;
         this.userInfoModal = new window.bootstrap.Modal(document.getElementById('userinfo_modal'));
         this.deleteModal = new window.bootstrap.Modal(document.getElementById('delete_modal'));
-        this.formModal = new window.bootstrap.Modal(document.getElementById('myModal'));
+        this.addCourse = new window.bootstrap.Modal(document.getElementById('addcourse_modal'));
         this.courseserv.getCourseStudent().subscribe((res: any) => {this.courses = res,console.log(this.courses)});
         
     }
     logout(): void {
         localStorage.clear();
     }
-    openFormModal(): void {
-        this.formModal.show();
+    openAddCourse(): void {
+        this.addCourse.show();
     }
     openUserInfoModal(): void {
         this.userInfoModal.show();
