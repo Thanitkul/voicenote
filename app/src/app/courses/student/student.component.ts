@@ -33,7 +33,14 @@ export class StudentComponent implements OnInit {
     add(): void {
         var code = (<HTMLInputElement>document.getElementById("code")).value;
         this.courseserv.addCourse(code).subscribe((res: any) => {
+            if (res.message == "user already joined"){
+                alert("You already joined")
+            }
+            
             this.courseserv.getCourseStudent().subscribe((res: any) => {this.courses = res})
+            
+            
+            
         })
 
     }
