@@ -43,13 +43,14 @@ $color-white: #FFFFFF;
 
     &__body {
         padding: 30px;
+        padding-bottom: 200px;
     }
 
     &__bottombar {
         background-color: $color-primary;
         height: 133px;
         width: 100.5%;
-        position: absolute;
+        position: fixed;
         bottom: 0;
         margin-bottom: -5px;
         display: flex;
