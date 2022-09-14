@@ -10,7 +10,7 @@ const findUserWithId = async (userId) => {
         'SELECT * FROM `users` WHERE `id` = ?',
         [userId]
     )
-
+    con.end()
     return data || null;
 }
 
@@ -38,9 +38,10 @@ router.post("/signin", async function signin(req, res, next) {
                 userId: user[0]['id']
                 
             }, process.env.TOKEN_SECRET)
-
+            con.end()
             res.status(200).json({ token: token })
         } else {
+            con.end()
             res.status(400).json({message: "user not found"})
         }
     } catch (error) {
@@ -63,12 +64,14 @@ router.post("/signup", async function signup(req, res, next) {
         )
 
         if (existingUser.length != 0) {
+            con.end()
             res.status(400).json({ message: "User already exist"})
         } else {
             const user = await con.query(
                 'INSERT INTO `users` (`username`, `email`, `password`, `dob`)VALUE (?, ?, ?, ?)',
                 [req.body.username, req.body.email, await bcrypt.hash(req.body.password, 12), new Date(req.body.dob)]
             )
+            con.end()
             res.status(200).json({ message: "Success"})
         }
     } catch (error) {
@@ -88,8 +91,10 @@ router.get("/get-username", RouteProtection.verify, async function getUsername(r
             [req.user.userId]
         )
         if (username.length == 1) {
+            con.end()
             res.status(200).json(username[0])
         } else {
+            con.end()
             res.status(400).json({message: "username not found"})
         }
     } catch (error) {
