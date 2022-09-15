@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { VerifyInterceptor } from './services/verify.interceptor';
+import 'boxicons';
 @NgModule({
     declarations: [
         AppComponent
