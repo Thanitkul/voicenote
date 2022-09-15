@@ -26,7 +26,7 @@ export class VerifyInterceptor implements HttpInterceptor {
         })).pipe(tap({
           error: (error: HttpErrorResponse) => {
             if(error.status === 401){
-              this.router.navigate(['/authentication/landing'])
+              this.router.navigate([''])
             }
           }
         }))
@@ -35,7 +35,7 @@ export class VerifyInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(tap({
       error: (error: HttpErrorResponse) => {
         if(error.status === 401){
-          this.router.navigate(['/authentication/landing'])
+          this.router.navigate([''])
         }
       }
     }))
