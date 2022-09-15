@@ -32,7 +32,7 @@ router.get("/courses", RouteProtection.verify, async (req, res, next) => {
     } else {
       throw new Error();
     }
-    con.end
+    
     res.json(courses);
   } catch (error) {
     next(error);
@@ -65,7 +65,7 @@ router.post(
             console.log([req.body.courseName, code, [req.user.userId]]);
           }
         );
-        con.end
+        
         res.status(200).json({ message: "Success" });
       }
     } catch (error) {
@@ -89,7 +89,7 @@ router.delete(
       console.log(course);
       if (course.length != 0) {
         if ([req.user.userId] != course[0].ownerId) {
-          con.end
+          
           res.status(401).json({ message: "not the owner of the course" });
         }
 
@@ -102,7 +102,7 @@ router.delete(
           req.body.courseId
         );
         await con.query("DELETE FROM courses WHERE id = ?", req.body.courseId);
-        con.end
+        
         res.status(200);
       } else {
         res.status(400).json({ message: "course not found" });
@@ -120,7 +120,7 @@ router.post("/start-live", RouteProtection.verify, async (req, res, next) => {
   try {
     const record = await con.query("INSERT INTO recordings (courseId, data, recordedAt) VALUES (?, ?, ?)", [req.body.courseId, "", new Date()])
     await con.query("UPDATE courses SET isLive = 1 WHERE id = ?", [req.body.courseId])
-    con.end
+    
     res.status(200).json({'recordingId': record.insertId})
   } catch (error) {
     console.log(error)
