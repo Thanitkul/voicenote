@@ -39,7 +39,20 @@
             <div class="course_box">
                 <div id="course_box_subject" class="card-title" style="margin-right: 15px;">{{course["courseName"]}}</div>
                 <ng-template [ngIf]="course.isLive != 0">
-                    <div id="student_rec">REC</div>
+                    
+                    <div id="student_rec">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px"
+                                y="0px" width="12px" height="12px" viewBox="0 0 229.6 229.6" style="fill: #EA002A;" xml:space="preserve">
+                                <g>
+                                    <circle xmlns="http://www.w3.org/2000/svg" cx="114.8" cy="114.8" r="114.8" />
+                                </g>
+                            </svg>
+                        </span>
+                        <span>
+                            REC
+                        </span>
+                    </div>
                 </ng-template>
             </div>
         </a>
