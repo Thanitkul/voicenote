@@ -14,7 +14,7 @@ async function query(sql, params) {
         })
 
         const [results, _] = await con.query(sql, params)
-
+        con.end();
         return results
     } catch (error) {
         throw error;
