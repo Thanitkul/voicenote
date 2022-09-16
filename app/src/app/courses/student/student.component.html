@@ -1,19 +1,21 @@
 <!-- Username and logout -->
-<div style=" margin-right: 8%; margin-top: 6%; text-align: right;">
-    <h2>Classes</h2>
-    <a style="text-decoration: none;" (click)="logout()" routerLink="/"
+<div>
+    <h2  id="course_student">Classes</h2>
+    <a style="text-decoration: none;" class="course_logout" (click)="logout()" routerLink="/"
         routerLinkActive="active">Logout</a>
-    <div type="button" (click)="openUserInfoModal()">
+    <div class="course_info" type="button" (click)="openUserInfoModal()">
         Info
     </div>
 </div>
 <br>
 
+<div class="course_box2">box</div>
+
 <!-- add button -->
 <div type="button" (click)="openAddCourse()" class="create_box">
     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
         y="0px" width="30" height="30" viewBox="0 0 401.994 401.994"
-        style="enable-background:new 0 0 401.994 401.994;" xml:space="preserve">
+         style="enable-background:new 0 0 401.994 401.994;" xml:space="preserve">
         <g>
             <path
                 d="M394,154.175c-5.331-5.33-11.806-7.994-19.417-7.994H255.811V27.406c0-7.611-2.666-14.084-7.994-19.414
@@ -27,7 +29,7 @@
 </div>
 
 
-<input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search ">
+<input class="form-control" id="course_searchbox" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search ">
 
 
 <!-- course rows -->
@@ -35,10 +37,7 @@
     <div style="padding-bottom: 10px; text-align: center;" *ngFor="let course of courses | filter:searchText">
         <a routerLink="/note/{{course['id']}}" routerLinkActive="active" style="text-decoration: none;">
             <div class="course_box">
-                <div class="card-title" style="margin-right: 15px;">{{course["courseName"]}}</div>
-                <ng-template [ngIf]="course.isLive != 0">
-                    <div style="display: inline-block; margin-left: 50px;">live</div>
-                </ng-template>
+                <div id="course_box_subject" class="card-title" style="margin-right: 15px;">{{course["courseName"]}}</div>
             </div>
 
         </a>
@@ -48,7 +47,7 @@
         <div (click)="openDeleteModal(course.id)" style="position: absolute; left: 350px;">
             <svg width="30" height="30" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 791.908 791.908"
-                style="enable-background:new 0 0 791.908 791.908;" xml:space="preserve">
+                class="bin" xml:space="preserve">
                 <g>
                     <path d="M648.587,99.881H509.156C500.276,43.486,452.761,0,394.444,0S287.696,43.486,279.731,99.881H142.315
                                             c-26.733,0-48.43,21.789-48.43,48.43v49.437c0,24.719,17.761,44.493,41.564,47.423V727.64c0,35.613,28.655,64.268,64.268,64.268
@@ -77,7 +76,7 @@
             <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             <input placeholder="code" id="code" style="width: 90%; margin: 5% ;" class="form-control" type="text">
-            <button type="button" class="btn btn-primary" style="width: 90%; margin: 5%;" data-bs-dismiss="modal"
+            <button type="button" class="btn btn-primary" style="width: 90%; margin: 5%; background-color: #E8963F;" data-bs-dismiss="modal"
                 (click)="add()">Join</button>
         </div>
     </div>
@@ -85,12 +84,14 @@
 <!--INFO modal-->
 <div class="modal fade" id="userinfo_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style="position: absolute; right: 1vh; top: 20vh; background-color: #0B1B66;">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            <li>Username: abcdefdg</li>
-            <li>Data of Birth: 2022/04/33</li>
-            <li>E-mail: managabachi@gmai.com</li>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 5%; top: 5%;"></button>
+            <div id="student_info">
+                <ul>Username: abcdefdg</ul>
+                <ul>Data of Birth: 2022/04/33</ul>
+                <ul>E-mail: managabachi@gmai.com</ul>
+            </div>
         </div>
     </div>
 </div>
@@ -100,11 +101,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"
+            <button type="button" class="btn-close" data-bs-dismiss="modal" 
                 style="position: absolute; right: 5%; top: 5%;" aria-label="Close"></button>
-            <div placeholder="Name" id="name" style="width: 90%; margin: 5%; text-align: left;" class="form-control"
+            <div placeholder="Name" id="name" style="height: 20vh; width: 80%; margin: auto; text-align: left;" class="form-control"
                 type="text">Are you sure want to delete this course?</div>
-            <button type="button" class="btn btn-primary" id="create_button" data-bs-dismiss="modal"
+            <button type="button" class="btn btn-primary" id="create_button" style="background-color: #E8963F; width: 80%; margin: auto; margin-bottom: 3vh;" data-bs-dismiss="modal"
                 (click)="delete(true)">Delete</button>
         </div>
     </div>
