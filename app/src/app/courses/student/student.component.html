@@ -39,17 +39,17 @@
             <div class="course_box">
                 <div id="course_box_subject" class="card-title" style="margin-right: 15px;">{{course["courseName"]}}</div>
                 <ng-template [ngIf]="course.isLive != 0">
-                    <div style="display: inline-block; margin-left: 50px;">REC</div>
+                    <div id="student_rec">REC</div>
                 </ng-template>
             </div>
         </a>
         <a routerLink="/history/{{course['id']}}" routerLinkActive="active" style="text-decoration: none; position: absolute;">
-            <div class="card-text">History</div>
+            <div class="card-text" id="student_history">History</div>
         </a>
-        <div (click)="openDeleteModal(course.id)" style="position: absolute; left: 350px;">
+        <div class="bin" (click)="openDeleteModal(course.id)">
             <svg width="30" height="30" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 791.908 791.908"
-                class="bin" xml:space="preserve">
+                 xml:space="preserve">
                 <g>
                     <path d="M648.587,99.881H509.156C500.276,43.486,452.761,0,394.444,0S287.696,43.486,279.731,99.881H142.315
                                             c-26.733,0-48.43,21.789-48.43,48.43v49.437c0,24.719,17.761,44.493,41.564,47.423V727.64c0,35.613,28.655,64.268,64.268,64.268
@@ -74,11 +74,11 @@
 <!--creating form modal-->
 <div class="modal fade" id="addcourse_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div id="box_delete" class="modal-content" style="height: 20vh;">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            <input placeholder="code" id="code" style="width: 90%; margin: 5% ;" class="form-control" type="text">
-            <button type="button" class="btn btn-primary" style="width: 90%; margin: 5%; background-color: #E8963F;" data-bs-dismiss="modal"
+            <button style="position: absolute; right: 5%; top: 5%;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <input placeholder="Insert Class Code" id="code" style="top: 2vh; width: 90%; margin: 5%; background-color: #EEEEEE; position: relative; line-height: 6vh; text-align: center;" class="form-control" type="text">
+            <button type="button" class="btn btn-primary" style="margin-top: 15px; width: 90%; margin: 5%; background-color: #E8963F;" data-bs-dismiss="modal"
                 (click)="add()">Join</button>
         </div>
     </div>
@@ -86,7 +86,7 @@
 <!--INFO modal-->
 <div class="modal fade" id="userinfo_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content" style="position: absolute; right: 1vh; top: 20vh; background-color: #0B1B66;">
+        <div class="modal-content" style="position: absolute; top: 20vh; background-color: #0B1B66;">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 5%; top: 5%;"></button>
             <div id="student_info">
@@ -101,13 +101,13 @@
 <!--creating delte modal-->
 <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" id="box_delete">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" 
                 style="position: absolute; right: 5%; top: 5%;" aria-label="Close"></button>
-            <div placeholder="Name" id="name" style="height: 20vh; width: 80%; margin: auto; text-align: left;" class="form-control"
-                type="text">Are you sure want to delete this course?</div>
-            <button type="button" class="btn btn-primary" id="create_button" style="background-color: #E8963F; width: 80%; margin: auto; margin-bottom: 3vh;" data-bs-dismiss="modal"
+            <div placeholder="Name" id="delete_box" class="form-control"
+                type="text">Are you sure want to <br> delete this course?</div>
+            <button type="button" class="btn btn-primary" id="create_button" style="background-color: #E8963F; width: 80%; margin: auto; margin-bottom: 3vh; position: relative;" data-bs-dismiss="modal"
                 (click)="delete(true)">Delete</button>
         </div>
     </div>
