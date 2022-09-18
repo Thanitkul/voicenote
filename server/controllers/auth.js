@@ -87,7 +87,7 @@ router.post("/signup", async function signup(req, res, next) {
 router.get("/get-username", RouteProtection.verify, async function getUsername(req, res, next) {
     try {
         const username = await con.query(
-            'SELECT `username` FROM `users` WHERE id = ?',
+            'SELECT `email`, `username`, `dob` FROM `users` WHERE id = ?',
             [req.user.userId]
         )
         if (username.length == 1) {
