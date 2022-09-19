@@ -27,7 +27,7 @@ export class TeacherComponent implements OnInit {
         this.userInfoModal = new window.bootstrap.Modal(document.getElementById('userinfo_modal'));
         this.deleteModal = new window.bootstrap.Modal(document.getElementById('delete_modal'));
         this.courseserv.getCourseTeacher().subscribe((res: any) => {this.courses = res});
-        this.courseserv.getUsername().subscribe((res: any) => this.username = res['username']);
+        this.courseserv.getUsername().subscribe((res: any) => this.username = res);
         
     }
     logout(): void {

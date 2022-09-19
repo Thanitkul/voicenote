@@ -1,6 +1,6 @@
 <!-- Username and logout -->
 <div style=" margin-right: 8%; margin-top: 6%; text-align: right;">
-    <h2 id="course_teacher">T. {{ username }}</h2>
+    <h2 id="course_teacher">T. {{ username.username }}</h2>
     <a class="course_logout" style="text-decoration: none;" (click)="logout()" routerLink="" routerLinkActive="active">Logout</a>
     <div class="course_info" type="button" (click)="openUserInfoModal()">
         Info
@@ -71,9 +71,9 @@
             <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 1vh; top: 1vh;"></button>
             <div id="teacher_info">
-                <ul>Username: {{ username }}</ul>
-                <ul>Data of Birth: 2022/04/33</ul>
-                <ul>E-mail: managabachi@gmai.com</ul>
+                <ul>Username: {{ username.username }}</ul>
+                <ul>Data of Birth: {{username.dob | date:'shortDate'}}</ul>
+                <ul>E-mail: {{username.email}}</ul>
             </div>
         </div>
     </div>
