@@ -97,20 +97,22 @@
     </div>
 </div>
 <!--INFO modal-->
+
 <div class="modal fade" id="userinfo_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" style="position: absolute; top: 20vh; background-color: #0B1B66;">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 5%; top: 5%;"></button>
             <div id="student_info">
-                <ul>Username: {{ username.username }}</ul>
-                <ul>Date of Birth: {{username.dob | date:'shortDate'}}</ul>
-                <ul>E-mail: {{username.email}}</ul>
+                <ng-template [ngIf]="username">
+                    <ul>Username: {{ username.username }}</ul>
+                    <ul>Date of Birth: {{username.dob | date:'shortDate'}}</ul>
+                    <ul>E-mail: {{username.email}}</ul>
+                </ng-template>
             </div>
         </div>
     </div>
 </div>
-
 <!--creating delte modal-->
 <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

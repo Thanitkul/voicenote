@@ -12,7 +12,7 @@ export class TeacherComponent implements OnInit {
     userInfoModal: any;
     deleteModal: any;
     searchText: any;
-    username: any;
+    username: any = {};
     courses: any;
     deleteId: any;
     name: string = "";
