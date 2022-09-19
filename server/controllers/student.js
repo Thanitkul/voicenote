@@ -72,4 +72,47 @@ router.post('/join-course', RouteProtection.verify, async (req, res, next) => {
     }
 })
 
+//leave 
+
+router.post('/leave-course', RouteProtection.verify, async(req, res, next) => {
+
+  try {
+      
+      const courseID = req.body.courseId;
+
+      console.log(courseID)
+      console.log(req.user.userId)
+    
+      await con.query("DELETE FROM student-course WHERE `studentId` = ? AND `courseId` = ?", [req.user.userId, courseID]);
+
+    //   const course = await con.query(
+    //       'SELECT * FROM student_course WHERE id = ?',
+    //       courseID
+    //   )
+
+    //   if (course.length() != 0) {
+    //     if ([req.user.user] != course[0].courseId) {
+    //         con.end
+    //         res.status(400).json({message: 'ur not the owner of this course'})
+    //     }
+
+    //   }
+
+        
+
+
+
+  } catch(error) {
+    next(error);
+  }
+})
+
 module.exports = router
+
+
+
+// 
+//[[req.user.userId], courseId[0]['id']]
+//
+//req.body.courseId
+//req.user.userId
