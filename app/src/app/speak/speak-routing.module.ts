@@ -4,7 +4,7 @@ import { SpeakComponent } from './speak.component';
 
 
 const routes: Routes = [{ 
-    path: '', 
+    path: ':id', 
     component: SpeakComponent 
 }];
 
