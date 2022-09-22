@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { speakService } from './speak.service';
+import { ActivatedRoute } from '@angular/router';
 
 // declare var stt: any;
 // declare var startButton: any;
@@ -29,19 +30,25 @@ export class SpeakComponent implements OnInit {
     first_char: string | any = /\S/;
     finalSpan: string = '';
     displayList: string[] = [];
+    room : any;
+    recordingId: any = -1;
 
-    constructor(private service: speakService) {
+    constructor(private service: speakService, private route: ActivatedRoute) {
         
     }
 
     ngOnInit(): void {
-        this.service.socketConnection(1);
+        this.room = this.route.snapshot.paramMap.get('id')
+        this.service.socketConnection(this.room);
         this.stt();
         this.service.socketListen('message').subscribe({
             next: (response) => {
                 this.displayList.push(response)
             }
         })
+        this.recordingId = this.service.startLive(this.room).subscribe(res => { this.recordingId = res.recordingId, console.log(this.recordingId) })
+        
+        
     }
 
     stt() {
@@ -119,13 +126,14 @@ export class SpeakComponent implements OnInit {
 
             if (event.results[i].isFinal && Math.round(confidence) > 0) {
                 this.service.socketEmit('message', {
-                    room: 1,
-                    messageText: _transcript
+                    room: this.room,
+                    messageText: _transcript,
+                    recordingId: this.recordingId
                 })
             }
+
         }
     }
-
     stop() {
         this.recognition.stop();
     }
