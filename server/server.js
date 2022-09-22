@@ -49,12 +49,14 @@ IO.on('connection', (socket) => {
       socket.join(room);
   });
 
-  socket.on('message', async ({ room, messageText }) => {
+  socket.on('message', async ({ room, messageText, recordingId }) => {
       // await con.query('INSERT INTO chats (message, room, created) VALUES (?, ?, ?)', [
       //     messageText, 
       //     room,
       //     new Date()
       // ])
+
+      await con.query("UPDATE recordings SET data = CONCAT(data, ?) WHERE id = ?", [messageText, recordingId]);
       
       IO.to(room).emit('message', messageText)
   });
