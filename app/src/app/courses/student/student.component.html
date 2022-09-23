@@ -8,9 +8,6 @@
             Info
         </div>
     </div>
-    <br>
-
-    
 
     <!-- add button -->
     <div type="button" (click)="openAddCourse()" class="create_box">
@@ -29,94 +26,75 @@
             </g>
         </svg>
     </div>
+</div>
+<br>
 
-
-    <input class="form-control" id="course_searchbox" type="text" name="search" [(ngModel)]="searchText"
+    <input class="form-control mb-3" id="course_searchbox" type="text" name="search" [(ngModel)]="searchText"
         autocomplete="on" placeholder=" Search ">
-
 
     <!-- course rows -->
     <ng-template [ngIf]="courses">
-        <div style="padding-bottom: 10px; text-align: center;" *ngFor="let course of courses | filter:searchText">
-            <a routerLink="/note/{{course['id']}}" routerLinkActive="active" style="text-decoration: none;">
-                <div class="course_box">
-                    <div id="course_box_subject" class="card-title">{{course["courseName"]}}
-                    </div>
-                    <div class="card-text" id="student_history">History</div>
-                    <div class="bin" (click)="openDeleteModal(course.id)">
-                        <svg width="30" height="30" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 791.908 791.908"
-                            xml:space="preserve">
-                            <g>
-                                <path d="M648.587,99.881H509.156C500.276,43.486,452.761,0,394.444,0S287.696,43.486,279.731,99.881H142.315
-                                                    c-26.733,0-48.43,21.789-48.43,48.43v49.437c0,24.719,17.761,44.493,41.564,47.423V727.64c0,35.613,28.655,64.268,64.268,64.268
-                                                    h392.475c35.613,0,64.268-28.655,64.268-64.268V246.087c23.711-3.937,41.564-23.711,41.564-47.423v-49.437
-                                                    C697.017,121.67,675.228,99.881,648.587,99.881z M394.444,36.62c38.543,0,70.219,26.733,77.085,63.261H316.351
-                                                    C324.225,64.268,355.901,36.62,394.444,36.62z M618.924,728.739c0,14.831-11.901,27.648-27.648,27.648H198.71
-                                                    c-14.831,0-27.648-11.901-27.648-27.648V247.185h446.948v481.554H618.924z M660.397,197.748c0,6.958-4.944,11.902-11.902,11.902
-                                                    H142.223c-6.958,0-11.902-4.944-11.902-11.902v-49.437c0-6.958,4.944-11.902,11.902-11.902h505.265
-                                                    c6.958,0,11.901,4.944,11.901,11.902v49.437H660.397z M253.09,661.45V349.081c0-9.887,7.873-17.761,17.761-17.761
-                                                    s17.761,7.873,17.761,17.761V661.45c0,9.887-7.873,17.761-17.761,17.761C260.964,680.309,253.09,671.337,253.09,661.45z
-                                                    M378.606,661.45V349.081c0-9.887,7.873-17.761,17.761-17.761c9.887,0,17.761,7.873,17.761,17.761V661.45
-                                                    c0,9.887-7.873,17.761-17.761,17.761C386.57,680.309,378.606,671.337,378.606,661.45z M504.212,661.45V349.081
-                                                    c0-9.887,7.873-17.761,17.761-17.761s17.761,7.873,17.761,17.761V661.45c0,9.887-7.873,17.761-17.761,17.761
-                                                    C513.093,680.309,504.212,671.337,504.212,661.45z" />
-                            </g>
-                        </svg>
-                    </div>
-                    <ng-template [ngIf]="course.isLive != 0">
+        <div class="container">
+            <div class="card mb-3 mx-4 gray rounded-4" *ngFor="let course of courses | filter:searchText">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-10">
+                            <h2 (click)="goto(course.id)" style="cursor: pointer">{{course.courseName}}</h2>
+            
+                            <a routerLink="/history/{{course.id}}" class="btn btn-sm mt-4" style="background-color: white;">
+                                History
+                            </a>
+                        </div>
 
-                        <div id="student_rec">
-                            <span id="rec">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    version="1.1" id="Capa_1" x="0px" y="0px" width="12px" height="12px"
-                                    viewBox="0 0 229.6 229.6" xml:space="preserve">
+                        <div class="col-2">
+                            <ng-template [ngIf]="course.isLive != 0">
+                                <div id="student_rec">
+                                    <span id="rec">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                                            id="Capa_1" x="0px" y="0px" width="12px" height="12px" viewBox="0 0 229.6 229.6"
+                                            xml:space="preserve">
+                                            <g>
+                                                <circle xmlns="http://www.w3.org/2000/svg" cx="114.8" cy="114.8" r="114.8" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span>
+                                        REC
+                                    </span>
+                                </div>
+                            </ng-template>
+
+                            <div class="bin" style="margin-top: 8vh;" (click)="openDeleteModal(course.id)">
+                                <svg width="30" height="30" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 791.908 791.908" xml:space="preserve">
                                     <g>
-                                        <circle xmlns="http://www.w3.org/2000/svg" cx="114.8" cy="114.8" r="114.8" />
+                                        <path d="M648.587,99.881H509.156C500.276,43.486,452.761,0,394.444,0S287.696,43.486,279.731,99.881H142.315
+                                                                            c-26.733,0-48.43,21.789-48.43,48.43v49.437c0,24.719,17.761,44.493,41.564,47.423V727.64c0,35.613,28.655,64.268,64.268,64.268
+                                                                            h392.475c35.613,0,64.268-28.655,64.268-64.268V246.087c23.711-3.937,41.564-23.711,41.564-47.423v-49.437
+                                                                            C697.017,121.67,675.228,99.881,648.587,99.881z M394.444,36.62c38.543,0,70.219,26.733,77.085,63.261H316.351
+                                                                            C324.225,64.268,355.901,36.62,394.444,36.62z M618.924,728.739c0,14.831-11.901,27.648-27.648,27.648H198.71
+                                                                            c-14.831,0-27.648-11.901-27.648-27.648V247.185h446.948v481.554H618.924z M660.397,197.748c0,6.958-4.944,11.902-11.902,11.902
+                                                                            H142.223c-6.958,0-11.902-4.944-11.902-11.902v-49.437c0-6.958,4.944-11.902,11.902-11.902h505.265
+                                                                            c6.958,0,11.901,4.944,11.901,11.902v49.437H660.397z M253.09,661.45V349.081c0-9.887,7.873-17.761,17.761-17.761
+                                                                            s17.761,7.873,17.761,17.761V661.45c0,9.887-7.873,17.761-17.761,17.761C260.964,680.309,253.09,671.337,253.09,661.45z
+                                                                            M378.606,661.45V349.081c0-9.887,7.873-17.761,17.761-17.761c9.887,0,17.761,7.873,17.761,17.761V661.45
+                                                                            c0,9.887-7.873,17.761-17.761,17.761C386.57,680.309,378.606,671.337,378.606,661.45z M504.212,661.45V349.081
+                                                                            c0-9.887,7.873-17.761,17.761-17.761s17.761,7.873,17.761,17.761V661.45c0,9.887-7.873,17.761-17.761,17.761
+                                                                            C513.093,680.309,504.212,671.337,504.212,661.45z" />
                                     </g>
                                 </svg>
-                            </span>
-                            <span>
-                                REC
-                            </span>
+                            </div>
                         </div>
-                        
-                    </ng-template>
+                    </div>
                 </div>
-            </a>
-            <a routerLink="/history/{{course['id']}}" routerLinkActive="active"
-                style="text-decoration: none; position: absolute;">
-                <!-- <div class="card-text" id="student_history">History</div> -->
-            </a>
-            <!-- <div class="bin" (click)="openDeleteModal(course.id)">
-                <svg width="30" height="30" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 791.908 791.908"
-                    xml:space="preserve">
-                    <g>
-                        <path d="M648.587,99.881H509.156C500.276,43.486,452.761,0,394.444,0S287.696,43.486,279.731,99.881H142.315
-                                            c-26.733,0-48.43,21.789-48.43,48.43v49.437c0,24.719,17.761,44.493,41.564,47.423V727.64c0,35.613,28.655,64.268,64.268,64.268
-                                            h392.475c35.613,0,64.268-28.655,64.268-64.268V246.087c23.711-3.937,41.564-23.711,41.564-47.423v-49.437
-                                            C697.017,121.67,675.228,99.881,648.587,99.881z M394.444,36.62c38.543,0,70.219,26.733,77.085,63.261H316.351
-                                            C324.225,64.268,355.901,36.62,394.444,36.62z M618.924,728.739c0,14.831-11.901,27.648-27.648,27.648H198.71
-                                            c-14.831,0-27.648-11.901-27.648-27.648V247.185h446.948v481.554H618.924z M660.397,197.748c0,6.958-4.944,11.902-11.902,11.902
-                                            H142.223c-6.958,0-11.902-4.944-11.902-11.902v-49.437c0-6.958,4.944-11.902,11.902-11.902h505.265
-                                            c6.958,0,11.901,4.944,11.901,11.902v49.437H660.397z M253.09,661.45V349.081c0-9.887,7.873-17.761,17.761-17.761
-                                            s17.761,7.873,17.761,17.761V661.45c0,9.887-7.873,17.761-17.761,17.761C260.964,680.309,253.09,671.337,253.09,661.45z
-                                            M378.606,661.45V349.081c0-9.887,7.873-17.761,17.761-17.761c9.887,0,17.761,7.873,17.761,17.761V661.45
-                                            c0,9.887-7.873,17.761-17.761,17.761C386.57,680.309,378.606,671.337,378.606,661.45z M504.212,661.45V349.081
-                                            c0-9.887,7.873-17.761,17.761-17.761s17.761,7.873,17.761,17.761V661.45c0,9.887-7.873,17.761-17.761,17.761
-                                            C513.093,680.309,504.212,671.337,504.212,661.45z" />
-                    </g>
-                </svg>
-            </div> -->
+            </div>
         </div>
     </ng-template>
-
 
     <!--creating form modal-->
     <div class="modal fade" id="addcourse_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div id="box_delete" class="modal-content" style="height: 20vh;">
+            <div id="box_delete" class="modal-content" style="height: 20vh; z-index: 5;">
                 <h5 class="modal-title" id="exampleModalLabel"></h5>
                 <button style="position: absolute; right: 5%; top: 5%;" type="button" class="btn-close"
                     data-bs-dismiss="modal" aria-label="Close"></button>
@@ -147,6 +125,7 @@
             </div>
         </div>
     </div>
+
     <!--creating delte modal-->
     <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -163,4 +142,3 @@
             </div>
         </div>
     </div>
-</div>

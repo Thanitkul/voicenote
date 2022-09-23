@@ -7,7 +7,10 @@
 
 
 
-
+.gray {
+    background-color: #EEEEEE;
+    border-color: #EEEEEE;
+}
 
 
 #course_student {
@@ -21,7 +24,6 @@
 
 .course_box2{
     position: fixed;
-    z-index: -1;
     top: -20px;
     width: 100%;
     height: 16%;
@@ -30,6 +32,7 @@
     margin-right: auto;
     padding-top: 1vh;
     background-color: #0B1B66;
+    z-index: 50;
 }
 
 #course_box_subject {
@@ -54,6 +57,9 @@
     right: 2vh;
 }
 
+.modal{
+    z-index: 999999
+}
 .course_box {
     width: 85%;
     height: 100px;
@@ -117,8 +123,10 @@
     border-radius: 10px;
     font-weight: bold;
     color: black;
-    top: 55px;
-    left: 25px;
+    margin-top: -20px;
+    margin-left: -245px;
+    text-align: left;
+    z-index: 5;
 }
 
 #student_rec{
