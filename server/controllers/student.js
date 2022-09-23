@@ -72,4 +72,23 @@ router.post('/join-course', RouteProtection.verify, async (req, res, next) => {
     }
 })
 
+/**
+ * Endpoint https://newtonian-voicenote.fly.dev/api/student/get-recording-data/:recordingId
+ */
+router.get('/get-recording-data/:recordingId', RouteProtection.verify, async (req, res) => {
+    try {
+        const canView = await con.query("SELECT studentId FROM student_course LEFT JOIN `recordings` ON (student_course.courseId = recordings.courseId) WHERE recordings.id = ?", [req.params.recordingId])
+        
+        if (canView.length == 0 || canView[0]['studentId'] != req.user.userId) {
+            res.status(401).json({ message: "not the student of the course that this recording belongs to"})
+        } else {
+            const data = await con.query("SELECT data FROM recordings WHERE id = ?", [req.params.recordingId])
+            res.status(200).json(data)
+        }
+    } catch (error) {
+        console.log(error);
+        res.json(error)
+    }
+})
+
 module.exports = router
