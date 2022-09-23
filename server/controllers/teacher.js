@@ -135,7 +135,7 @@ router.post("/start-live", RouteProtection.verify, async (req, res, next) => {
 
     const owner = await con.query("SELECT ownerId FROM courses WHERE id = ?", [req.body.courseId])
 
-    if (owner[0] == req.user.userId) {
+    if (owner[0]['ownerId'] == req.user.userId) {
         await con.query("UPDATE courses SET isLive = 0 WHERE id = ?", [req.body.courseId])
         res.status(200).json({ message: "ended" });
     } else {
