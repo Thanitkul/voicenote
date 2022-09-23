@@ -125,5 +125,18 @@ router.post("/start-live", RouteProtection.verify, async (req, res, next) => {
   } catch (error) {
     console.log(error)
   }
-})
+});
+
+/**
+ * Endpoint https://newtonian-voicenote.fly.dev/api/teacher/end-live
+ */
+ router.post("/end-live", RouteProtection.verify, async (req, res, next) => {
+  try {
+    await con.query("UPDATE courses SET isLive = 0 WHERE id = ?", [req.body.courseId])
+    res.status(200).json({ message: "ended" });
+  } catch (error) {
+    console.log(error)
+  }
+});
+
 module.exports = router;
