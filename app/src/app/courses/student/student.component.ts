@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../course.service';
-declare var window: any;
+
+declare let bootstrap: any;
 
 
 @Component({
@@ -14,7 +15,7 @@ export class StudentComponent implements OnInit {
     userInfoModal: any;
     deleteModal: any;
     searchText: any;
-    username: any;
+    username: any = {};
     courses: any;
     deleteId: any;
     authToken: string = '';
@@ -23,10 +24,11 @@ export class StudentComponent implements OnInit {
 
     ngOnInit(): void {
         this.authToken = localStorage.getItem('token')!;
-        this.userInfoModal = new window.bootstrap.Modal(document.getElementById('userinfo_modal'));
-        this.deleteModal = new window.bootstrap.Modal(document.getElementById('delete_modal'));
-        this.addCourse = new window.bootstrap.Modal(document.getElementById('addcourse_modal'));
+        this.userInfoModal = new bootstrap.Modal(document.getElementById('userinfo_modal'));
+        this.deleteModal = new bootstrap.Modal(document.getElementById('delete_modal'));
+        this.addCourse = new bootstrap.Modal(document.getElementById('addcourse_modal'));
         this.courseserv.getCourseStudent().subscribe((res: any) => {this.courses = res,console.log(this.courses)});
+        this.courseserv.getUsername().subscribe((res: any) => {this.username = res, console.log(this.username)});
         
     }
     logout(): void {

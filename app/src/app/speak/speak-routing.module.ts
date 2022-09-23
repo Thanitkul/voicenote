@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SpeakComponent } from './speak.component';
 
+
 const routes: Routes = [{ 
-    path: '', 
+    path: ':id', 
     component: SpeakComponent 
 }];
 

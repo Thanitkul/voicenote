@@ -12,7 +12,7 @@ router.get('/courses', RouteProtection.verify, async (req, res, next) => {
             'SELECT courses.id, `courseName`, `code`, `isLive` FROM `courses` LEFT JOIN `student_course` ON (courses.id = student_course.courseId) WHERE `studentId` = ?',
             [req.user.userId]
         )
-        con.end
+        
         res.json(courses);
     } catch (error) {
         console.log({ error })
@@ -30,10 +30,10 @@ router.get('/get-recording/:id', RouteProtection.verify, async (req, res, next) 
         const isStudent = await con.query("SELECT * FROM student_course WHERE studentId = ? AND courseId = ?", [req.user.userId, req.params.id] );
 
         if(!isStudent) {
-            con.end
+            
             res.status(401).json({ message: "Unauthorised, Not enrolled in this course" })
         } else {
-            con.end
+            
             res.status(200).json((await con.query("SELECT * FROM `recordings` WHERE `courseId` = ?", [req.params.id])))
         }
     } catch (err) {
@@ -57,14 +57,14 @@ router.post('/join-course', RouteProtection.verify, async (req, res, next) => {
         )
         console.log(already_join);
         if (already_join.length != 0) {
-            con.end
+            
             res.json({ message: "user already joined" })
         } else {
             const student_course = await con.query(
                 'INSERT INTO student_course (`studentId`, `courseId`) VALUE (?,?)',
                 [[req.user.userId], courseId[0]['id']]
             )
-            con.end
+            
             res.status(200).json({ message: "Success" })
         }
     } catch (error) {
@@ -72,20 +72,37 @@ router.post('/join-course', RouteProtection.verify, async (req, res, next) => {
     }
 })
 
-//leave 
-
-router.post('/leave-course', RouteProtection.verify, async(req, res, next) => {
+/**
+ * Endpoint https://newtonian-voicenote.fly.dev/api/student/leave-course
+ */
+router.delete('/leave-course', RouteProtection.verify, async(req, res, next) => {
 
   try {
       const courseID = req.body.courseId;
     
       await con.query("DELETE FROM student-course WHERE `studentId` = ? AND `courseId` = ?", [req.user.userId, courseID]);
   } catch(error) {
-    next(error);
+        res.status(500)
   }
 })
 
+/**
+ * Endpoint https://newtonian-voicenote.fly.dev/api/student/get-recording-data/:recordingId
+ */
+router.get('/get-recording-data/:recordingId', RouteProtection.verify, async (req, res) => {
+    try {
+        const canView = await con.query("SELECT studentId FROM student_course LEFT JOIN `recordings` ON (student_course.courseId = recordings.courseId) WHERE recordings.id = ?", [req.params.recordingId])
+        
+        if (canView.length == 0 || canView[0]['studentId'] != req.user.userId) {
+            res.status(401).json({ message: "not the student of the course that this recording belongs to"})
+        } else {
+            const data = await con.query("SELECT data FROM recordings WHERE id = ?", [req.params.recordingId])
+            res.status(200).json(data)
+        }
+    } catch (error) {
+        console.log(error);
+        res.json(error)
+    }
+})
+
 module.exports = router
-
-
-

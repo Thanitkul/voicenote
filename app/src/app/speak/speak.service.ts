@@ -44,6 +44,12 @@ export class speakService {
 
         return observable;
     }
+    startLive(id: number) {
+        const body = {
+            courseId: id
+        };
+        return this.http.post<any>(`${environment.apiHost}/teacher/start-live`, body)
+    }
 
     // getChatsByRoom(room: string) {
     //     return this.http.get(`${environment.apiHost}/chats/${room}`)
