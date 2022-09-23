@@ -51,6 +51,13 @@ export class speakService {
         return this.http.post<any>(`${environment.apiHost}/teacher/start-live`, body)
     }
 
+    EndLive(id: number) {
+        const body = {
+            courseId: id
+        };
+        return this.http.post<any>(`${environment.apiHost}/teacher/end-live`, body)
+    }
+
     // getChatsByRoom(room: string) {
     //     return this.http.get(`${environment.apiHost}/chats/${room}`)
     // }

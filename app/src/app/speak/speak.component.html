@@ -17,7 +17,26 @@
     <div class="row"> <button type="button" id='btn-transcribe' class="start" (click)="start()"><i class='bx bx-pause bx-lg'
                 ></i>
         </button>
-        <button type="button" id='btn-reset' class="finish" (click)="stop()">Finish</button>
+        <button type="button" id='btn-reset' class="finish" (click)="openStopModal()">Finish</button>
     </div>
 
+</div>
+
+<!--creating course modal-->
+<div class="modal fade" id="stop_modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" (click)="stop()" class="btn btn-primary">End</button>
+            </div>
+        </div>
+    </div>
 </div>

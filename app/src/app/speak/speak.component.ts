@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { speakService } from './speak.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+declare var bootstrap: any;
 
 // declare var stt: any;
 // declare var startButton: any;
@@ -32,12 +33,14 @@ export class SpeakComponent implements OnInit {
     displayList: string[] = [];
     room : any;
     recordingId: any = -1;
+    stopModal: any;
 
-    constructor(private service: speakService, private route: ActivatedRoute) {
+    constructor(private service: speakService, private route: ActivatedRoute, private router: Router) {
         
     }
 
     ngOnInit(): void {
+        this.stopModal = new bootstrap.Modal(document.getElementById('stop_modal'));
         this.room = this.route.snapshot.paramMap.get('id')
         this.service.socketConnection(this.room);
         this.stt();
@@ -133,8 +136,16 @@ export class SpeakComponent implements OnInit {
             }
 
         }
+    
     }
+
+    openStopModal(): void {
+        this.stopModal.show();
+    }
+
     stop() {
         this.recognition.stop();
-    }
+        this.service.EndLive(this.room).subscribe(res => this.router.navigate(['/courses/teacher']))
+        
+    }   
 }
