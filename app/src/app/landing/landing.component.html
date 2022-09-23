@@ -27,22 +27,25 @@
       <div class="spacer2"></div>
       <h1>Voice</h1>
       <h1>Note</h1>
-      <p class="mb-2">Note-Taking</p>
-      <p>made easy</p>
+      <p class="mb-2 text1">Note-Taking</p>
+      <p class="text1">made easy</p>
     </div>
   </div>
 
   <div class="container">
-    <div class="mb-4 mt-4 d-grid px-4">
-      <button class="btn orange" type="button" (click)="redirectTeacher()">
+    <div class="marginteacher d-grid">
+      <button class="btn orange paddingbutton" type="button" (click)="redirectTeacher()">
         Teacher
       </button>
     </div>
 
-    <div class="mb-4 d-grid px-4">
-      <button class="btn brown" type="button" (click)="redirectStudent()">
+    <div class="d-grid marginstudent">
+      <button class="btn brown paddingbutton" type="button" (click)="redirectStudent()">
         Student
       </button>
+    </div>
+    <div class="text-center mt-4">
+        <p class="text2">New here? <u (click)="redirectSignup()">Create an Account</u></p>
     </div>
   </div>
 </div>
