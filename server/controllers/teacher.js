@@ -118,10 +118,9 @@ router.delete(
  */
 router.post("/start-live", RouteProtection.verify, async (req, res, next) => {
   try {
-    const record = await con.query("INSERT INTO recordings (courseId, data, recordedAt) VALUES (?, ?, ?)", [req.body.courseId, "", new Date()])
     await con.query("UPDATE courses SET isLive = 1 WHERE id = ?", [req.body.courseId])
     
-    res.status(200).json({'recordingId': record.insertId})
+    res.status(200)
   } catch (error) {
     console.log(error)
   }
