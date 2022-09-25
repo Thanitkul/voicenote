@@ -116,11 +116,14 @@ router.delete(
 /**
  * Endpoint https://newtonian-voicenote.fly.dev/api/teacher/start-live
  */
-router.post("/start-live", RouteProtection.verify, async (req, res, next) => {
+router.patch("/start-live", RouteProtection.verify, async (req, res, next) => {
   try {
     await con.query("UPDATE courses SET isLive = 1 WHERE id = ?", [req.body.courseId])
+
+    const date = new Date()
+    let groupId = req.body.courseId + date.getFullYear() + date.getMonth() + date.getDate() + date.getTime()
     
-    res.status(200)
+    res.status(200).json({ "groupId": groupId})
   } catch (error) {
     console.log(error)
   }
@@ -129,7 +132,7 @@ router.post("/start-live", RouteProtection.verify, async (req, res, next) => {
 /**
  * Endpoint https://newtonian-voicenote.fly.dev/api/teacher/end-live
  */
- router.post("/end-live", RouteProtection.verify, async (req, res, next) => {
+ router.patch("/end-live", RouteProtection.verify, async (req, res, next) => {
   try {
 
     const owner = await con.query("SELECT ownerId FROM courses WHERE id = ?", [req.body.courseId])

@@ -48,14 +48,14 @@ export class speakService {
         const body = {
             courseId: id
         };
-        return this.http.post<any>(`${environment.apiHost}/teacher/start-live`, body)
+        return this.http.patch<any>(`${environment.apiHost}/teacher/start-live`, body)
     }
 
     EndLive(id: number) {
         const body = {
             courseId: id
         };
-        return this.http.post<any>(`${environment.apiHost}/teacher/end-live`, body)
+        return this.http.patch<any>(`${environment.apiHost}/teacher/end-live`, body)
     }
 
     // getChatsByRoom(room: string) {
