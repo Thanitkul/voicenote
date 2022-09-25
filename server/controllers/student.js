@@ -23,9 +23,9 @@ router.get('/courses', RouteProtection.verify, async (req, res, next) => {
 })
 
 /**
- * Endpoint https://newtonian-voicenote.fly.dev/api/student/get-recording/:id
+ * Endpoint https://newtonian-voicenote.fly.dev/api/student/get-recordings/:id
  */
-router.get('/get-recording/:id', RouteProtection.verify, async (req, res, next) => {
+router.get('/get-recordings/:id', RouteProtection.verify, async (req, res, next) => {
     try {
         const isStudent = await con.query("SELECT * FROM student_course WHERE studentId = ? AND courseId = ?", [req.user.userId, req.params.id] );
 
@@ -34,7 +34,7 @@ router.get('/get-recording/:id', RouteProtection.verify, async (req, res, next) 
             res.status(401).json({ message: "Unauthorised, Not enrolled in this course" })
         } else {
             
-            res.status(200).json((await con.query("SELECT * FROM `recordings` WHERE `courseId` = ?", [req.params.id])))
+            res.status(200).json((await con.query("SELECT date(recordedAt) recordedAtDate, time(recordedAt) recordedAtTime, groupId FROM recordings WHERE courseId = ? GROUP BY groupId ORDER BY id", [req.params.id])))
         }
     } catch (err) {
         next(err)
@@ -87,16 +87,16 @@ router.delete('/leave-course', RouteProtection.verify, async(req, res, next) => 
 })
 
 /**
- * Endpoint https://newtonian-voicenote.fly.dev/api/student/get-recording-data/:recordingId
+ * Endpoint https://newtonian-voicenote.fly.dev/api/student/get-recording-data/:groupId
  */
-router.get('/get-recording-data/:recordingId', RouteProtection.verify, async (req, res) => {
+router.get('/get-recording-data/:groupId', RouteProtection.verify, async (req, res) => {
     try {
-        const canView = await con.query("SELECT studentId FROM student_course LEFT JOIN `recordings` ON (student_course.courseId = recordings.courseId) WHERE recordings.id = ?", [req.params.recordingId])
+        const canView = await con.query("SELECT studentId FROM student_course LEFT JOIN `recordings` ON (student_course.courseId = recordings.courseId) WHERE recordings.groupId = ?", [req.params.groupId])
         
         if (canView.length == 0 || canView[0]['studentId'] != req.user.userId) {
             res.status(401).json({ message: "not the student of the course that this recording belongs to"})
         } else {
-            const data = await con.query("SELECT data FROM recordings WHERE id = ?", [req.params.recordingId])
+            const data = await con.query("SELECT data FROM recordings WHERE groupId = ? ORDER BY id", [req.params.groupId])
             res.status(200).json(data)
         }
     } catch (error) {

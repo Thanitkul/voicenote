@@ -49,9 +49,9 @@ IO.on('connection', (socket) => {
       socket.join(room);
   });
 
-  socket.on('message', async ({ room, messageText, recordingId }) => {
+  socket.on('message', async ({ room, messageText, groupId,  }) => {
 
-      await con.query("UPDATE recordings SET data = CONCAT(data, ?) WHERE id = ?", [messageText, recordingId]);
+      await con.query("INSERT INTO recordings (`courseId`, `groupId`, `data`) VALUE (?, ?, ?)", [room, groupId, messageText]);
       
       IO.to(room).emit('message', messageText)
   });
