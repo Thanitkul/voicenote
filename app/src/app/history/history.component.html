@@ -4,9 +4,11 @@
 
 <tr *ngFor = "let row of history">
     <div class = history_box>
-        <div class = "history_date">{{ row.date }}</div>
+        <div class = "history_date">{{ row.date | date: 'shortDate' }}</div>
         <div class = history_time_box *ngFor = "let time of row.times">
-            <div class = "history_time">{{ time.time }}</div>
+            <a routerLink="/archive/{{time.groupId}}" routerLinkActive="active" style="text-decoration: none;">
+                <div class="history_time">{{ time.time }}</div>
+            </a>
         </div>
     </div>
 </tr>
