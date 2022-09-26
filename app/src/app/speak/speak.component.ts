@@ -149,4 +149,8 @@ export class SpeakComponent implements OnInit {
         this.service.EndLive(this.room).subscribe(res => this.router.navigate(['/courses/teacher']))
         
     }   
+
+    redirectCourse() {
+        this.router.navigate(['/courses/teacher'])
+    }
 }
