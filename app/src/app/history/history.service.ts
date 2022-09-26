@@ -5,13 +5,14 @@ import { environment } from 'src/environments/environment';
 @Injectable({
     providedIn: 'root'
 })
-export class CourseService {
+export class HistoryService {
 
     constructor(private http: HttpClient) { }
 
-    getUsername() {
+    getHistory(id: string | null) {
 
-        return this.http.get(`${environment.apiHost}/auth/get-username`)
+        return this.http.get(`${environment.apiHost}/student/get-recordings/` + id)
     }
+    
 
 }
