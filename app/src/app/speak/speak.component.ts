@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { speakService } from './speak.service';
+import { ActivatedRoute, Router } from '@angular/router';
+declare var bootstrap: any;
 
 // declare var stt: any;
 // declare var startButton: any;
@@ -29,19 +31,27 @@ export class SpeakComponent implements OnInit {
     first_char: string | any = /\S/;
     finalSpan: string = '';
     displayList: string[] = [];
+    room : any;
+    groupId: any = -1;
+    stopModal: any;
 
-    constructor(private service: speakService) {
+    constructor(private service: speakService, private route: ActivatedRoute, private router: Router) {
         
     }
 
     ngOnInit(): void {
-        this.service.socketConnection(1);
+        this.stopModal = new bootstrap.Modal(document.getElementById('stop_modal'));
+        this.room = this.route.snapshot.paramMap.get('id')
+        this.service.socketConnection(this.room);
         this.stt();
         this.service.socketListen('message').subscribe({
             next: (response) => {
                 this.displayList.push(response)
             }
         })
+        this.groupId = this.service.startLive(this.room).subscribe(res => { this.groupId = res.groupId, console.log(this.groupId) })
+        
+        
     }
 
     stt() {
@@ -119,14 +129,28 @@ export class SpeakComponent implements OnInit {
 
             if (event.results[i].isFinal && Math.round(confidence) > 0) {
                 this.service.socketEmit('message', {
-                    room: 1,
-                    messageText: _transcript
+                    room: this.room,
+                    messageText: _transcript,
+                    groupId: this.groupId
                 })
             }
+
         }
+    
+    }
+
+    openStopModal(): void {
+        this.stopModal.show();
     }
 
     stop() {
         this.recognition.stop();
+        this.stopModal.hide();
+        this.service.EndLive(this.room).subscribe(res => this.router.navigate(['/courses/teacher']))
+        
+    }   
+
+    redirectCourse() {
+        this.router.navigate(['/courses/teacher'])
     }
 }

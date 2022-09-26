@@ -49,12 +49,9 @@ IO.on('connection', (socket) => {
       socket.join(room);
   });
 
-  socket.on('message', async ({ room, messageText }) => {
-      // await con.query('INSERT INTO chats (message, room, created) VALUES (?, ?, ?)', [
-      //     messageText, 
-      //     room,
-      //     new Date()
-      // ])
+  socket.on('message', async ({ room, messageText, groupId,  }) => {
+
+      await con.query("INSERT INTO recordings (`courseId`, `groupId`, `data`) VALUE (?, ?, ?)", [room, groupId, messageText]);
       
       IO.to(room).emit('message', messageText)
   });

@@ -116,14 +116,37 @@ router.delete(
 /**
  * Endpoint https://newtonian-voicenote.fly.dev/api/teacher/start-live
  */
-router.post("/start-live", RouteProtection.verify, async (req, res, next) => {
+router.patch("/start-live", RouteProtection.verify, async (req, res, next) => {
   try {
-    const record = await con.query("INSERT INTO recordings (courseId, data, recordedAt) VALUES (?, ?, ?)", [req.body.courseId, "", new Date()])
     await con.query("UPDATE courses SET isLive = 1 WHERE id = ?", [req.body.courseId])
+
+    const date = new Date()
+    let groupId = req.body.courseId + date.getFullYear() + date.getMonth() + date.getDate() + date.getTime()
     
-    res.status(200).json({'recordingId': record.insertId})
+    res.status(200).json({ "groupId": groupId})
   } catch (error) {
     console.log(error)
   }
-})
+});
+
+/**
+ * Endpoint https://newtonian-voicenote.fly.dev/api/teacher/end-live
+ */
+ router.patch("/end-live", RouteProtection.verify, async (req, res, next) => {
+  try {
+
+    const owner = await con.query("SELECT ownerId FROM courses WHERE id = ?", [req.body.courseId])
+
+    if (owner[0]['ownerId'] == req.user.userId) {
+        await con.query("UPDATE courses SET isLive = 0 WHERE id = ?", [req.body.courseId])
+        res.status(200).json({ message: "ended" });
+    } else {
+        res.status(401).json({ message: "not the owner of course" })
+    }
+    
+  } catch (error) {
+    console.log(error)
+  }
+});
+
 module.exports = router;
