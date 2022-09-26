@@ -6,23 +6,23 @@
                     <path d="M5.34058e-05 286.667C45.0392 286.667 81.6667 250.039 81.6667 205V82.5C81.6667 37.2363 45.223 0.404595 0.428802 0.404595C1.82736 0.0740414 -1.00826 0.41323 0.428802 0.404595C0.428784 10 0.214448 102.655 0.214401 143.75C0.276073 253.5 0.0277665 61.5126 0 82.5L0.428802 205C0.428802 250.039 5.34058e-05 286.667 5.34058e-05 286.667Z" fill="#0B1B66"/>
                     <path d="M8.01086e-05 409.167H20.4168V366.925C100.838 356.818 163.333 288.157 163.333 205H122.5C122.5 272.559 67.5588 327.5 8.01086e-05 327.5C1.90735e-05 336.5 0 421.559 0 354C0 437.137 8.01086e-05 401 8.01086e-05 409.167Z" fill="#0B1B66"/>
                 </svg>
-            </div>
-            <div class="col-6 text-end">
-                <link href='https://fonts.googleapis.com/css?family=M PLUS Rounded 1c' rel='stylesheet'>
-                <div class = "spacer2"></div>
-                    <h1>Voice</h1>
-                    <h1>Note</h1>
-                <p class ="bgcolor2" name = "who">{{name}}</p>
-            </div>
         </div>
+        <div class="col-6 text-end">
+            <link href='https://fonts.googleapis.com/css?family=M PLUS Rounded 1c' rel='stylesheet'>
+            <div class = "spacer2"></div>
+                <h1>Voice</h1>
+                <h1>Note</h1>
+            <p class ="bgcolor2" name = "who">{{name}}</p>
+        </div>
+    </div>
 
     <div class="container">
         
-        <div class="mb-4 d-grid gap-2 margintop">
+        <div class="mb-3 d-grid gap-2 margintop">
             <input type="text" class="p-3 rounded-3 bgcolor border-0" name="email" placeholder = "Email" [(ngModel)]="signinForm.email" required>
         </div>
 
-        <div class="mb-4 d-grid gap-2">
+        <div class="mb-3 d-grid gap-2">
             <input type="password" class="p-3 rounded-3 bgcolor border-0" name="password" placeholder = "Password" [(ngModel)]="signinForm.password" required>
         </div>
 
