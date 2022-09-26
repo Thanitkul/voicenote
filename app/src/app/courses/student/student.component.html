@@ -39,9 +39,9 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-10">
-                            <h2 (click)="goto(course.id)" style="cursor: pointer">{{course.courseName}}</h2>
+                            <h2 (click)="goto(course.id)" style="cursor: pointer; font-size: 30px;"><b>{{course.courseName}}</b></h2>
             
-                            <a routerLink="/history/{{course.id}}" class="btn btn-sm mt-4" style="background-color: white;">
+                            <a routerLink="/history/{{course.id}}" class="btn btn-sm mt-4" style="background-color: white; font-size: 2vh; font-weight: bold;">
                                 History
                             </a>
                         </div>
