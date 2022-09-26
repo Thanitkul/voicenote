@@ -145,6 +145,7 @@ export class SpeakComponent implements OnInit {
 
     stop() {
         this.recognition.stop();
+        this.stopModal.hide();
         this.service.EndLive(this.room).subscribe(res => this.router.navigate(['/courses/teacher']))
         
     }   
