@@ -9,6 +9,7 @@ const routes: Routes = [
     { path: 'history/:id', loadChildren: () => import('./history/history.module').then(m => m.HistoryModule) },
     { path: 'courses', loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule) },
     { path: '', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule) },
+    { path: 'archive/:groupId', loadChildren: () => import('./archive/archive.module').then(m => m.ArchiveModule) },
     {path: '**', redirectTo: ''}
 ];
 
