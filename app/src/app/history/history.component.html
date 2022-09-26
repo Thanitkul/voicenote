@@ -1,12 +1,12 @@
 <div class = "nav">
-    <div class = "course_name"> <img class = "img" src = "/assets/images/image1.png" (click) = "redirect()"> {{ samples[0].course_name }}</div>
+    <div class = "course_name"> <img class = "img" src = "/assets/images/image1.png" (click) = "redirect()"> {{courseName}}</div>
 </div>
 
 <tr *ngFor = "let row of history">
     <div class = history_box>
         <div class = "history_date">{{ row.date | date: 'shortDate' }}</div>
         <div class = history_time_box *ngFor = "let time of row.times">
-            <a routerLink="/archive/{{time.groupId}}" routerLinkActive="active" style="text-decoration: none;">
+            <a routerLink="/archive/{{time.groupId}}" [queryParams]="{courseName: courseName}" routerLinkActive="active" style="text-decoration: none;">
                 <div class="history_time">{{ time.time }}</div>
             </a>
         </div>
