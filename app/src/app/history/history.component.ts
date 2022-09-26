@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
-import { HistoryService } from './history_.service';
+import { HistoryService } from './history.service';
 
 @Component({
   selector: 'app-history',
