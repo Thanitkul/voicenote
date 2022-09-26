@@ -114,7 +114,6 @@ export class SpeakComponent implements OnInit {
     }
 
     sttWatch(event: any): any {
-        console.log(event.results);
         let interim_transcript = '';
         if (typeof (event.results) == 'undefined') {
             this.recognition.onend = null;
@@ -125,9 +124,11 @@ export class SpeakComponent implements OnInit {
 
         for (var i = event.resultIndex; i < event.results.length; ++i) {
             let _transcript = event.results[i][0].transcript;
-            let confidence = event.results[i][0].confidence;
+            //let confidence = event.results[i][0].confidence;
 
-            if (event.results[i].isFinal && Math.round(confidence) > 0) {
+            //two condition (.isFinal and confidence)
+            if (event.results[i].isFinal) {
+                console.log(_transcript)
                 this.service.socketEmit('message', {
                     room: this.room,
                     messageText: _transcript,

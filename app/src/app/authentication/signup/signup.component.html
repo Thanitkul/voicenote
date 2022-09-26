@@ -1,38 +1,76 @@
 <div class="container-fiuld">
-    <div class="row row-bg bottom-radius">
-        <div class="col-6">
-            <div class="mt-1 p-3 ms-2">
-                <p class="mb-0 text1">Create an</p>
-                <p class="mt-2 text1">Account</p>
-            </div>
-        </div>
-        <div class="col-6">
-            <img class="size img-fiuld float-end" src="/assets/images/signup.png">
-        </div>
+  <div class="row row-bg bottom-radius">
+    <div class="col-6">
+      <div class="mt-1 p-3 ms-2">
+        <p class="mb-0 text1">Create an</p>
+        <p class="mt-2 text1">Account</p>
+      </div>
     </div>
-    <div class="container">
-
-        <div class="form">
-            <div class="mb-4 d-grid gap-2 margintop">
-                <input type = "name" class="p-3 rounded-3 bgcolor border-0" placeholder = "Username" required [(ngModel)]="signupForm.username">
-                <input type = "email" class = "p-3 rounded-3 bgcolor border-0 mt-4" placeholder = "Email" required [(ngModel)]="signupForm.email">
-                <input type = "password" class = "p-3 rounded-3 bgcolor border-0 mt-4" placeholder = "Password" required [(ngModel)]="signupForm.password">
-                <input type = "date" class = "p-3 rounded-3 bgcolor border-0 mt-4" placeholder = "DD/MM/YY" required [(ngModel)]="signupForm.dob">
-
-            </div>
-        </div>
-
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input bgcolor border-0 border-0" id="check2" name="option2" value="something">
-            <label class="form-check-label text2" for="check2">Agree to Privacy Policy</label>
-        </div>
-                
-        <div class="d-grid gap-2">
-            <button class="btn bgcolor2 text-white p-3 mt-4" type="button">Sign Up</button>
-        </div>
-
-        <div class="text-center mt-4">
-            <p class="text3">Already have an account? <u (click) = "redirectSignin()">Sign In</u></p>
-        </div>
+    <div class="col-6">
+      <img class="size img-fiuld float-end" src="/assets/images/signup.png" />
     </div>
+  </div>
+  <div class="container">
+    <div class="form">
+      <div class="mb-4 d-grid gap-2 margintop">
+        <input
+          type="name"
+          class="p-3 rounded-3 bgcolor border-0"
+          placeholder="Username"
+          required
+          [(ngModel)]="signupForm.username"
+        />
+        <input
+          type="email"
+          class="p-3 rounded-3 bgcolor border-0 mt-4"
+          placeholder="Email"
+          required
+          [(ngModel)]="signupForm.email"
+        />
+        <input
+          type="password"
+          class="p-3 rounded-3 bgcolor border-0 mt-4"
+          placeholder="Password"
+          required
+          [(ngModel)]="signupForm.password"
+        />
+        <input
+          type="date"
+          class="p-3 rounded-3 bgcolor border-0 mt-4"
+          placeholder="DD/MM/YY"
+          required
+          [(ngModel)]="signupForm.dob"
+        />
+      </div>
+    </div>
+
+    <div class="form-check">
+      <input
+        type="checkbox"
+        class="form-check-input bgcolor border-0 border-0"
+        id="check2"
+        name="option2"
+        value="something"
+      />
+      <label class="form-check-label text2" for="check2"
+        >Agree to Privacy Policy</label
+      >
+    </div>
+
+    <div class="d-grid gap-2">
+      <button
+        class="btn bgcolor2 text-white p-3 mt-4"
+        type="button"
+        (click)="Register()"
+      >
+        Sign Up
+      </button>
+    </div>
+
+    <div class="text-center mt-4">
+      <p class="text3">
+        Already have an account? <u (click)="redirectSignin()">Sign In</u>
+      </p>
+    </div>
+  </div>
 </div>
