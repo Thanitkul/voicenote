@@ -67,8 +67,8 @@ export class StudentComponent implements OnInit {
         }
         this.deleteId = ''
     }
-    goto(id: number) {
-        this.router.navigate(['/note', id]);
+    goto(courseId: number) {
+        this.router.navigate(['/note', courseId]);
     }
 
 }

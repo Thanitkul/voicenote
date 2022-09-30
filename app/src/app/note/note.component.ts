@@ -9,11 +9,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NoteComponent implements OnInit {
   displayList: string[] = [];
+  room: any = "";
     
-    constructor(private service: noteService, private router: Router) { }
+    constructor(private service: noteService, private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.service.socketConnection(1);
+        this.room = this.route.snapshot.paramMap.get('courseId')
+        this.service.socketConnection(this.room);
         this.service.socketListen('message').subscribe({
             next: (response) => {
                 this.displayList.push(response)
