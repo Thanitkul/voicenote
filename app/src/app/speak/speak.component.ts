@@ -32,7 +32,7 @@ export class SpeakComponent implements OnInit {
     finalSpan: string = '';
     displayList: string[] = [];
     room : any;
-    recordingId: any = -1;
+    groupId: any = -1;
     stopModal: any;
 
     constructor(private service: speakService, private route: ActivatedRoute, private router: Router) {
@@ -49,7 +49,7 @@ export class SpeakComponent implements OnInit {
                 this.displayList.push(response)
             }
         })
-        this.recordingId = this.service.startLive(this.room).subscribe(res => { this.recordingId = res.recordingId, console.log(this.recordingId) })
+        this.groupId = this.service.startLive(this.room).subscribe(res => { this.groupId = res.groupId, console.log(this.groupId) })
         
         
     }
@@ -131,7 +131,7 @@ export class SpeakComponent implements OnInit {
                 this.service.socketEmit('message', {
                     room: this.room,
                     messageText: _transcript,
-                    recordingId: this.recordingId
+                    groupId: this.groupId
                 })
             }
 
@@ -145,7 +145,12 @@ export class SpeakComponent implements OnInit {
 
     stop() {
         this.recognition.stop();
+        this.stopModal.hide();
         this.service.EndLive(this.room).subscribe(res => this.router.navigate(['/courses/teacher']))
         
     }   
+
+    redirectCourse() {
+        this.router.navigate(['/courses/teacher'])
+    }
 }

@@ -4,15 +4,15 @@
 }
 
 .text2{
-    color: red;
+    color: #0B1B66;
 }
 
 .text3 {
-    color: red;
+    color: #0B1B66;
 }
 
 .row-bg {
-    background-color: orange;
+    background-color:#0B1B66;
 }
 
 .bottom-radius {
@@ -35,4 +35,14 @@
 
 .margintop {
     margin-top: 3rem;
+}
+
+.margintop2 {
+    position: fixed;
+    bottom: 0;
+}
+
+.container-fiuld{
+    background-color: #ffffff;
+    height: 110vh !important;
 }

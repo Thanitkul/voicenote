@@ -1,8 +1,4 @@
 <div class="top">
-    <svg width="25" height="29" viewBox="0 0 25 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12.1274 2L0 14.1274L12.1274 26.2548L15.1321 23.25L6.0095 14.1274L15.1321 5.00475L12.1274 2Z"
-            fill="white" />
-    </svg>
     <p class="subject">Mathematics</p>
 </div>
 
@@ -17,7 +13,7 @@
     <div class="row"> <button type="button" id='btn-transcribe' class="start" (click)="start()"><i class='bx bx-pause bx-lg'
                 ></i>
         </button>
-        <button type="button" id='btn-reset' class="finish" (click)="openStopModal()">Finish</button>
+        <button type="button" id='btn-reset' class="finish" (click)="openStopModal()" (click) = "redirectCourse()">Finish</button>
     </div>
 
 </div>

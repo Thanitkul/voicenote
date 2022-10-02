@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { noteService } from './note.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
@@ -7,11 +9,13 @@ import { noteService } from './note.service';
 })
 export class NoteComponent implements OnInit {
   displayList: string[] = [];
+  room: any = "";
     
-    constructor(private service: noteService) { }
+    constructor(private service: noteService, private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.service.socketConnection(1);
+        this.room = this.route.snapshot.paramMap.get('courseId')
+        this.service.socketConnection(this.room);
         this.service.socketListen('message').subscribe({
             next: (response) => {
                 this.displayList.push(response)
@@ -19,5 +23,7 @@ export class NoteComponent implements OnInit {
         })
     }
 
-
+    redirectCourse() {
+      this.router.navigate(['/courses/student'])
+    }
 }

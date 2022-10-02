@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CourseService } from '../course.service';
 
 declare let bootstrap: any;
@@ -20,7 +21,7 @@ export class StudentComponent implements OnInit {
     deleteId: any;
     authToken: string = '';
 
-    constructor(private courseserv: CourseService) {}
+    constructor(private courseserv: CourseService, private router: Router) {}
 
     ngOnInit(): void {
         this.authToken = localStorage.getItem('token')!;
@@ -65,6 +66,9 @@ export class StudentComponent implements OnInit {
             console.log("have no function for student to leave course now")
         }
         this.deleteId = ''
+    }
+    goto(courseId: number) {
+        this.router.navigate(['/note', courseId]);
     }
 
 }
