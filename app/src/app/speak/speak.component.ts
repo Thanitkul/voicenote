@@ -34,6 +34,7 @@ export class SpeakComponent implements OnInit {
     room : any;
     groupId: any = -1;
     stopModal: any;
+    isSpeak: boolean = false;
 
     constructor(private service: speakService, private route: ActivatedRoute, private router: Router) {
         
@@ -109,6 +110,7 @@ export class SpeakComponent implements OnInit {
         this.recognition.lang = 'th-TH';
         this.recognition.start();
         this.ignore_onend = false;
+        this.isSpeak = true;
         alert('info_allow');
         // start_timestamp = event.timeStamp;
     }
@@ -152,5 +154,9 @@ export class SpeakComponent implements OnInit {
 
     redirectCourse() {
         this.router.navigate(['/courses/teacher'])
+    }
+
+    speak_stop() {
+        this.isSpeak = false;
     }
 }

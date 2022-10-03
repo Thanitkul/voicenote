@@ -10,9 +10,9 @@
 <div class="bottom">
     <!-- <button type="button" id='btn-transcribe' class="btn btn-primary btn-lg my-3"
         onclick="changeButton()">Start</button> -->
-    <div class="row"> <button type="button" id='btn-transcribe' class="start" (click)="start()"><i class='bx bx-pause bx-lg'
-                ></i>
-        </button>
+    <div class="row"> 
+        <button *ngIf="!isSpeak" type="button" id='btn-transcribe' class="start" (click)="start()"><img src="/assets/images/speak1.png"></button>
+        <button *ngIf="isSpeak" type="button" id='btn-transcribe' class="start" (click)="speak_stop()"><img src="/assets/images/speak2.png"></button>
         <button type="button" id='btn-reset' class="finish" (click)="openStopModal()" (click) = "redirectCourse()">Finish</button>
     </div>
 
