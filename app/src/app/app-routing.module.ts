@@ -10,6 +10,8 @@ const routes: Routes = [
     { path: 'courses', loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule) },
     { path: '', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule) },
     { path: 'archive/:groupId', loadChildren: () => import('./archive/archive.module').then(m => m.ArchiveModule) },
+    { path: 'pp', loadChildren: () => import('./pp/pp.module').then(m => m.PpModule) },
+    { path: 'tos', loadChildren: () => import('./tos/tos.module').then(m => m.TosModule) },
     {path: '**', redirectTo: ''}
 ];
 
