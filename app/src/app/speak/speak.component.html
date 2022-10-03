@@ -1,37 +1,39 @@
-<div class="top">
-    <p class="subject">{{head_speak}}</p>
-</div>
-
-<div class='text'>
-    <p *ngFor="let message of displayList">{{message}}</p>
-    <div class="spacer"></div>
-</div>
-
-<div class="bottom">
-    <!-- <button type="button" id='btn-transcribe' class="btn btn-primary btn-lg my-3"
-        onclick="changeButton()">Start</button> -->
-    <div class="row"> 
-        <button *ngIf="!isSpeak" type="button" id='btn-transcribe' class="start" (click)="start()"><img src="/assets/images/speak1.png"></button>
-        <button *ngIf="isSpeak" type="button" id='btn-transcribe' class="start" (click)="speak_stop()"><img src="/assets/images/speak2.png"></button>
-        <button type="button" id='btn-reset' class="finish" (click)="openStopModal()" (click) = "redirectCourse()">Finish</button>
+<div class="bg-color">
+    <div class="top">
+        <p class="subject">{{head_speak}}</p>
     </div>
 
-</div>
+    <div class='text'>
+        <p *ngFor="let message of displayList">{{message}}</p>
+        <div class="spacer"></div>
+    </div>
 
-<!--creating stop modal-->
-<div class="modal fade" id="stop_modal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" (click)="stop()" class="btn btn-primary">End</button>
+    <div class="bottom">
+        <!-- <button type="button" id='btn-transcribe' class="btn btn-primary btn-lg my-3"
+            onclick="changeButton()">Start</button> -->
+        <div class="row"> 
+            <button *ngIf="!isSpeak" type="button" id='btn-transcribe' class="start" (click)="start()"><img src="/assets/images/speak1.png"></button>
+            <button *ngIf="isSpeak" type="button" id='btn-transcribe' class="start" (click)="speak_stop()"><img src="/assets/images/speak2.png"></button>
+            <button type="button" id='btn-reset' class="finish" (click)="openStopModal()" (click) = "redirectCourse()">Finish</button>
+        </div>
+
+    </div>
+
+    <!--creating stop modal-->
+    <div class="modal fade" id="stop_modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" (click)="stop()" class="btn btn-primary">End</button>
+                </div>
             </div>
         </div>
     </div>
