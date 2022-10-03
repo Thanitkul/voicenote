@@ -39,6 +39,15 @@ router.get("/courses", RouteProtection.verify, async (req, res, next) => {
   }
 });
 
+router.get("/courses/:courseId", RouteProtection.verify, async (req, res, next) => {
+  try {
+    const course = await con.query("SELECT * FROM courses WHERE courseId = ?", [req.params.courseId])
+    res.json(course);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 /**
  * Endpoint https://newtonian-voicenote.fly.dev/api/teacher/create-course
  */
