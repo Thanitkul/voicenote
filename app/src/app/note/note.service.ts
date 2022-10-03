@@ -45,6 +45,10 @@ export class noteService {
         return observable;
     }
 
+    getCourseData(groupId: string) {
+        return this.http.get(`${environment.apiHost}/student/get-recording-data/${groupId}`)
+      }
+
     // getChatsByRoom(room: string) {
     //     return this.http.get(`${environment.apiHost}/chats/${room}`)
     // }

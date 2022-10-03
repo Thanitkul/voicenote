@@ -9,7 +9,7 @@ const router = express.Router()
 router.get('/courses', RouteProtection.verify, async (req, res, next) => {
     try {
         const courses = await con.query(
-            'SELECT courses.id, `courseName`, `code`, `isLive` FROM `courses` LEFT JOIN `student_course` ON (courses.id = student_course.courseId) WHERE `studentId` = ?',
+            'SELECT courses.id, `courseName`, `code`, `isLive`, `liveGroupId` FROM `courses` LEFT JOIN `student_course` ON (courses.id = student_course.courseId) WHERE `studentId` = ?',
             [req.user.userId]
         )
         
