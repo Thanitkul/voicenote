@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent implements OnInit {
+  groupId: any = -1;
   displayList: string[] = [];
   room: any = "";
     
@@ -15,6 +16,8 @@ export class NoteComponent implements OnInit {
 
     ngOnInit(): void {
         this.room = this.route.snapshot.paramMap.get('courseId')
+        this.groupId = this.route.snapshot.paramMap.get('groupId')
+        this.service.getCourseData(this.groupId).subscribe((res: any) => {this.displayList = res, console.log(this.displayList)})
         this.service.socketConnection(this.room);
         this.service.socketListen('message').subscribe({
             next: (response) => {
