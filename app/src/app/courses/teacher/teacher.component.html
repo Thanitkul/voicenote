@@ -1,38 +1,88 @@
 <!-- Username and logout -->
-<div style=" margin-right: 8%; margin-top: 6%; text-align: right;">
-    <h2 id="course_teacher">T. {{ username.username }}</h2>
-    <a class="course_logout" style="text-decoration: none;" (click)="logout()" routerLink="" routerLinkActive="active">Logout</a>
-    <div class="course_info" type="button" (click)="openUserInfoModal()">
-        Info
-    </div>
+<div style="margin-right: 8%; margin-top: 6%; text-align: right">
+  <h2 id="course_teacher">T. {{ username.username }}</h2>
+  <a
+    class="course_logout"
+    style="text-decoration: none"
+    (click)="logout()"
+    routerLink=""
+    routerLinkActive="active"
+    >Logout</a
+  >
+  <div class="course_info" type="button" (click)="openUserInfoModal()">
+    Info
+  </div>
 </div>
-<br>
+<br />
 
 <!-- create button -->
-<div type="button" (click)="openCourseModal()" class="create_box">
-    create
-</div>
+<div type="button" (click)="openCourseModal()" class="create_box">create</div>
 
 <div class="course_box2">box</div>
 
-<input class="form-control" id="course_searchbox" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search ">
-
+<input
+  class="form-control"
+  id="course_searchbox"
+  type="text"
+  name="search"
+  [(ngModel)]="searchText"
+  autocomplete="on"
+  placeholder=" Search "
+/>
 
 <!-- course rows -->
-<div ng-if="courses_data != null">
-    <div style="padding-bottom: 10px; text-align: center;" *ngFor="let course of courses | filter:searchText" >
-        <a routerLink="/speak/{{course.id}}" routerLinkActive="active" style="text-decoration: none;">
-            <div class="course_box">
-                <div class="card-title" id="course_box_subject">{{course["courseName"]}}</div>
-                <div class="card-text" id="course_box_code">Code: {{course["code"]}}</div>
+<div ng-if="courses_data != null" class="mt-4">
+  <div
+    style="padding-bottom: 10px; text-align: center"
+    *ngFor="let course of courses | filter: searchText"
+  >
+    <!-- <div class="course_box"> -->
+    <!-- Line 27-30 -->
+    <div class="container">
+      <div class="card mb-3 mx-4 gray rounded-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-10">
+              <a
+                routerLink="/speak/{{ course.id }}"
+                routerLinkActive="active"
+                style="text-decoration: none"
+              >
+                <div class="card-title" id="course_box_subject">
+                  {{ course["courseName"] }}
+                </div>
+              </a>
+              <div class="card-text" id="course_box_code">
+                Code: {{ course["code"] }}
+              </div>
             </div>
-        </a>
-        <div (click)="openDeleteModal(course.id)" class="bin">
-            <svg width="30" height="30" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 791.908 791.908"
-                style="enable-background:new 0 0 791.908 791.908;" xml:space="preserve">
-                <g>
-                    <path d="M648.587,99.881H509.156C500.276,43.486,452.761,0,394.444,0S287.696,43.486,279.731,99.881H142.315
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-2">
+      <div
+        class="bin"
+        style="margin-top: 8vh"
+        (click)="openDeleteModal(course.id)"
+      >
+        <svg
+          width="30"
+          height="30"
+          version="1.1"
+          id="Capa_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 791.908 791.908"
+          style="enable-background: new 0 0 791.908 791.908"
+          xml:space="preserve"
+        >
+          <g>
+            <path
+              d="M648.587,99.881H509.156C500.276,43.486,452.761,0,394.444,0S287.696,43.486,279.731,99.881H142.315
                                     c-26.733,0-48.43,21.789-48.43,48.43v49.437c0,24.719,17.761,44.493,41.564,47.423V727.64c0,35.613,28.655,64.268,64.268,64.268
                                     h392.475c35.613,0,64.268-28.655,64.268-64.268V246.087c23.711-3.937,41.564-23.711,41.564-47.423v-49.437
                                     C697.017,121.67,675.228,99.881,648.587,99.881z M394.444,36.62c38.543,0,70.219,26.733,77.085,63.261H316.351
@@ -44,55 +94,149 @@
                                     M378.606,661.45V349.081c0-9.887,7.873-17.761,17.761-17.761c9.887,0,17.761,7.873,17.761,17.761V661.45
                                     c0,9.887-7.873,17.761-17.761,17.761C386.57,680.309,378.606,671.337,378.606,661.45z M504.212,661.45V349.081
                                     c0-9.887,7.873-17.761,17.761-17.761s17.761,7.873,17.761,17.761V661.45c0,9.887-7.873,17.761-17.761,17.761
-                                    C513.093,680.309,504.212,671.337,504.212,661.45z" />
-                </g>
-            </svg>
-        </div>
+                                    C513.093,680.309,504.212,671.337,504.212,661.45z"
+            />
+          </g>
+        </svg>
+      </div>
     </div>
+  </div>
 </div>
 
 <!--creating course modal-->
-<div class="modal fade" id="course_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <h5 class="modal-title" id="exampleModalLabel"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" style="position: absolute; right: 5%; top: 5%;" aria-label="Close"></button>
-            <input placeholder="Name" id="name" style="width: 80%; text-align: left; position: absolute; left: 3.5vh; border-radius: 15px;" class="form-control" [(ngModel)]="name" type="text">
-            <button type="button" class="btn btn-primary" id="create_button" data-bs-dismiss="modal"
-                (click)="create()">Create</button>
-        </div>
+<div
+  class="modal fade"
+  id="course_modal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <h5 class="modal-title" id="exampleModalLabel"></h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        style="position: absolute; right: 5%; top: 5%"
+        aria-label="Close"
+      ></button>
+      <input
+        placeholder="Name"
+        id="name"
+        style="
+          width: 80%;
+          text-align: left;
+          position: absolute;
+          left: 3.5vh;
+          border-radius: 15px;
+        "
+        class="form-control"
+        [(ngModel)]="name"
+        type="text"
+      />
+      <button
+        type="button"
+        class="btn btn-primary"
+        id="create_button"
+        data-bs-dismiss="modal"
+        (click)="create()"
+      >
+        Create
+      </button>
     </div>
+  </div>
 </div>
 
 <!--INFO modal-->
 
-<div class="modal fade" id="userinfo_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content" style="background-color: #0B1B66;">
-            <h5 class="modal-title" id="exampleModalLabel"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 1vh; top: 1vh;"></button>
-            <div id="teacher_info">
-                <ng-template [ngIf]="username">
-                    <ul>Username: {{ username.username }}</ul>
-                    <ul>Date of Birth: {{username.dob | date:'shortDate'}}</ul>
-                    <ul>E-mail: {{username.email}}</ul>
-                </ng-template>
-            </div>
-        </div>
+<div
+  class="modal fade"
+  id="userinfo_modal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color: #0b1b66">
+      <h5 class="modal-title" id="exampleModalLabel"></h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        style="position: absolute; right: 1vh; top: 1vh"
+      ></button>
+      <div id="teacher_info">
+        <ng-template [ngIf]="username">
+          <ul>
+            Username:
+            {{
+              username.username
+            }}
+          </ul>
+          <ul>
+            Date of Birth:
+            {{
+              username.dob | date: "shortDate"
+            }}
+          </ul>
+          <ul>
+            E-mail:
+            {{
+              username.email
+            }}
+          </ul>
+        </ng-template>
+      </div>
     </div>
+  </div>
 </div>
 
 <!--creating delte modal-->
-<div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <h5 class="modal-title" id="exampleModalLabel"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                style="position: absolute; right: 5%; top: 5%;" aria-label="Close"></button>
-            <div placeholder="Name" id="name" style="width: 80%; text-align: left; position: absolute; left: 3.5vh; border-radius: 15px; text-align: center; padding-top: 40px" class="form-control"
-                type="text">Are you sure want to delete this course?</div>
-            <button type="button" class="btn btn-primary" id="course_deletebutton" data-bs-dismiss="modal"
-                (click)="delete(true)">Delete</button>
-        </div>
+<div
+  class="modal fade"
+  id="delete_modal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <h5 class="modal-title" id="exampleModalLabel"></h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        style="position: absolute; right: 5%; top: 5%"
+        aria-label="Close"
+      ></button>
+      <div
+        placeholder="Name"
+        id="name"
+        style="
+          width: 80%;
+          text-align: left;
+          position: absolute;
+          left: 3.5vh;
+          border-radius: 15px;
+          text-align: center;
+          padding-top: 40px;
+        "
+        class="form-control"
+        type="text"
+      >
+        Are you sure want to delete this course?
+      </div>
+      <button
+        type="button"
+        class="btn btn-primary"
+        id="course_deletebutton"
+        data-bs-dismiss="modal"
+        (click)="delete(true)"
+      >
+        Delete
+      </button>
     </div>
+  </div>
 </div>
