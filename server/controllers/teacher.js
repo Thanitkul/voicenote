@@ -32,7 +32,7 @@ router.get("/courses", RouteProtection.verify, async (req, res, next) => {
     } else {
       throw new Error();
     }
-    
+
     res.json(courses);
   } catch (error) {
     next(error);
@@ -65,7 +65,7 @@ router.post(
             console.log([req.body.courseName, code, [req.user.userId]]);
           }
         );
-        
+
         res.status(200).json({ message: "Success" });
       }
     } catch (error) {
@@ -89,7 +89,6 @@ router.delete(
       console.log(course);
       if (course.length != 0) {
         if ([req.user.userId] != course[0].ownerId) {
-          
           res.status(401).json({ message: "not the owner of the course" });
         }
 
@@ -102,7 +101,7 @@ router.delete(
           req.body.courseId
         );
         await con.query("DELETE FROM courses WHERE id = ?", req.body.courseId);
-        
+
         res.status(200);
       } else {
         res.status(400).json({ message: "course not found" });
@@ -118,34 +117,51 @@ router.delete(
  */
 router.patch("/start-live", RouteProtection.verify, async (req, res, next) => {
   try {
-    await con.query("UPDATE courses SET isLive = 1 WHERE id = ?", [req.body.courseId])
+    await con.query("UPDATE courses SET isLive = 1 WHERE id = ?", [
+      req.body.courseId,
+    ]);
 
-    const date = new Date()
-    let groupId = req.body.courseId + date.getFullYear() + date.getMonth() + date.getDate() + date.getTime()
-    
-    res.status(200).json({ "groupId": groupId})
+    const date = new Date();
+    let groupId =
+      req.body.courseId +
+      date.getFullYear() +
+      date.getMonth() +
+      date.getDate() +
+      date.getTime();
+
+    await con.query("UPDATE courses SET liveGroupId = ? WHERE id = ?", [
+      groupId,
+      req.body.courseId,
+    ]);
+
+    res.status(200).json({ groupId: groupId });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 });
 
 /**
  * Endpoint https://newtonian-voicenote.fly.dev/api/teacher/end-live
  */
- router.patch("/end-live", RouteProtection.verify, async (req, res, next) => {
+router.patch("/end-live", RouteProtection.verify, async (req, res, next) => {
   try {
+    const owner = await con.query("SELECT ownerId FROM courses WHERE id = ?", [
+      req.body.courseId,
+    ]);
 
-    const owner = await con.query("SELECT ownerId FROM courses WHERE id = ?", [req.body.courseId])
-
-    if (owner[0]['ownerId'] == req.user.userId) {
-        await con.query("UPDATE courses SET isLive = 0 WHERE id = ?", [req.body.courseId])
-        res.status(200).json({ message: "ended" });
+    if (owner[0]["ownerId"] == req.user.userId) {
+      await con.query("UPDATE courses SET isLive = 0 WHERE id = ?", [
+        req.body.courseId,
+      ]);
+      await con.query("UPDATE courses SET liveGroupId = NULL WHERE id = ?", [
+        req.body.courseId,
+      ]);
+      res.status(200).json({ message: "ended" });
     } else {
-        res.status(401).json({ message: "not the owner of course" })
+      res.status(401).json({ message: "not the owner of course" });
     }
-    
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 });
 
