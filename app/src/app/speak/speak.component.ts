@@ -35,6 +35,7 @@ export class SpeakComponent implements OnInit {
     groupId: any = -1;
     stopModal: any;
     isSpeak: boolean = false;
+    head_speak: string[] = [];
 
     constructor(private service: speakService, private route: ActivatedRoute, private router: Router) {
         
@@ -50,6 +51,8 @@ export class SpeakComponent implements OnInit {
                 this.displayList.push(response)
             }
         })
+        console.log(this.room)
+        this.service.speakHeading(this.room).subscribe((res: any) => {this.head_speak = res, console.log(res)})
         this.groupId = this.service.startLive(this.room).subscribe(res => { this.groupId = res.groupId, console.log(this.groupId) })
         
         
@@ -148,7 +151,7 @@ export class SpeakComponent implements OnInit {
     stop() {
         this.recognition.stop();
         this.stopModal.hide();
-        this.service.EndLive(this.room).subscribe(res => this.router.navigate(['/courses/teacher']))
+        this.service.endLive(this.room).subscribe(res => this.router.navigate(['/courses/teacher']))
         
     }   
 
