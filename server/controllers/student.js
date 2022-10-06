@@ -93,6 +93,9 @@ router.get('/get-recording-data/:groupId', RouteProtection.verify, async (req, r
     try {
         const canView = await con.query("SELECT studentId FROM student_course LEFT JOIN `recordings` ON (student_course.courseId = recordings.courseId) WHERE recordings.groupId = ?", [req.params.groupId])
         
+        console.log(canView.length)
+        console.log(canView)
+        console.log(req.user.userId)
         if (canView.length == 0 || canView[0]['studentId'] != req.user.userId) {
             res.status(401).json({ message: "not the student of the course that this recording belongs to"})
         } else {
