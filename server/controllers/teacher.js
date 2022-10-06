@@ -142,6 +142,7 @@ router.patch("/start-live", RouteProtection.verify, async (req, res, next) => {
       groupId,
       req.body.courseId,
     ]);
+    await con.query("INSERT INTO recordings (`courseId`, `groupId`, `data`) VALUE (?, ?, ?)", [req.body.courseId, groupId, " "]);
 
     res.status(200).json({ groupId: groupId });
   } catch (error) {
