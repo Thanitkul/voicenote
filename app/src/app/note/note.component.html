@@ -1,3 +1,4 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <div class='container'>
     <div class="container__topbar">
         <div class="container__topbar--arrow">
@@ -7,11 +8,13 @@
         </div>
         <h1 class="container__topbar--subject">{{courseName}}</h1>
     </div>
-    <div class="container__body">
-        <p *ngFor="let message of displayList">{{message}}</p>
+    <div id="contentToConvert">
+        <div class="container__body">
+            <p *ngFor="let message of displayList" style="color: black;">{{message}}</p>
+        </div>
     </div>
     <div class="container__bottombar">
-        <div class="container__bottombar--pdf">PDF</div>
+        <div class="container__bottombar--pdf" (click)="htmlToPdf()">PDF</div>
         <div class="container__bottombar--share">
             <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M7.65625 13.125C7.05219 13.125 6.5625 13.6147 6.5625 14.2188V31.7188C6.5625 32.3228 7.05219 32.8125 7.65625 32.8125H27.3438C27.9478 32.8125 28.4375 32.3228 28.4375 31.7188V14.2188C28.4375 13.6147 27.9478 13.125 27.3438 13.125H22.9688C22.3647 13.125 21.875 12.6353 21.875 12.0312C21.875 11.4272 22.3647 10.9375 22.9688 10.9375H27.3438C29.1559 10.9375 30.625 12.4066 30.625 14.2188V31.7188C30.625 33.5309 29.1559 35 27.3438 35H7.65625C5.84406 35 4.375 33.5309 4.375 31.7188V14.2188C4.375 12.4066 5.84407 10.9375 7.65625 10.9375H12.0312C12.6353 10.9375 13.125 11.4272 13.125 12.0312C13.125 12.6353 12.6353 13.125 12.0312 13.125H7.65625Z" fill="#0B1B66"/>
