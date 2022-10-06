@@ -38,7 +38,7 @@ export class NoteComponent implements OnInit {
     htmlToPdf(){
         var data = document.getElementById('contentToConvert');  //Id of the table
         if(data){
-            html2canvas(data, { scale: 2 }).then(canvas => {  
+            html2canvas(data, { scale: 4 }).then(canvas => {  
             // Few necessary setting options  
             let imgWidth = 300;   
             let pageHeight = 400;    
