@@ -36,6 +36,7 @@ export class SpeakComponent implements OnInit {
     stopModal: any;
     isSpeak: boolean = false;
     head_speak: string[] = [];
+    courseName: string | null = '';
 
     constructor(private service: speakService, private route: ActivatedRoute, private router: Router) {
         
@@ -44,6 +45,7 @@ export class SpeakComponent implements OnInit {
     ngOnInit(): void {
         this.stopModal = new bootstrap.Modal(document.getElementById('stop_modal'));
         this.room = this.route.snapshot.paramMap.get('id')
+        this.courseName = this.route.snapshot.queryParamMap.get('courseName')
         this.service.socketConnection(this.room);
         this.stt();
         this.service.socketListen('message').subscribe({
