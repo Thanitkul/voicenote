@@ -1,12 +1,12 @@
 <div class="bg-color">
     <div class="container-fuild">
-        <button class="position-absolute top1">small</button><button class="position-absolute top2">medium</button><button class="position-absolute top3">large</button>
         <div class="row r1 position-fixed ms-0">
             <p class="m-top">{{courseName}}</p>
         </div>
         <div class="container">
-            <div class='text mt-2'>
-                <p *ngFor="let message of displayList">{{message}}</p>
+            <div class="spacer"></div>
+            <div class='mt-0'>
+                <p *ngFor="let message of displayList" class="f-size">{{message}}</p>
             </div>
         </div>
         <div class="row r2 position-fixed ms-0">

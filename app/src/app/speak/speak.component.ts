@@ -57,7 +57,6 @@ export class SpeakComponent implements OnInit {
         this.service.speakHeading(this.room).subscribe((res: any) => {this.head_speak = res[0].courseName, console.log(this.head_speak)})
         this.groupId = this.service.startLive(this.room).subscribe(res => { this.groupId = res.groupId, console.log(this.groupId) })
         
-        
     }
 
     stt() {

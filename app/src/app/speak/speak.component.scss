@@ -3,10 +3,6 @@
     height: 100vh;
 }
 
-.text {
-    position: absolute;
-}
-
 .r1 {
     height: 160px;
     width: 100vw;
@@ -60,4 +56,8 @@
     z-index: 1;
     top: 20px;
     right: 10px;
+}
+
+.spacer {
+    height: 160px;
 }

@@ -25,10 +25,6 @@ export class SigninComponent implements OnInit {
     this.route_to = localStorage.getItem('role')!
     this.name = this.route_to.toUpperCase()
 
-    if (this.route_to == "student") {
-      document.getElementsByName("who")[0].style.backgroundColor = "#594835"
-    }
-
   }  
 
   
