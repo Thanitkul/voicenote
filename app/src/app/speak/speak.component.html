@@ -2,11 +2,14 @@
     <div class="top">
         <p class="subject">{{head_speak}}</p>
     </div>
-
-    <div class='text'>
-        <p *ngFor="let message of displayList">{{message}}</p>
-        <div class="spacer"></div>
+    
+    <div class="container">
+        <div class='text mt-2'>
+            <p *ngFor="let message of displayList">{{message}}</p>
+            <div class="spacer"></div>
+        </div>
     </div>
+    
 
     <div class="bottom">
         <!-- <button type="button" id='btn-transcribe' class="btn btn-primary btn-lg my-3"
