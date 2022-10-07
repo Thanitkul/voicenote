@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "jest --verbose"
   },
   "keywords": [],
   "author": "",
@@ -21,5 +22,9 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "socket.io": "^4.5.1"
+  },
+  "devDependencies": {
+    "jest": "^29.1.2",
+    "supertest": "^6.3.0"
   }
 }

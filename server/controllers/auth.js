@@ -54,7 +54,7 @@ router.post("/signin", async function signin(req, res, next) {
  * Endpoint https://newtonian-voicenote.fly.dev/api/auth/signup
  * request dob as yyyy-mm-dd
  */
-router.post("/signup", async function signup(req, res, next) {
+router.post("/signup", async function (req, res, next) {
     console.log("sign up");
 
     try {
@@ -64,7 +64,6 @@ router.post("/signup", async function signup(req, res, next) {
         )
 
         if (existingUser.length != 0) {
-            
             res.status(400).json({ message: "User already exist"})
         } else {
             const user = await con.query(
