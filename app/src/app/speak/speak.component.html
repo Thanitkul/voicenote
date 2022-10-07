@@ -1,25 +1,28 @@
 <div class="bg-color">
-    <div class="top">
-        <p class="subject">{{head_speak}}</p>
-    </div>
-
-    <div class='text'>
-        <p *ngFor="let message of displayList">{{message}}</p>
-        <div class="spacer"></div>
-    </div>
-
-    <div class="bottom">
-        <!-- <button type="button" id='btn-transcribe' class="btn btn-primary btn-lg my-3"
-            onclick="changeButton()">Start</button> -->
-        <div class="row"> 
-            <button *ngIf="!isSpeak" type="button" id='btn-transcribe' class="start" (click)="start()"><img src="/assets/images/speak1.png"></button>
-            <button *ngIf="isSpeak" type="button" id='btn-transcribe' class="start" (click)="speak_stop()"><img src="/assets/images/speak2.png"></button>
-            <button type="button" id='btn-reset' class="finish" (click)="openStopModal()" >Finish</button>
+    <div class="container-fuild">
+        <div class="row r1 position-fixed ms-0">
+            <p class="m-top">{{courseName}}</p>
         </div>
-
+        <div class="container">
+            <div class='text mt-2'>
+                <p *ngFor="let message of displayList">{{message}}</p>
+            </div>
+        </div>
+        <div class="row r2 position-fixed ms-0">
+            <div class="col-6">
+                <div class="text-center mt-5">
+                    <button *ngIf="!isSpeak" type="button" id='btn-transcribe' class="bt-color bt-size border-0 rounded-3 p-2 ps-3 pe-3 ms-2" (click)="start()"><img src="/assets/images/speak1.png"></button>
+                    <button *ngIf="isSpeak" type="button" id='btn-transcribe' class="bt-color bt-size border-0 rounded-3 p-2 ps-3 pe-3 ms-2" (click)="speak_stop()"><img src="/assets/images/speak2.png"></button>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="text-center mt-5">
+                    <button type="button" id='btn-reset' class="bt-size border-0 rounded-3 p-2 ps-3 pe-3 me-2 f-size" (click)="openStopModal()">Finish</button>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!--creating stop modal-->
+     <!--creating stop modal-->
     <div class="modal fade" id="stop_modal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">

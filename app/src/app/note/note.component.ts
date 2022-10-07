@@ -13,6 +13,7 @@ export class NoteComponent implements OnInit {
   groupId: any = -1;
   displayList: string[] = [];
   room: any = "";
+  courseId: string | null = '';
     
     constructor(private service: noteService, private router: Router, private route: ActivatedRoute) { }
 

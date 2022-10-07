@@ -67,9 +67,9 @@ export class StudentComponent implements OnInit {
         }
         this.deleteId = ''
     }
-    goto(courseId: number, groupId: number) {
+    goto(courseId: number, groupId: number, courseName: string) {
         console.log({courseId, groupId})
-        this.router.navigateByUrl('/note/' + courseId + '/' + groupId);
+        this.router.navigateByUrl('/note/' + courseId + '/' + groupId + '?courseName=' + courseName);
     }
 
 }
