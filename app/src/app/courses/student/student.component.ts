@@ -61,9 +61,8 @@ export class StudentComponent implements OnInit {
     }
     delete(confirm: boolean): any {
         if (confirm == true){
-            // this.courseserv.deleteCourse(this.deleteId).subscribe(res => console.log(res))
-            // this.courses =  this.courses.filter((i:any) => i.id != this.deleteId)
-            console.log("have no function for student to leave course now")
+            this.courseserv.leaveCourse(this.deleteId).subscribe((res: any) => console.log(res))
+            this.courses =  this.courses.filter((i:any) => i.id != this.deleteId)
         }
         this.deleteId = ''
     }

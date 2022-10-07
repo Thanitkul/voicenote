@@ -39,5 +39,11 @@ export class CourseService {
         };
         return this.http.delete<any>(`${environment.apiHost}/teacher/delete-course`, {body: body})
     }
+    leaveCourse(id: number) {
+        const body = {
+            courseId: id
+        };
+        return this.http.delete<any>(`${environment.apiHost}/student/leave-course`, { body: body })
+    }
 
 }

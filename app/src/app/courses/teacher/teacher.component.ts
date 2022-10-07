@@ -53,7 +53,7 @@ export class TeacherComponent implements OnInit {
     }
     delete(confirm: boolean): any {
         if (confirm == true){
-            this.courseserv.deleteCourse(this.deleteId).subscribe(res => console.log(res))
+            this.courseserv.deleteCourse(this.deleteId).subscribe(res => console.log('successc'))
             this.courses =  this.courses.filter((i:any) => i.id != this.deleteId)
         }
         this.deleteId = ''
