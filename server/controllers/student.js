@@ -87,6 +87,8 @@ router.delete('/leave-course', RouteProtection.verify, async(req, res, next) => 
       const courseID = req.body.courseId;
     
       await con.query("DELETE FROM student-course WHERE `studentId` = ? AND `courseId` = ?", [req.user.userId, courseID]);
+
+      res.status(200).json({message: "course left"})
   } catch(error) {
         res.status(500)
   }
