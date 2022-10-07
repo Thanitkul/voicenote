@@ -14,6 +14,7 @@ export class NoteComponent implements OnInit {
   displayList: string[] = [];
   room: any = "";
   courseId: string | null = '';
+  fontSize: number = 24;
     
     constructor(private service: noteService, private router: Router, private route: ActivatedRoute) { }
 
@@ -56,5 +57,12 @@ export class NoteComponent implements OnInit {
                 pdf.save('MYPdf.pdf'); // Generated PDF   
             });
         }
+    }
+
+    IncrFontSize() {
+     this.fontSize++;
+    }
+    DecreFontSize() {
+     this.fontSize--;
     }
 }

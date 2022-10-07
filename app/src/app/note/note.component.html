@@ -9,7 +9,9 @@
     </div>
     <div id="contentToConvert">
         <div class="container__body">
-            <p *ngFor="let message of displayList">{{message}}</p>
+            <button (click)="IncrFontSize()" class="position-absolute button1 rounded-2 border-0 bg-white h1">+</button>
+            <button (click)="DecreFontSize()" class="position-absolute button2 rounded-2 border-0 bg-white h1">-</button>
+            <p *ngFor="let message of displayList" class="color" [ngStyle]="{'font-size.px':fontSize}">{{message}}</p>
         </div>
     </div>
     <div class="container__bottombar">
