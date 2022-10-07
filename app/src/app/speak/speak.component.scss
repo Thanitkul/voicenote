@@ -52,16 +52,6 @@ svg {
     border-top-right-radius: 16px;
 }
 
-.start {
-    width: 41%;
-    height: 50px;
-    margin-left: 6%;
-    margin-top: 50px;
-    border: 0px;
-    border-radius: 15px;
-    background-color: #E8963F;
-}
-
 .finish {
     width: 41%;
     height: 50px;
@@ -82,4 +72,41 @@ svg {
 .spacer {
     height: 140px;
     background: transparent;
+}
+
+.r1 {
+    height: 160px;
+    width: 100vw;
+    background-color: #0B1B66;
+    color: white;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.r2 {
+    height: 140px;
+    width: 100vw;
+    background-color: #0B1B66;
+    color: white;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    bottom: 0;
+}
+
+.bt-color {
+    background-color: #E8963F;
+}
+
+.bt-size {
+    width: 80%;
+}
+
+.f-size {
+    font-size: 25px;
+}
+
+.m-top {
+    margin-top: 80px;
+    margin-left: 40px;
+    font-size: 30px;
 }
