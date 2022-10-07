@@ -14,7 +14,7 @@
         <div class="row"> 
             <button *ngIf="!isSpeak" type="button" id='btn-transcribe' class="start" (click)="start()"><img src="/assets/images/speak1.png"></button>
             <button *ngIf="isSpeak" type="button" id='btn-transcribe' class="start" (click)="speak_stop()"><img src="/assets/images/speak2.png"></button>
-            <button type="button" id='btn-reset' class="finish" (click)="openStopModal()" (click) = "redirectCourse()">Finish</button>
+            <button type="button" id='btn-reset' class="finish" (click)="openStopModal()" >Finish</button>
         </div>
 
     </div>
@@ -25,14 +25,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="redirectCourse()"></button>
                 </div>
                 <div class="modal-body">
                     <p>Modal body text goes here.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" (click)="stop()" class="btn btn-primary">End</button>
+                    <button type="button" (click)="stop()" class="btn btn-primary"  data-bs-dismiss="modal" (click)="redirectCourse()">End</button>
                 </div>
             </div>
         </div>
