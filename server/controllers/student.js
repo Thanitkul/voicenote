@@ -3,6 +3,12 @@ const con = require("../models/db")
 const RouteProtection = require("../helpers/RouteProtection")
 const router = express.Router()
 
+function isStudent(userId, canView) {
+    return canView.some(function (el) {
+      return el.studentId === userId;
+    });
+  }
+
 /**
  * Endpoint https://newtonian-voicenote.fly.dev/api/student/courses
  */
@@ -96,7 +102,7 @@ router.get('/get-recording-data/:groupId', RouteProtection.verify, async (req, r
         console.log(canView.length)
         console.log(canView)
         console.log(req.user.userId)
-        if (canView.length == 0 || canView[0]['studentId'] != req.user.userId) {
+        if (canView.length == 0 || !isStudent(req.user.userId, canView)) {
             res.status(401).json({ message: "not the student of the course that this recording belongs to"})
         } else {
             const data = await con.query("SELECT data FROM recordings WHERE groupId = ? ORDER BY id", [req.params.groupId])

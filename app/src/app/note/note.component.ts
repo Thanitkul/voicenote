@@ -20,8 +20,14 @@ export class NoteComponent implements OnInit {
     ngOnInit(): void {
         this.room = this.route.snapshot.paramMap.get('courseId')
         this.groupId = this.route.snapshot.paramMap.get('groupId')
-        this.courseId = this.route.snapshot.queryParamMap.get('courseName')
-        this.service.getCourseData(this.groupId).subscribe((res: any) => {this.displayList = res, console.log(this.displayList)})
+        this.service.getCourseData(this.groupId).subscribe((res: any) => {
+            console.log(res)
+            for (let i = 0; i < res.length; i++) {
+                console.log(res[i].data)
+                this.displayList.push(res[i].data)
+            }
+            console.log(this.displayList)
+        })
         this.service.socketConnection(this.room);
         this.service.socketListen('message').subscribe({
             next: (response) => {
