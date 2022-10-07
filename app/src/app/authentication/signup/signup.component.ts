@@ -43,7 +43,12 @@ export class SignupComponent implements OnInit {
   redirectSignin() {
     this.router.navigate(['/authentication/signin']);
   }
-
+  redirectpp() {
+    this.router.navigate(['/pp']);
+  }
+  redirectTos() {
+    this.router.navigate(['/tos']);
+  }
   redirect() {
     this.router.navigate(['/']);
   }

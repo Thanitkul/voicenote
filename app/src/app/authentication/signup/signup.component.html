@@ -1,18 +1,36 @@
-<div class = "top">Create an <br>Account</div>
-<svg width="282" height="282" viewBox="0 0 282 282" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M141 188C166.921 188 188 166.921 188 141V70.5C188 44.4503 167.026 23.2533 141.247 23.2533C140.42 23.2582 139.596 23.3568 138.791 23.547C126.727 24.1319 115.349 29.3322 107.012 38.0718C98.6745 46.8114 94.016 58.4215 94 70.5V141C94 166.921 115.08 188 141 188Z" fill="white" fill-opacity="1"/>
-    <path d="M129.25 234.189V258.5H152.75V234.189C199.033 228.373 235 188.858 235 141H211.5C211.5 179.881 179.881 211.5 141 211.5C102.119 211.5 70.5 179.881 70.5 141H47C47 188.846 82.9668 228.373 129.25 234.189Z" fill="white" fill-opacity="1"/>
-</svg>
-    
-<div class = "form">
-    <input type = "name" class = "name" placeholder = "Name" required [(ngModel)]="signupForm.username">
-    <input type = "email" class = "email" placeholder = "Email" required [(ngModel)]="signupForm.email">
-    <input type = "password" class = "password" placeholder = "Password" required [(ngModel)]="signupForm.password">
-    <input type = "date" class = "date" placeholder = "DD/MM/YY" required [(ngModel)]="signupForm.dob">
-</div>    
+<div class="container-fiuld">
+    <div class="row row-bg bottom-radius">
+        <div class="col-6">
+            <div class="mt-1 p-3 ms-2">
+                <p class="mb-0 text1">Create an</p>
+                <p class="mt-2 text1">Account</p>
+            </div>
+        </div>
+        <div class="col-6">
+            <img class="size img-fiuld float-end" src="/assets/images/signup.png">
+        </div>
+    </div>
+    <div class="container">
 
-<input class = "checkbox" type = "checkbox"><p class = "policy">Agree to term of policy</p>
+        <div class="form">
+            <div class="mb-4 d-grid gap-2 margintop">
+                <input type = "name" class="p-3 rounded-3 bgcolor border-0" placeholder = "Username" required [(ngModel)]="signupForm.username">
+                <input type = "email" class = "p-3 rounded-3 bgcolor border-0 mt-4" placeholder = "Email" required [(ngModel)]="signupForm.email">
+                <input type = "password" class = "p-3 rounded-3 bgcolor border-0 mt-4" placeholder = "Password" required [(ngModel)]="signupForm.password">
+                <input type = "date" class = "p-3 rounded-3 bgcolor border-0 mt-4" placeholder = "DD/MM/YY" required [(ngModel)]="signupForm.dob">
 
-<button (click) = "Register()">Sign up</button>
+            </div>
+        </div>
+                
+        <div class="d-grid gap-2">
+            <button class="btn bgcolor2 text-white p-3 mt-4" type="button" (click) = "Register()">Sign Up</button>
+        </div>
 
-<div class = "text">Already have an account? <p class = "signin" (click) = "redirectSignin()">Sign in</p></div>
+        <div class="tof ms-0 mt-2 fs">
+            <label class="form-check-label text2 ">By clicking Sign up you agree to our <u class="fw-semibold" (click) = "redirectTos()">Terms and Conditions</u> and <u class="fw-semibold" (click) = "redirectpp()">Privacy Statement</u></label>
+        </div>
+        <div class="text-center mt-4 ">
+            <p class="text-sm-start text3 mb-0 fw-light">Already have an account? <u class="fw-semibold" (click) = "redirectSignin()">Sign In</u></p>
+        </div>
+    </div>
+</div>

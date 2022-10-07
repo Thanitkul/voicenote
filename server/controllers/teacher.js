@@ -32,11 +32,27 @@ router.get("/courses", RouteProtection.verify, async (req, res, next) => {
     } else {
       throw new Error();
     }
-    res.send(courses);
+
+    res.json(courses);
   } catch (error) {
     next(error);
   }
 });
+
+router.get(
+  "/courses/:courseId",
+  RouteProtection.verify,
+  async (req, res, next) => {
+    try {
+      const course = await con.query("SELECT * FROM courses WHERE id = ?", [
+        req.params.courseId,
+      ]);
+      res.json(course);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 /**
  * Endpoint https://newtonian-voicenote.fly.dev/api/teacher/create-course
@@ -64,6 +80,7 @@ router.post(
             console.log([req.body.courseName, code, [req.user.userId]]);
           }
         );
+
         res.status(200).json({ message: "Success" });
       }
     } catch (error) {
@@ -109,4 +126,59 @@ router.delete(
     }
   }
 );
+
+/**
+ * Endpoint https://newtonian-voicenote.fly.dev/api/teacher/start-live
+ */
+router.patch("/start-live", RouteProtection.verify, async (req, res, next) => {
+  try {
+    await con.query("UPDATE courses SET isLive = 1 WHERE id = ?", [
+      req.body.courseId,
+    ]);
+
+    const date = new Date();
+    let groupId =
+      req.body.courseId +
+      date.getFullYear() +
+      date.getMonth() +
+      date.getDate() +
+      date.getTime();
+
+    await con.query("UPDATE courses SET liveGroupId = ? WHERE id = ?", [
+      groupId,
+      req.body.courseId,
+    ]);
+    await con.query("INSERT INTO recordings (`courseId`, `groupId`, `data`) VALUE (?, ?, ?)", [req.body.courseId, groupId, " "]);
+
+    res.status(200).json({ groupId: groupId });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+/**
+ * Endpoint https://newtonian-voicenote.fly.dev/api/teacher/end-live
+ */
+router.patch("/end-live", RouteProtection.verify, async (req, res, next) => {
+  try {
+    const owner = await con.query("SELECT ownerId FROM courses WHERE id = ?", [
+      req.body.courseId,
+    ]);
+
+    if (owner[0]["ownerId"] == req.user.userId) {
+      await con.query("UPDATE courses SET isLive = 0 WHERE id = ?", [
+        req.body.courseId,
+      ]);
+      await con.query("UPDATE courses SET liveGroupId = NULL WHERE id = ?", [
+        req.body.courseId,
+      ]);
+      res.status(200).json({ message: "ended" });
+    } else {
+      res.status(401).json({ message: "not the owner of course" });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;

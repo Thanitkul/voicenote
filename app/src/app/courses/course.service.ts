@@ -9,48 +9,35 @@ export class CourseService {
 
     constructor(private http: HttpClient) { }
 
-    getUsername(auth_token: string) {
+    getUsername() {
         
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${auth_token}`
-        })
         return this.http.get(`${environment.apiHost}/auth/get-username`)
     }
-    getCourseTeacher(auth_token: string) {
+    getCourseTeacher() {
         
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${auth_token}`
-        })
         return this.http.get(`${environment.apiHost}/teacher/courses`)
     }
-    createCourse(name: string, auth_token: string) {
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${auth_token}`
-        })
+    createCourse(name: string) {
         const body = {
             courseName: name
         };
-        this.http.post<any>(`${environment.apiHost}/teacher/create-course`, body).subscribe(res => console.log(res))
+        return this.http.post<any>(`${environment.apiHost}/teacher/create-course`, body)
     }
-    getCourseStudent(auth_token: string) {
+    getCourseStudent() {
         
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${auth_token}`
-        })
         return this.http.get(`${environment.apiHost}/student/courses`)
     }
-    addCourse(code: string, auth_token: string) {
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${auth_token}`
-        })
+    addCourse(code: string) {
         const body = {
             code: code
         };
-        this.http.post<any>(`${environment.apiHost}/student/join-course`, body).subscribe(res => console.log(res))
+        return this.http.post<any>(`${environment.apiHost}/student/join-course`, body)
     }
+    deleteCourse(id: number) {
+        const body = {
+            courseId: id
+        };
+        return this.http.delete<any>(`${environment.apiHost}/teacher/delete-course`, {body: body})
+    }
+
 }
