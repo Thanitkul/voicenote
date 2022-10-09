@@ -62,6 +62,36 @@ describe('Visit Signup', () => {
             cy.contains('Email cannot be blank')
             cy.url().should('include', '/authentication/signup')
         });
+
+        it('should display password cannot be blank', () => {
+            cy.viewport(400, 750)
+
+            cy.visit('http://localhost:4200/authentication/signup');
+            cy.wait(1000)
+            cy.get('[placeholder=Username]').type('test');
+            cy.wait(1000)
+            cy.get('[placeholder=Email]').type('test@gmail.com');
+            cy.wait(1000)
+            cy.get('button').click();
+            cy.contains('Password cannot be blank')
+            cy.url().should('include', '/authentication/signup')
+        });
+
+        it('should display date of birth cannot be blank', () => {
+            cy.viewport(400, 750)
+
+            cy.visit('http://localhost:4200/authentication/signup');
+            cy.wait(1000)
+            cy.get('[placeholder=Username]').type('test');
+            cy.wait(1000)
+            cy.get('[placeholder=Email]').type('test@gmail.com');
+            cy.wait(1000)
+            cy.get('[placeholder=Password]').type('12345678');
+            cy.wait(1000)
+            cy.get('button').click();
+            cy.contains('Date of birth cannot be blank')
+            cy.url().should('include', '/authentication/signup')
+        });
     });
 
 })
