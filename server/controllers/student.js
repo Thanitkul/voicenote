@@ -18,7 +18,7 @@ router.get('/courses', RouteProtection.verify, async (req, res, next) => {
             'SELECT courses.id, `courseName`, `code`, `isLive`, `liveGroupId` FROM `courses` LEFT JOIN `student_course` ON (courses.id = student_course.courseId) WHERE `studentId` = ?',
             [req.user.userId]
         )
-        
+
         res.json(courses);
     } catch (error) {
         console.log({ error })

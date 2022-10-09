@@ -9,7 +9,6 @@ class RouteProtection {
             const token = authHeader.split(' ').pop()
             const decoded = jwt.verify(token, process.env.TOKEN_SECRET)
 
-            
             req.user = { userId: decoded.userId }
 
             return next()
