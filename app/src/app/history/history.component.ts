@@ -18,7 +18,7 @@ export class HistoryComponent implements OnInit {
   ngOnInit(): void {
       this.courseId = this.route.snapshot.paramMap.get('id')
       this.courseName = this.route.snapshot.queryParamMap.get('courseName');
-      this.service.getHistory(this.courseId).subscribe((res: any) => { this.history = this.convertToDisplay(res)})
+      this.service.getHistory(this.courseId).subscribe((res: any) => { this.history = this.convertToDisplay(res), console.log(this.history)})
   }
 
   convertToDisplay(response: any[]): any {
@@ -47,6 +47,7 @@ export class HistoryComponent implements OnInit {
       }
       return display
   }
+
   redirect(){
     this.router.navigate(['/student']);
   }

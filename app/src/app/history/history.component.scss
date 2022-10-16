@@ -17,13 +17,10 @@
 }
 
 .history_box {
-    width: 200%;
+    width: 80%;
     border-radius: 10px;
-    height: 25vh;
-    margin-left: 12%;
-    margin-top: 10%;
-    background-color: #EEEEEE;
-    padding-top: 5%;
+    height: 15vh;
+    margin-left: 10%;
 }
 
 .history_date {
@@ -31,8 +28,6 @@
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bolder;
     color: #000000;
-    margin-top: 10px;
-    margin-left: 15px;
 }
 
 .history_time_box {
@@ -57,4 +52,8 @@
 .img {
     width: 45px;
     height: auto;
+}
+
+.temp {
+    border-radius: 1rem;
 }
