@@ -81,16 +81,15 @@ router.post('/join-course', RouteProtection.verify, async (req, res, next) => {
 /**
  * Endpoint https://newtonian-voicenote.fly.dev/api/student/leave-course
  */
-router.delete('/leave-course', RouteProtection.verify, async(req, res, next) => {
+router.delete('/leave-course', RouteProtection.verify, async(req, res) => {
 
   try {
-      const courseID = req.body.courseId;
     
-      await con.query("DELETE FROM student-course WHERE `studentId` = ? AND `courseId` = ?", [req.user.userId, courseID]);
+      await con.query("DELETE FROM student_course WHERE studentId = ? AND courseId = ?", [[req.user.userId], req.body.courseId]);
 
       res.status(200).json({message: "course left"})
   } catch(error) {
-        res.status(500)
+      res.status(500).json(error)
   }
 })
 
