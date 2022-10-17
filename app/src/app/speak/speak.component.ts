@@ -162,5 +162,6 @@ export class SpeakComponent implements OnInit {
 
     speak_stop() {
         this.isSpeak = false;
+        this.recognition.stop()
     }
 }
