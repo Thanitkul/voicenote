@@ -19,7 +19,6 @@
 .history_box {
     width: 80%;
     border-radius: 10px;
-    height: 15vh;
     margin-left: 10%;
 }
 
@@ -28,14 +27,13 @@
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bolder;
     color: #000000;
+    padding: 10px;
 }
 
 .history_time_box {
     width: 20%;
     border-radius: 10px;
     height: 8vh;
-    margin-left: 5%;
-    margin-top: 0%;
     background-color: #FFFFFF;
 }
 
@@ -43,10 +41,9 @@
     font-size: 17px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bolder;
-    color: #000000;
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-top: 8%;
+    color: black;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 .img {
@@ -56,4 +53,5 @@
 
 .temp {
     border-radius: 1rem;
+    background-color: #BEBEBE;
 }

@@ -6,13 +6,15 @@
     <div class="container">
         <div class="row" *ngFor = "let row of history">
             <div class="history_box bg-white mb-4">
-                <div class = "history_date mt-1 ms-1">{{ row.date | date: "dd/MM/yy" }}</div>
+                <div class = "history_date mt-1">{{ row.date | date: "dd/MM/yy" }}</div>
                 <div class="container-fuild">
                     <div class="row">
-                        <div class="col-4 bg-warning temp"  *ngFor = "let time of row.times">
-                            <a routerLink="/archive/{{time.groupId}}" [queryParams]="{courseName: courseName}" routerLinkActive="active" style="text-decoration: none;">
-                                <div class="history_time">{{ time.time }}</div>
-                            </a>
+                        <div class="col-4" *ngFor = "let time of row.times">
+                            <div class="temp mb-2">
+                                <a routerLink="/archive/{{time.groupId}}" [queryParams]="{courseName: courseName}" routerLinkActive="active" style="text-decoration: none;">
+                                    <div class="history_time text-center">{{ time.time }}</div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
