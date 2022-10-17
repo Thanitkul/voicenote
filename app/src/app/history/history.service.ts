@@ -14,5 +14,13 @@ export class HistoryService {
         return this.http.get(`${environment.apiHost}/student/get-recordings/` + id)
     }
     
+    getDate(id: string | null) {
+        
+        return this.http.get(`${environment.apiHost}/student/get-recordings/` + id)
+    }
 
+    getTime(id: string | null) {
+        
+        return this.http.get(`${environment.apiHost}/student/get-recordings/` + id)
+    }
 }

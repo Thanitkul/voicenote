@@ -18,7 +18,7 @@ export class HistoryComponent implements OnInit {
   ngOnInit(): void {
       this.courseId = this.route.snapshot.paramMap.get('id')
       this.courseName = this.route.snapshot.queryParamMap.get('courseName');
-      this.service.getHistory(this.courseId).subscribe((res: any) => { this.history = this.convertToDisplay(res)})
+      this.service.getHistory(this.courseId).subscribe((res: any) => { this.history = this.convertToDisplay(res), console.log(this.history)})
   }
 
   convertToDisplay(response: any[]): any {
@@ -26,11 +26,12 @@ export class HistoryComponent implements OnInit {
       //  [{"date":"2022-09-23","times": [{"time":"04:34:07", "groupId": "12341234"}]}]
       const display: any[] = [];
       for (const row of response) {
+          console.log(row.recordedAtTime.slice(0,5))
           const foundDisplay = display.find((dp: any) => dp.date === row.recordedAtDate);
 
           if (foundDisplay) {
               foundDisplay.times.push({
-                  time: row.recordedAtTime,
+                  time: row.recordedAtTime.slice(0,5),
                   groupId: row.groupId,
               });
           } else {
@@ -38,7 +39,7 @@ export class HistoryComponent implements OnInit {
                   date: row.recordedAtDate,
                   times: [
                       {
-                          time: row.recordedAtTime,
+                          time: row.recordedAtTime.slice(0,5),
                           groupId: row.groupId,
                       },
                   ],
@@ -47,8 +48,9 @@ export class HistoryComponent implements OnInit {
       }
       return display
   }
+
   redirect(){
-    this.router.navigate(['/student']);
+    this.router.navigate(['/courses/student']);
   }
 
 }
