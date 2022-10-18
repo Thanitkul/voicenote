@@ -26,18 +26,20 @@ export class ArchiveComponent implements OnInit {
   }
     htmlToPdf() {
         var data = document.getElementById('contentToConvert');  //Id of the table
+        
         if (data) {
+            
             html2canvas(data, { scale: 4 }).then(canvas => {
                 // Few necessary setting options  
-                let imgWidth = 300;
-                let pageHeight = 400;
+                let imgWidth = 210;
+                let pageHeight = 297;
                 let imgHeight = canvas.height * imgWidth / canvas.width;
                 let heightLeft = imgHeight;
 
                 const contentDataURL = canvas.toDataURL('image/png')
                 let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
                 let position = 0;
-                pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+                pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, heightLeft)
                 pdf.save('MYPdf.pdf'); // Generated PDF   
             });
         }
