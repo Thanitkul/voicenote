@@ -3,6 +3,7 @@ import { ArchiveService } from './archive.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import jspdf from 'jspdf';
 import html2canvas from 'html2canvas'
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-archive',
@@ -14,7 +15,7 @@ export class ArchiveComponent implements OnInit {
   display: any = [];
   courseName: string | null = '';
 
-  constructor(private service: ArchiveService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private service: ArchiveService, private route: ActivatedRoute, private router: Router, private location: Location) { }
 
   ngOnInit(): void {
     let data: any;
@@ -43,6 +44,10 @@ export class ArchiveComponent implements OnInit {
                 pdf.save('MYPdf.pdf'); // Generated PDF   
             });
         }
+    }
+
+    redirect() {
+      this.location.back()
     }
 
 }
