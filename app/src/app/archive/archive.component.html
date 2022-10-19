@@ -1,15 +1,19 @@
 <div class='container bg-white'>
     <div class="container__topbar">
-        <div class="container__topbar--arrow" (click)="redirect()">
-            <svg width="16" height="25" viewBox="0 0 16 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="container__topbar--arrow">
+            <svg width="16" height="25" viewBox="0 0 16 25" fill="none" xmlns="http://www.w3.org/2000/svg" (click)="redirect()">
                 <path d="M12.1274 0L0 12.1274L12.1274 24.2548L15.1321 21.25L6.0095 12.1274L15.1321 3.00475L12.1274 0Z" fill="white"/>
             </svg>                
+            <button (click)="IncrFontSize()" class="position-absolute button1 rounded-2 border-0 bg-white h1">+</button>
+            <button (click)="DecreFontSize()" class="position-absolute button2 rounded-2 border-0 bg-white h1">-</button>
         </div>
         <h1 class="container__topbar--subject">{{courseName}}</h1>
     </div>
     <div id="contentToConvert">
         <div class="container__body">
-            <p *ngFor="let message of display">{{message['data']}}</p>
+            <div class="spacer1"></div>
+            <p *ngFor="let message of display" [ngStyle]="{'font-size.px':fontSize}">{{message['data']}}</p>
+            <div class="spacer2"></div>
         </div>
     </div>
     <div class="container__bottombar">
@@ -21,4 +25,5 @@
             </svg>                
         </div>
     </div>
+    
 </div>
