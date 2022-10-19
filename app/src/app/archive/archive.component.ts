@@ -50,6 +50,7 @@ export class ArchiveComponent implements OnInit {
   redirect() {
     this.location.back()
   }
+  
   IncrFontSize() {
     this.fontSize++;
   }

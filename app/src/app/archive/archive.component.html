@@ -12,7 +12,7 @@
     <div id="contentToConvert">
         <div class="container__body">
             <div class="spacer1"></div>
-            <p *ngFor="let message of display">{{message['data']}}</p>
+            <p *ngFor="let message of display" [ngStyle]="{'font-size.px':fontSize}">{{message['data']}}</p>
             <div class="spacer2"></div>
         </div>
     </div>
