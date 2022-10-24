@@ -31,7 +31,7 @@ IO.on('connection', (socket) => {
       socket.join(room);
   });
 
-  socket.on('message', async ({ room, messageText, groupId,  }) => {
+  socket.on('message', async ({ room, messageText, groupId }) => {
 
       await con.query("INSERT INTO recordings (`courseId`, `groupId`, `data`) VALUE (?, ?, ?)", [room, groupId, messageText]);
       
