@@ -79,4 +79,18 @@ export class SignupComponent implements OnInit {
         this.router.navigate(['/']);
     }
 
+    openTos() {
+        let newRelativeUrl = this.router.createUrlTree(["tos"]);
+        let baseUrl = window.location.href.replace(this.router.url, '');
+    
+        window.open(baseUrl + newRelativeUrl, '_blank');
+    }
+
+    openPp() {
+        let newRelativeUrl = this.router.createUrlTree(["pp"]);
+        let baseUrl = window.location.href.replace(this.router.url, '');
+    
+        window.open(baseUrl + newRelativeUrl, '_blank');
+    }
+
 }

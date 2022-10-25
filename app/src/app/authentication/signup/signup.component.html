@@ -1,40 +1,94 @@
 <div class="container-fiuld">
-    <div class="row row-bg bottom-radius">
-        <div class="col-6">
-            <div class="mt-1 p-3 ms-2">
-                <p class="mb-0 text1" data-testid="header-create-an">Create an</p>
-                <p class="mt-2 text1" data-testid="header-account">Account</p>
-            </div>
-        </div>
-        <div class="col-6">
-            <img class="size img-fiuld float-end" src="/assets/images/signup.png">
-        </div>
+  <div class="row row-bg bottom-radius">
+    <div class="col-6">
+      <div class="mt-1 p-3 ms-2">
+        <p class="mb-0 text1" data-testid="header-create-an">Create an</p>
+        <p class="mt-2 text1" data-testid="header-account">Account</p>
+      </div>
     </div>
-    <div class="container">
-
-        <div class="form">
-            <div class="mb-4 d-grid gap-2 margintop">
-                <input type = "name" class="p-3 rounded-3 bgcolor border-0" placeholder = "Username" required [(ngModel)]="signupForm.username">
-                <p *ngIf="messageError.username" class="text-danger">{{messageError.username}}</p>
-                <input type = "email" class = "p-3 rounded-3 bgcolor border-0 mt-4" placeholder = "Email" required [(ngModel)]="signupForm.email">
-                <p *ngIf="messageError.email" class="text-danger">{{messageError.email}}</p>
-                <input type = "password" class = "p-3 rounded-3 bgcolor border-0 mt-4" placeholder = "Password" required [(ngModel)]="signupForm.password">
-                <p *ngIf="messageError.password" class="text-danger">{{messageError.password}}</p>
-                <input type = "date" class = "p-3 rounded-3 bgcolor border-0 mt-4" placeholder = "DD/MM/YY" required [(ngModel)]="signupForm.dob">
-                <p *ngIf="messageError.birthdate" class="text-danger">{{messageError.birthdate}}</p>
-            </div>
-        </div>
-                
-        <div class="d-grid gap-2">
-            <button class="btn bgcolor2 text-white p-3 mt-4" type="button" (click) = "register()">Sign Up</button>
-        </div>
-
-        <div class="tof ms-0 mt-2 fs">
-            <label class="form-check-label text2 ">By clicking Sign up you agree to our <a href="http://localhost:4200/tos" target="_blank" class="fw-semibold text2">Terms and Conditions</a> and 
-                <a href="http://localhost:4200/pp" target="_blank" class="fw-semibold text2">Privacy Statement</a></label>
-        </div>
-        <div class="text-center mt-4 ">
-            <p class="text-sm-start text3 mb-0 fw-light">Already have an account? <u class="fw-semibold" (click) = "redirectSignin()">Sign In</u></p>
-        </div>
+    <div class="col-6">
+      <img class="size img-fiuld float-end" src="/assets/images/signup.png" />
     </div>
+  </div>
+  <div class="container">
+    <div class="form">
+      <div class="mb-4 d-grid gap-2 margintop">
+        <input
+          type="name"
+          class="p-3 rounded-3 bgcolor border-0"
+          placeholder="Username"
+          required
+          [(ngModel)]="signupForm.username"
+        />
+        <p *ngIf="messageError.username" class="text-danger">
+          {{ messageError.username }}
+        </p>
+        <input
+          type="email"
+          class="p-3 rounded-3 bgcolor border-0 mt-4"
+          placeholder="Email"
+          required
+          [(ngModel)]="signupForm.email"
+        />
+        <p *ngIf="messageError.email" class="text-danger">
+          {{ messageError.email }}
+        </p>
+        <input
+          type="password"
+          class="p-3 rounded-3 bgcolor border-0 mt-4"
+          placeholder="Password"
+          required
+          [(ngModel)]="signupForm.password"
+        />
+        <p *ngIf="messageError.password" class="text-danger">
+          {{ messageError.password }}
+        </p>
+        <input
+          type="date"
+          class="p-3 rounded-3 bgcolor border-0 mt-4"
+          placeholder="DD/MM/YY"
+          required
+          [(ngModel)]="signupForm.dob"
+        />
+        <p *ngIf="messageError.birthdate" class="text-danger">
+          {{ messageError.birthdate }}
+        </p>
+      </div>
+    </div>
+
+    <div class="d-grid gap-2">
+      <button
+        class="btn bgcolor2 text-white p-3 mt-4"
+        type="button"
+        (click)="register()"
+      >
+        Sign Up
+      </button>
+    </div>
+
+    <div class="tof ms-0 mt-2 fs">
+      <label class="form-check-label text2"
+        >By clicking Sign up you agree to our
+        <a
+          (click)="openTos()"
+          target="_blank"
+          class="fw-semibold text2"
+          >Terms and Conditions</a
+        >
+        and
+        <a
+          (click)="openPp()"
+          target="_blank"
+          class="fw-semibold text2"
+          >Privacy Statement</a
+        ></label
+      >
+    </div>
+    <div class="text-center mt-4">
+      <p class="text-sm-start text3 mb-0 fw-light">
+        Already have an account?
+        <u class="fw-semibold" (click)="redirectSignin()">Sign In</u>
+      </p>
+    </div>
+  </div>
 </div>
