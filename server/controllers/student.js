@@ -40,7 +40,7 @@ router.get('/get-recordings/:id', RouteProtection.verify, async (req, res, next)
             res.status(401).json({ message: "Unauthorised, Not enrolled in this course" })
         } else {
             
-            res.status(200).json((await con.query("SELECT date(recordedAt) recordedAtDate, time(recordedAt) recordedAtTime, groupId FROM recordings WHERE courseId = ? GROUP BY groupId ORDER BY id", [req.params.id])))
+            res.status(200).json((await con.query("SELECT MIN(date(recordedAt)) recordedAtDate, MIN(time(recordedAt)) recordedAtTime, groupId FROM recordings WHERE courseId = ? GROUP BY groupId ORDER BY id", [req.params.id])))
         }
     } catch (err) {
         next(err)
