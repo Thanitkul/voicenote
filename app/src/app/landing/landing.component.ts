@@ -29,6 +29,8 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['authentication/signup'])
   }
 
-
+  openTutorial() {
+    window.open("tos", '_blank');
+  }
 
 }
