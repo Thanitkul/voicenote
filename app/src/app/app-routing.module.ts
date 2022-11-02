@@ -12,6 +12,7 @@ const routes: Routes = [
     { path: 'archive/:groupId', loadChildren: () => import('./archive/archive.module').then(m => m.ArchiveModule) },
     { path: 'pp', loadChildren: () => import('./pp/pp.module').then(m => m.PpModule) },
     { path: 'tos', loadChildren: () => import('./tos/tos.module').then(m => m.TosModule) },
+    { path: 'tutorial', loadChildren: () => import('./tutorial/tutorial.module').then(m => m.TutorialModule) },
     {path: '**', redirectTo: ''}
 ];
 
