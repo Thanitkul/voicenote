@@ -107,8 +107,16 @@ export class SpeakComponent implements OnInit {
                 return;
             }
             if (!this.final_transcript) {
-                alert('info_start');
-                return;
+                if (this.isSpeak){
+                    this.recognition.lang = 'th-TH';
+                    this.recognition.start();
+                    this.ignore_onend = false;
+                    this.isSpeak = true;
+                    return;
+                }
+                else{
+                    
+                }
             }
         };
 
@@ -169,13 +177,13 @@ export class SpeakComponent implements OnInit {
     }
 
     stop() {
-        this.recognition.stop();
+        this.speak_stop()
         this.stopModal.hide();
         this.service.endLive(this.room).subscribe(res => this.router.navigate(['/courses/teacher']))
         
     }   
     stopEx() {
-        this.recognition.stop();
+        this.speak_stop()
         this.stopModal.hide();
         this.service.endLive(this.room).subscribe(res => {})
         
