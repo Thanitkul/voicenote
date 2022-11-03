@@ -30,7 +30,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Finish?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="redirectCourse()"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p>Click "End" to finish the section</p>
@@ -38,6 +38,23 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" (click)="stop()" class="btn btn-primary"  data-bs-dismiss="modal" (click)="redirectCourse()">End</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="stop_modal_exception" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Finish?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Click "End" to finish the section</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" (click)="stopEx()" class="btn btn-primary"  data-bs-dismiss="modal">End</button>
                 </div>
             </div>
         </div>

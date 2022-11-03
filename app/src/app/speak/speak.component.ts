@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { speakService } from './speak.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd, NavigationStart} from '@angular/router';
+import { not } from '@angular/compiler/src/output/output_ast';
 declare var bootstrap: any;
 
 // declare var stt: any;
@@ -34,16 +35,32 @@ export class SpeakComponent implements OnInit {
     room : any;
     groupId: any = -1;
     stopModal: any;
+    stopModalEx: any;
     isSpeak: boolean = false;
     head_speak: string[] = [];
     courseName: string | null = '';
+    inPage: boolean = true;
+    fromModal: boolean = false;
 
     constructor(private service: speakService, private route: ActivatedRoute, private router: Router) {
+        router.events.subscribe((val) => {
+            // see also 
+            if (val instanceof NavigationStart) {
+                if (!this.inPage && !this.fromModal){
+                    alert('out')
+                    
+                    this.stopEx()
+                    this.inPage = true
+                    this.fromModal = false
+                }
+            }
+        });
         
     }
 
     ngOnInit(): void {
         this.stopModal = new bootstrap.Modal(document.getElementById('stop_modal'));
+        this.stopModalEx = new bootstrap.Modal(document.getElementById('stop_modal_exception'));
         this.room = this.route.snapshot.paramMap.get('id')
         this.courseName = this.route.snapshot.queryParamMap.get('courseName')
         this.service.socketConnection(this.room);
@@ -56,9 +73,8 @@ export class SpeakComponent implements OnInit {
         console.log(this.room)
         this.service.speakHeading(this.room).subscribe((res: any) => {this.head_speak = res[0].courseName, console.log(this.head_speak)})
         this.groupId = this.service.startLive(this.room).subscribe(res => { this.groupId = res.groupId, console.log(this.groupId) })
-        
+        this.inPage = false
     }
-
     stt() {
         // const SpeechRecognition: any = new webkitSpeechRecognition();
         this.recognition = new webkitSpeechRecognition();
@@ -148,6 +164,9 @@ export class SpeakComponent implements OnInit {
     openStopModal(): void {
         this.stopModal.show();
     }
+    openStopModalEx(): void {
+        this.stopModalEx.show();
+    }
 
     stop() {
         this.recognition.stop();
@@ -155,13 +174,23 @@ export class SpeakComponent implements OnInit {
         this.service.endLive(this.room).subscribe(res => this.router.navigate(['/courses/teacher']))
         
     }   
+    stopEx() {
+        this.recognition.stop();
+        this.stopModal.hide();
+        this.service.endLive(this.room).subscribe(res => {})
+        
+    }   
 
     redirectCourse() {
+        this.fromModal = true
         this.router.navigate(['/courses/teacher'])
     }
 
     speak_stop() {
         this.isSpeak = false;
         this.recognition.stop()
+    }
+    noBack() {
+        window.history.forward()
     }
 }
