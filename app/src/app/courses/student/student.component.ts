@@ -53,9 +53,6 @@ export class StudentComponent implements OnInit {
             }
             
             this.courseserv.getCourseStudent().subscribe((res: any) => {this.courses = res})
-            
-            
-            
         })
 
     }
@@ -70,6 +67,9 @@ export class StudentComponent implements OnInit {
     goto(courseId: number, groupId: number, courseName: string) {
         console.log({courseId, groupId})
         this.router.navigateByUrl('/note/' + courseId + '/' + groupId + '?courseName=' + courseName);
+    }
+    notLive(){
+        alert('Not live yet')
     }
 
 }
