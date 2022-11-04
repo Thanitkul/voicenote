@@ -39,8 +39,13 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-10">
-                            <h2 (click)="goto(course.id, course.liveGroupId, course.courseName)" style="cursor: pointer; font-size: 30px;"><b>{{course.courseName}}</b></h2>
-            
+                            <!-- add new style -->
+                            <ng-template [ngIf]="course.liveGroupId">
+                                <h2 (click)="goto(course.id, course.liveGroupId, course.courseName)" style="cursor: pointer; font-size: 30px;"><b>{{course.courseName}}</b></h2>
+                            </ng-template>
+                            <ng-template [ngIf]="!course.liveGroupId">
+                                <h2 (click)="notLive()" style="cursor: pointer; font-size: 30px;"><b>{{course.courseName}}</b></h2>
+                            </ng-template>
                             <a routerLink="/history/{{course.id}}" [queryParams]="{courseName: course.courseName}" class="btn btn-sm mt-4" style="background-color: white; font-size: 2vh; font-weight: bold;">
                                 History
                             </a>
