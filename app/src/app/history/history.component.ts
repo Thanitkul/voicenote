@@ -26,12 +26,11 @@ export class HistoryComponent implements OnInit {
       //  [{"date":"2022-09-23","times": [{"time":"04:34:07", "groupId": "12341234"}]}]
       const display: any[] = [];
       for (const row of response) {
-          console.log(row.recordedAtTime.slice(0,5))
           const foundDisplay = display.find((dp: any) => dp.date === row.recordedAtDate);
 
           if (foundDisplay) {
               foundDisplay.times.push({
-                  time: row.recordedAtTime.slice(0,5),
+                  time: this.toDate(row.recordedAtTime.slice(0, 5), "h:m"),
                   groupId: row.groupId,
               });
           } else {
@@ -39,7 +38,7 @@ export class HistoryComponent implements OnInit {
                   date: row.recordedAtDate,
                   times: [
                       {
-                          time: row.recordedAtTime.slice(0,5),
+                          time: this.toDate(row.recordedAtTime.slice(0, 5), "h:m"),
                           groupId: row.groupId,
                       },
                   ],
@@ -48,6 +47,16 @@ export class HistoryComponent implements OnInit {
       }
       return display
   }
+    toDate(dStr: any, format: any): any {
+    var now = new Date();
+    if (format == "h:m") {
+        now.setHours(parseInt(dStr.substr(0, dStr.indexOf(":"))) + 7);
+        now.setMinutes(dStr.substr(dStr.indexOf(":") + 1));
+        now.setSeconds(0);
+        return now;
+    } else
+        return "Invalid Format";
+}
 
   redirect(){
     this.router.navigate(['/courses/student']);
