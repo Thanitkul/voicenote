@@ -53,8 +53,9 @@
                                 style="cursor: pointer; font-size: 30px;"><b>{{course.courseName}}</b></h2>
                         </ng-template>
                         <ng-template [ngIf]="!course.liveGroupId">
-                            <h2 (click)="notLive()" style="cursor: pointer; font-size: 30px;">
-                                <b>{{course.courseName}}</b></h2>
+                            <h2 (click)="openPopup()" style="cursor: pointer; font-size: 30px;">
+                                <b>{{course.courseName}}</b>
+                            </h2>
                         </ng-template>
                         <a routerLink="/history/{{course.id}}" [queryParams]="{courseName: course.courseName}"
                             class="btn btn-sm mt-4" style="background-color: white; font-size: 2vh; font-weight: bold;">
@@ -93,6 +94,22 @@
     </div>
 </ng-template>
 
+<!-- popup -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="text-align: center;">Not live yet</h4>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" style="background-color: #E8963F;" (click)="closePopup()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <!--creating form modal-->
 <div class="modal fade" id="addcourse_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

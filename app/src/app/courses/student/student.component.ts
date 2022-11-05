@@ -74,5 +74,12 @@ export class StudentComponent implements OnInit {
     notLive(){
         alert('Not live yet')
     }
+    displayStyle = "none";
+    openPopup() {
+        this.displayStyle = "block";
+      }
+    closePopup() {
+        this.displayStyle = "none";
+      }
 
 }
