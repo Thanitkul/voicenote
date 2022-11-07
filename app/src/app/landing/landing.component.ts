@@ -30,7 +30,7 @@ export class LandingComponent implements OnInit {
   }
 
   openTutorial() {
-    window.open("tos", '_blank');
+    window.open("tutorial", '_blank');
   }
 
 }
