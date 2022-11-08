@@ -11,7 +11,7 @@ export class noteService {
     private socket!: Socket;
 
     constructor(private http: HttpClient) {
-        this.socket = io('https://newtonian-voicenote.fly.dev', {
+        this.socket = io(`${environment.apiHost}`, {
             transports: ['websocket', 'polling']
         })
     }
