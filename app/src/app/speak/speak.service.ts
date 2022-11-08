@@ -11,7 +11,7 @@ export class speakService {
     private socket!: Socket;
 
     constructor(private http: HttpClient) {
-        this.socket = io(`${environment.apiHost}`, {
+        this.socket = io(environment.apiHost.replace("/api", ""), {
             transports: ['websocket', 'polling']
         })
     }
