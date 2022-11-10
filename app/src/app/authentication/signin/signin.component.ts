@@ -11,7 +11,8 @@ import { StudentComponent } from 'src/app/courses/student/student.component';
 export class SigninComponent implements OnInit {
   signinForm = {
     email: '' ,
-    password: ''
+    password: '',
+    grass: false
   }
   constructor(private authServ: AuthenticationService, private router: Router) { }
   route_to: string = ''
@@ -24,6 +25,10 @@ export class SigninComponent implements OnInit {
     }
     this.route_to = localStorage.getItem('role')!
     this.name = this.route_to.toUpperCase()
+    if (localStorage.getItem('grass') != null){
+      this.saveData(localStorage.getItem('grass'))
+      this.router.navigate(['/courses/' + this.route_to])
+    }
 
   }  
 
@@ -41,11 +46,15 @@ export class SigninComponent implements OnInit {
       },
       complete: () => {
         this.router.navigate(['/courses/' + this.route_to])
+        
       }
+
   
 
     })
-      
+
+
+    // console.log(this.signinForm.grass)
   }
 
   redirectSignup() {
@@ -56,8 +65,15 @@ export class SigninComponent implements OnInit {
     this.router.navigate(['/'])
   }
 
+  forgotPassword() {
+    alert("Skill issue + L + Ratio + cringe")
+  }
+
   saveData(token : any) {
     localStorage.setItem('token', token);
+    if(this.signinForm.grass == true){
+      localStorage.setItem("grass",token)
+    }
   }
 
 }

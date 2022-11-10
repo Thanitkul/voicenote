@@ -33,7 +33,8 @@ export class StudentComponent implements OnInit {
         
     }
     logout(): void {
-        localStorage.clear();
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
     }
     openAddCourse(): void {
         this.addCourse.show();
