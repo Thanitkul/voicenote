@@ -66,7 +66,8 @@ export class SigninComponent implements OnInit {
   }
 
   forgotPassword() {
-    alert("Skill issue + L + Ratio + cringe")
+    this.router.navigate(['/authentication/fp'])
+
   }
 
   saveData(token : any) {
