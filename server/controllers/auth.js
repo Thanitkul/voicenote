@@ -3,7 +3,30 @@ const router = express.Router()
 const bcrypt = require("bcrypt")
 const con = require("../models/db")
 const jwt = require('jsonwebtoken')
+const crypto = require('crypto');
 const RouteProtection = require("../helpers/RouteProtection")
+const sendEmail = require("../helpers/SendEmail")
+
+async function sendPasswordResetEmail(email, resetToken, origin) {
+    let message;
+     
+    if (origin) {
+        const resetUrl = `${origin}/apiRouter/resetPassword?token=${resetToken} email=${email}`;
+        message = `<p>Please click the below link to reset your password, the following link will be valid for only 1 hour:</p>
+                   <p><a href="${resetUrl}">${resetUrl}</a></p>`;
+    } else {
+        message = `<p>Please use the below token to reset your password with the <code>/apiRouter/reset-password</code> api route:</p>
+                   <p><code>${resetToken}</code></p>`;
+    }
+ 
+    await sendEmail({
+        from: process.env.EMAIL_FROM,
+        to: email,
+        subject: ' Reset your Password',
+        html: `<h4>Reset Password</h4>
+               ${message}`
+    });
+}
 
 const findUserWithId = async (userId) => {
     const [data, headers] =  await con.query(
@@ -98,6 +121,32 @@ router.get("/get-username", RouteProtection.verify, async function getUsername(r
         }
     } catch (error) {
         console.log(error);
+    }
+})
+
+router.post("/forget-password", async (req, res) => {
+    try {
+        const email = req.body.email;
+        const origin = req.header('Origin'); // we are  getting the request origin from  the origin header.
+
+        const user = await con.query("SELECT * FROM users WHERE email = ?", email)
+
+        if (!user) {
+            res.status(400).json({ message: "the user doesn't exist"})
+        } else {
+            await con.query("UPDATE reset_password_token SET used = ?  WHERE email = ?", [1, email])
+
+            const resetToken = crypto.randomBytes(40).toString('hex');
+            const expiredAt = new Date(Date.now() + 60*60*1000);
+            const createdAt = new Date(Date.now());
+
+            await con.query("INSERT INTO reset-password-token ( email, Token_value,created_at, expired_at, used) VALUES (?, ?,?, ?, ?)'", [ email, resetToken, createdAt, expiredAt, 0])
+            await sendPasswordResetEmail(email,resetToken, origin);
+
+            res.status(200).json({ message: 'Please check your email for a new password' });
+        }
+    } catch (error) {
+        
     }
 })
 
