@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiHost: 'https://voicenote-api.xeersoft.co.th/api'
+  apiHost: 'https://newtonian-voicenote.fly.dev/api'
 };
