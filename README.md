@@ -1,6 +1,6 @@
 # Voice Note
 
-A web applications used to enhance the studying experience for people with hearing disabilities: specificly built for Thai
+A web applications used to enhance the studying experience for people with hearing disabilities: specificly built for Thai.
 
 ## Getting started
 
