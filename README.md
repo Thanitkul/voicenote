@@ -2,6 +2,8 @@
 
 A web applications used to enhance the studying experience for people with hearing disabilities: specificly built for Thai.
 
+Speech-to-text Module from MDNwebSpeech
+
 ## Getting started
 
 If you work on front-end:
