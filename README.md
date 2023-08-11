@@ -1,6 +1,6 @@
 # Voice Note
 
-A system of web and mobile applications used to enhance the studying experience for people with hearing disabilities.
+A web applications used to enhance the studying experience for people with hearing disabilities: specificly built for Thai
 
 ## Getting started
 
