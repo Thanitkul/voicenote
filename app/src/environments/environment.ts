@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiHost: 'https://newtonian-voicenote.fly.dev/api'
+  apiHost: ''
 };
 
 /*
